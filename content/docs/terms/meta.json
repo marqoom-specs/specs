@@ -1,0 +1,10 @@
+{
+  "title": "Terms",
+  "defaultOpen": true,
+  "pages": [
+    "index",
+    "standard",
+    "dictionary",
+    "registries"
+  ]
+}

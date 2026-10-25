@@ -1,0 +1,583 @@
+.visual-lab {
+  /* The hero's two metals: gold for what is being pointed at, silver for the rest of the data. */
+  --viz-gold: #b3873a;
+  --viz-silver: #60646c;
+  --viz-quiet: #d3d6db;
+  --viz-ink: var(--color-fd-foreground);
+  --viz-muted: var(--color-fd-muted-foreground);
+  --viz-line: var(--color-fd-border);
+  --viz-surface: var(--color-fd-background);
+  display: grid;
+  gap: clamp(5rem, 11vw, 9rem);
+  width: min(1040px, 100%);
+  margin-inline: auto;
+  padding: clamp(2.5rem, 7vw, 6rem) clamp(1.1rem, 4vw, 3rem) 9rem;
+}
+.dark .visual-lab {
+  --viz-gold: #d8b676;
+  --viz-silver: #8a8f98;
+  --viz-quiet: #33363d;
+}
+.visual-lab code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.86em;
+}
+/* Arabic leads wherever a term is named: it is the term, and the code name follows from it. */
+.viz-arabic {
+  font-size: clamp(2.1rem, 5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.5;
+}
+.lab-intro h1 {
+  max-width: 16ch;
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+}
+.lab-intro p {
+  margin-top: 1.2rem;
+}
+.lab-intro p,
+.viz-head p,
+.viz-note {
+  max-width: 34rem;
+  line-height: 1.65;
+  color: var(--viz-muted);
+}
+.viz {
+  display: grid;
+  gap: clamp(1.8rem, 4vw, 2.8rem);
+  min-width: 0;
+}
+.viz-head h2 {
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+.viz-stage {
+  min-width: 0;
+  padding: clamp(1.1rem, 3vw, 2.2rem);
+  border: 1px solid var(--viz-line);
+  border-radius: 1.1rem;
+  background: var(--viz-surface);
+}
+.viz-note {
+  max-width: 40rem;
+  font-size: 0.8rem;
+}
+.viz-scroll {
+  overflow-x: auto;
+}
+.viz-scroll svg {
+  display: block;
+  width: 100%;
+  min-width: 620px;
+  height: auto;
+}
+/* Choices and related names are pills, as the controls are everywhere else on the site. */
+.viz-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+.viz-pills button {
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--viz-line);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  color: var(--viz-muted);
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+.viz-pills button:hover,
+.viz-pills button[aria-pressed='true'] {
+  color: var(--viz-ink);
+  border-color: color-mix(in srgb, var(--viz-ink) 28%, transparent);
+}
+.viz-pills button[aria-pressed='true'] {
+  background: var(--marqoom-selected);
+}
+.viz-pills span {
+  padding-inline-start: 0.3rem;
+  font-size: 0.82rem;
+  color: var(--viz-muted);
+}
+
+/* Spellings */
+.spell {
+  display: grid;
+  gap: 1.8rem;
+}
+.spell-stage {
+  position: relative;
+}
+.spell-scene {
+  animation: viz-appear 700ms ease both;
+}
+.spell-scene svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.spell-scene path {
+  fill: none;
+  stroke-linecap: round;
+}
+.spell-far {
+  stop-color: var(--viz-silver);
+  stop-opacity: 0.28;
+}
+.spell-near {
+  stop-color: var(--viz-gold);
+}
+/* A pulse runs down each thread in turn and into the name. */
+.spell-pulse path {
+  stroke: var(--viz-gold);
+  stroke-width: 2;
+  stroke-dasharray: 9 91;
+  stroke-dashoffset: 9;
+  animation: spell-flow 2600ms linear infinite;
+}
+.spell-trunk {
+  stroke: var(--viz-gold);
+  stroke-width: 2.5;
+}
+.spell-alias {
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  transform: translateY(-50%);
+  text-align: end;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--viz-muted);
+}
+.spell-name {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  gap: 0.2rem;
+  justify-items: start;
+  transform: translateY(-50%);
+}
+.spell-name code {
+  font-size: 1rem;
+}
+.spell-name > * {
+  white-space: nowrap;
+}
+
+/* Concept map */
+.map {
+  display: grid;
+  gap: 2rem;
+}
+.map svg {
+  cursor: pointer;
+}
+.map-web line {
+  stroke: var(--viz-ink);
+  stroke-opacity: 0.06;
+}
+.map-ties path {
+  fill: none;
+  stroke: var(--viz-gold);
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  animation: viz-draw 520ms var(--marqoom-ease) both;
+}
+/* The concept being read is ringed, as a star is marked on a chart. */
+.map-mark {
+  fill: none;
+  stroke: var(--viz-gold);
+}
+.map-node {
+  fill: var(--viz-silver);
+  opacity: 0.62;
+  transition: opacity 200ms ease;
+}
+.map-node[data-state] {
+  fill: var(--viz-gold);
+  opacity: 1;
+}
+/* While a name is being searched, only the entries that match stay lit. */
+.map svg[data-searching] .map-node:not([data-found], [data-state='active']) {
+  fill: var(--viz-silver);
+  opacity: 0.2;
+}
+.map svg[data-searching] .map-node[data-found] {
+  fill: var(--viz-gold);
+  opacity: 1;
+}
+.map-search {
+  display: grid;
+  gap: 0.7rem;
+}
+.map-search input {
+  width: 100%;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--viz-line);
+  border-radius: 999px;
+  background: var(--color-fd-card);
+  font-size: 0.92rem;
+  color: var(--viz-ink);
+}
+.map-search input::placeholder {
+  color: var(--viz-muted);
+}
+.map-search p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  color: var(--viz-muted);
+}
+.map-search a {
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--viz-line);
+  border-radius: 999px;
+  color: var(--viz-muted);
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+.map-search a:is(:hover, :focus-visible) {
+  color: var(--viz-ink);
+  border-color: color-mix(in srgb, var(--viz-ink) 28%, transparent);
+}
+.map-search a code {
+  color: var(--viz-gold);
+}
+.map-label,
+.chain text {
+  font-size: 12.5px;
+  fill: var(--viz-muted);
+}
+.map-label,
+.map-here {
+  text-anchor: middle;
+}
+.map-here {
+  font-size: 13px;
+  font-weight: 500;
+  fill: var(--viz-ink);
+  stroke: var(--viz-surface);
+  stroke-width: 4;
+  paint-order: stroke;
+  pointer-events: none;
+}
+.map a:hover .map-label {
+  fill: var(--viz-ink);
+}
+.map-entry {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.6rem clamp(1.5rem, 4vw, 3.5rem);
+  min-height: 10.5rem;
+}
+.map-entry > div {
+  display: grid;
+  gap: 0.55rem;
+  max-width: 36rem;
+  padding-top: 0.9rem;
+}
+.map-entry p {
+  line-height: 1.65;
+  color: var(--viz-muted);
+}
+.map-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.8rem;
+}
+.map-name strong,
+.counts-surah strong,
+.chain-entry strong {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--viz-ink);
+}
+.map-entry a {
+  color: var(--viz-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--viz-line);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 160ms ease;
+}
+.map-entry a:hover {
+  text-decoration-color: var(--viz-gold);
+}
+.map-entry a {
+  justify-self: start;
+  font-size: 0.9rem;
+}
+
+/* Ayah counts */
+.counts {
+  display: grid;
+  gap: 2rem;
+}
+.counts-bars {
+  display: grid;
+  grid-template-columns: repeat(114, minmax(0, 1fr));
+  column-gap: clamp(1px, 0.18vw, 2px);
+  height: 11rem;
+  padding-top: 1.6rem;
+  cursor: crosshair;
+  touch-action: pan-y;
+  outline-offset: 8px;
+}
+.counts-bars i {
+  position: relative;
+  font-style: normal;
+}
+.counts-bars i::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: calc(var(--share) * 100%);
+  border-radius: 3px 3px 0 0;
+  background: var(--viz-gold);
+}
+.counts-bars i[data-same]::after {
+  height: 2px;
+  border-radius: 0;
+  background: var(--viz-quiet);
+}
+/* The surah being read: a hairline through the plot, and its bar in ink. */
+.counts-bars i[data-active]::before {
+  content: '';
+  position: absolute;
+  inset-block: -1.6rem 0;
+  left: 50%;
+  width: 1px;
+  background: color-mix(in srgb, var(--viz-ink) 32%, transparent);
+}
+.counts-bars i[data-active]::after {
+  background: var(--viz-ink);
+}
+.counts-bars b {
+  position: absolute;
+  bottom: calc(var(--share) * 100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.72rem;
+  font-weight: 400;
+  white-space: nowrap;
+  color: var(--viz-muted);
+}
+.counts-axis {
+  position: relative;
+  height: 1.6rem;
+  border-top: 1px solid var(--viz-line);
+  font-size: 0.72rem;
+  color: var(--viz-muted);
+}
+.counts-axis span {
+  position: absolute;
+  top: 0.45rem;
+  left: calc((var(--n) - 0.5) / 114 * 100%);
+  transform: translateX(-50%);
+}
+/* The end labels stay inside the plot. */
+.counts-axis span:first-child {
+  left: 0;
+  transform: none;
+}
+.counts-axis span:last-child {
+  left: 100%;
+  transform: translateX(-100%);
+}
+.counts-surah {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem clamp(1.2rem, 3vw, 2.2rem);
+  color: var(--viz-muted);
+}
+.counts-surah .viz-arabic {
+  color: var(--viz-ink);
+}
+.counts-surah > span:last-child {
+  display: grid;
+  gap: 0.15rem;
+}
+/* One tile for each numbering system. */
+.counts-tiles {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+.counts-tiles > div {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 1.05rem 1.1rem;
+  border: 1px solid var(--viz-line);
+  border-radius: 0.8rem;
+  background: var(--color-fd-card);
+}
+.counts-tiles span,
+.counts-tiles small {
+  font-size: 0.78rem;
+  color: var(--viz-muted);
+}
+.counts-tiles strong {
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+.counts-tiles i {
+  width: calc(var(--share) * 100%);
+  height: 2px;
+  background: var(--viz-gold);
+  transition: width 320ms var(--marqoom-ease);
+}
+
+/* Transmission */
+.chain {
+  display: grid;
+  grid-template-columns: minmax(0, 1.75fr) minmax(15rem, 1fr);
+  align-items: center;
+  gap: 2rem clamp(1.5rem, 4vw, 3.5rem);
+}
+.chain svg {
+  width: 100%;
+  height: auto;
+}
+.chain path {
+  fill: none;
+  stroke-linecap: round;
+}
+.chain-ring {
+  fill: none;
+  stroke: var(--viz-line);
+}
+.chain-link path {
+  stroke: var(--viz-quiet);
+  stroke-width: 1.25;
+}
+.chain .chain-hit {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 16;
+}
+/* The riwayah being read: a gold line laid over its own. */
+.chain .chain-live {
+  pointer-events: none;
+  stroke: var(--viz-gold);
+  stroke-width: 2;
+  stroke-dasharray: 1;
+  animation: viz-draw 520ms var(--marqoom-ease) both;
+}
+.chain circle:not(.chain-hit, .chain-ring) {
+  fill: var(--viz-silver);
+  stroke: var(--viz-surface);
+  stroke-width: 2;
+  transition: fill 200ms ease;
+}
+.chain [data-active] circle:not(.chain-hit) {
+  fill: var(--viz-gold);
+}
+.chain [data-active] text {
+  fill: var(--viz-ink);
+  font-weight: 500;
+}
+.chain-entry {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+}
+.chain-entry .viz-arabic {
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+}
+.chain-entry p {
+  max-width: 22rem;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--viz-muted);
+}
+.chain-code {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-block: 0.9rem 0.5rem;
+}
+.chain-code span {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: center;
+}
+/* The name in its three parts, each on its own chip. */
+.chain-code code {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--viz-line);
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  background: var(--color-fd-card);
+}
+.chain-code small {
+  font-size: 0.72rem;
+  color: var(--viz-muted);
+}
+
+@keyframes viz-appear {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes viz-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+@keyframes spell-flow {
+  to {
+    stroke-dashoffset: -91;
+  }
+}
+/* A narrow spelling figure (set by the component) keeps its name on one line and every spelling whole. */
+.spell-stage[data-narrow] .spell-name .viz-arabic {
+  font-size: 1.45rem;
+}
+.spell-stage[data-narrow] .spell-name code {
+  font-size: 0.85rem;
+}
+.spell-stage[data-narrow] .spell-alias {
+  font-size: 0.72rem;
+}
+/* Phones: the ring's names and dots are big enough to read and tap. */
+@media (max-width: 560px) {
+  .chain text {
+    font-size: 18px;
+  }
+}
+@media (pointer: coarse) {
+  .chain-reader .chain-hit {
+    r: 30px;
+  }
+  .chain-rawi .chain-hit {
+    r: 26px;
+  }
+}
+@media (max-width: 820px) {
+  .chain,
+  .map-entry {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .counts-tiles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

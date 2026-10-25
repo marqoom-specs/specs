@@ -1,0 +1,30 @@
+name: Suggest an edit | اقترح تعديلًا
+description: Suggest a change to a page of the standards. | اقترح تغييرًا في صفحة من المعايير.
+title: "edit: "
+labels: [edit]
+body:
+  - type: textarea
+    id: location
+    attributes:
+      label: Where | الموضع
+      description: The page, heading and file. Filled in when you open this form from the site. | الصفحة والعنوان والملف، وتُملأ تلقائيًا إذا فتحت النموذج من الموقع.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: quote
+    attributes:
+      label: The current text | النص الحالي
+      description: The text you want to change. | النص الذي تريد تغييره.
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Your suggestion | اقتراحك
+      description: What should it say instead? | ماذا ينبغي أن يقول؟
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why | السبب
+      description: Evidence, sources or examples that support the change. | الأدلة أو المصادر أو الأمثلة التي تؤيد التغيير.

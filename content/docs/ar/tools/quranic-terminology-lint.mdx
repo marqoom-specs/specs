@@ -1,0 +1,79 @@
+---
+title: أداة فحص المصطلحات القرآنية
+description: تراجع أسماء المصطلحات في الكود عند كل commit، وتقترح البديل وقاعدة التسمية التي يستند إليها.
+---
+
+تراجع Quranic Terminology Lint أسماء المصطلحات في الكود، وتوضح لك موضع الاسم الذي يحتاج إلى تعديل، والبديل المقترح، وقاعدة التسمية التي استندت إليها. والقواعد موجودة داخل الأداة نفسها، لذلك تعمل على جهازك بعد التثبيت، من غير إنترنت.
+
+لنفترض أن لديك ملفًا اسمه `example.py`، تحفظ فيه رقم الآية ثم تطبعه:
+
+```py
+aya_number = 5
+print(aya_number)
+```
+
+عند محاولة عمل commit، يتوقف الـ check ويعرض الملاحظتين التاليتين:
+
+```text
+example.py:1: error aya_number → ayah_number (rule 019: Ta marbutah outside idafah)
+example.py:2: error aya_number → ayah_number (rule 019: Ta marbutah outside idafah)
+```
+
+كل سطر يوضح اسم الملف ورقم السطر، ثم الاسم الحالي والبديل المقترح. الملف نفسه لم يتغيّر: تصحح الاسم في السطرين، ثم تضيف التعديل باستخدام `git add example.py` وتعيد الـ commit.
+
+## كيف أضيفها إلى مشروعي؟ [#set-up]
+
+تحتاج إلى Python 3.10 أو أحدث، وإلى تثبيت [أداة pre-commit](https://pre-commit.com/#install). بعد ذلك، أنشئ ملفًا باسم `.pre-commit-config.yaml` في المجلد الرئيسي للمشروع، وضع فيه:
+
+```yaml
+repos:
+  - repo: https://github.com/marqoom-specs/quranic-terminology-lint
+    rev: v0.4.0
+    hooks:
+      - id: quranic-terminology
+```
+
+وإذا كان الملف موجودًا عندك، أضف المستودع إلى قائمة `repos` الموجودة فيه. ثم شغّل الأمر التالي من داخل المشروع:
+
+```bash
+pre-commit install
+```
+
+من الآن، ستعمل الـ checks عند كل commit على الملفات التي جهّزتها باستخدام `git add`. ولمراجعة ملفات المشروع الموجودة أصلًا:
+
+```bash
+pre-commit run quranic-terminology --all-files
+```
+
+أنصح بالبدء بهذا الأمر وقراءة النتائج، خصوصًا في مشروع قديم. إذا وجد خطأ في التسمية يوقف الـ commit، أما التحذيرات فلا توقفه.
+
+## ماذا لو لم أستطع تغيير الاسم؟ [#exceptions]
+
+يمكنك استثناء أسماء تفرضها مكتبة خارجية، أو ملفات بيانات تريد الاحتفاظ بها كما وصلت إليك. أضف ملف `.terminology.json` في المجلد الرئيسي للمشروع، واكتب فيه سبب الاستثناء:
+
+```json
+{
+  "exclude": ["data/**"],
+  "external_names": ["\\bChapters\\b"],
+  "_comment": "Chapters is an export owned by our Quran API dependency."
+}
+```
+
+ولتجاوز سطر واحد، أضف إليه تعليقًا فيه `terminology: ignore`. وتسمح الأداة في التعليقات والشرح بأسماء مثل `Tajweed`، حتى لو كان المعيار يختار `tajwid` للمتغيرات.
+
+## هل يمكنها تعديل الأسماء؟ [#unsafe-fix]
+
+الإعداد السابق يشغّل check فقط: يقترح التصحيحات ويترك الملفات كما هي. وإذا أردت تطبيق التصحيحات تلقائيًا، استبدل `quranic-terminology` في الإعداد بـ `quranic-terminology-unsafe-fix`. عندها يصبح `example.py`:
+
+```py
+ayah_number = 5
+print(ayah_number)
+```
+
+وسمّيناه unsafe لأن تغيير الاسم قد يؤثر في كود آخر. إذا كنت تستورد `Chapters` من مكتبة، فإن استبداله بـ `Surahs` قد يكسر الـ import؛ فالمكتبة ما زالت تستخدم الاسم القديم. لذلك راجع الـ diff وشغّل الـ tests بعد التعديل، ثم أعد الـ commit.
+
+## أين أجد التفاصيل؟ [#more]
+
+تجد التثبيت المباشر والتشغيل في CI، وكل القواعد التي تراجعها الأداة، وتفاصيل الصيغ المدعومة والاستثناءات في [توثيق الأداة](https://github.com/marqoom-specs/quranic-terminology-lint/blob/v0.4.0/README.md). والقواعد نفسها مشروحة في [معيار التسمية](/ar/docs/terms/standard). والأداة مفتوحة المصدر برخصة MIT.
+
+<ToolCta ar />

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="currentColor">
+  <title>Marqoom</title>
+  <defs>
+    <path id="panel" d="M7 5h46a2 2 0 0 1 2 2v12.6a2 2 0 0 1-1.32 1.88l-46 16.56A2 2 0 0 1 5 36.16V7a2 2 0 0 1 2-2Z"/>
+  </defs>
+  <use href="#panel"/>
+  <use href="#panel" transform="rotate(180 32 32)"/>
+</svg>

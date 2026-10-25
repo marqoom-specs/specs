@@ -1,0 +1,25 @@
+{
+  "title": "Dictionary",
+  "pages": [
+    "index",
+    "core",
+    "structure",
+    "text",
+    "divisions",
+    "surah_classification",
+    "mushaf",
+    "dabt",
+    "ayah_numbering",
+    "revelation",
+    "qiraat",
+    "recitation",
+    "recitation_pace",
+    "recitation_style",
+    "tajwid",
+    "waqf",
+    "linguistics",
+    "translation",
+    "tafsir",
+    "quranic_sciences"
+  ]
+}

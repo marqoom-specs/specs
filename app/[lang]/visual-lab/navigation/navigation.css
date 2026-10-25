@@ -1,0 +1,175 @@
+.nav-find,
+.nav-strip {
+  display: grid;
+  gap: 1.1rem;
+}
+.nav-find input {
+  width: 100%;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid var(--viz-line);
+  border-radius: 999px;
+  background: var(--color-fd-card);
+  font-size: 0.95rem;
+  color: var(--viz-ink);
+}
+.nav-find input::placeholder {
+  color: var(--viz-muted);
+}
+.nav-hits {
+  display: grid;
+}
+.nav-hits a {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.7rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--viz-muted);
+}
+.nav-hits a:hover {
+  background: var(--marqoom-selected);
+}
+.nav-hit-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.7rem;
+}
+.nav-hit-name strong {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--viz-ink);
+}
+.nav-hit-name span {
+  margin-inline-start: auto;
+  font-size: 0.78rem;
+}
+.nav-via {
+  font-size: 0.8rem;
+  color: var(--viz-gold);
+}
+.nav-count {
+  padding-inline: 0.9rem;
+  font-size: 0.82rem;
+  color: var(--viz-muted);
+}
+.nav-count:empty {
+  display: none;
+}
+.nav-az {
+  columns: 11rem;
+  column-gap: 1.6rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.nav-az span {
+  display: block;
+  break-inside: avoid;
+}
+.nav-az b {
+  display: block;
+  margin-top: 0.9rem;
+  padding-bottom: 0.2rem;
+  font-weight: 500;
+  color: var(--viz-gold);
+}
+.nav-az span:first-child b {
+  margin-top: 0;
+}
+.nav-az a,
+.nav-outline li a {
+  display: block;
+  padding-block: 0.16rem;
+  color: var(--viz-muted);
+}
+:is(.nav-az, .nav-outline li, .nav-shelf p, .nav-around) a:hover {
+  color: var(--viz-ink);
+}
+
+.nav-shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.8rem;
+}
+.nav-shelf section {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--viz-line);
+  border-radius: 0.85rem;
+}
+.nav-shelf-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  font-weight: 500;
+  color: var(--viz-ink);
+}
+.nav-shelf-title:hover {
+  color: var(--viz-gold);
+}
+.nav-shelf-title span {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--viz-muted);
+}
+.nav-shelf p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 0.8rem;
+  margin-top: 0.5rem;
+  font-size: 0.84rem;
+  line-height: 1.7;
+  color: var(--viz-muted);
+}
+.nav-shelf .nav-more {
+  color: var(--viz-gold);
+}
+
+.nav-outline {
+  columns: 13rem;
+  column-gap: 2rem;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+.nav-outline section {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+}
+.nav-outline section > ul {
+  margin-top: 0.35rem;
+}
+/* A rule down the side of a family, as an outline is drawn by hand. */
+.nav-outline ul ul {
+  margin-inline-start: 0.3rem;
+  padding-inline-start: 0.85rem;
+  border-inline-start: 1px solid var(--viz-quiet);
+}
+
+.nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.nav-pills a {
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--viz-line);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  color: var(--viz-muted);
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+.nav-pills a:hover {
+  color: var(--viz-ink);
+  border-color: color-mix(in srgb, var(--viz-ink) 28%, transparent);
+}
+.nav-around {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem 1.2rem;
+  font-size: 0.84rem;
+  color: var(--viz-muted);
+}

@@ -1,0 +1,46 @@
+---
+title: معايير البيانات القرآنية
+description: معيار موحد بني من مشاريع تراكمية، يساعد المطورين على بناء بيانات قرآنية موثوقة والاستفادة من مصادر البيانات المختلفة
+---
+
+import { terminologyVersion } from '@/lib/versions';
+import Image from 'next/image';
+import { AudioLines, BookOpenText, ScrollText, Timer } from 'lucide-react';
+
+**مرقوم (Marqoom)** يجمع العمل الجاري على معايير البيانات القرآنية. تشرح هذه التوثيقات المعايير، والمشكلات التي تعالجها، وكيف يمكن للمشاريع تطبيقها والاستفادة منها.
+
+الهدف هو تقليل القرارات التي يكررها المطور عند التعامل مع البيانات القرآنية. عندما تختلف التسميات وطرق الترقيم وصيغ البيانات بين المصادر، يضطر كل تطبيق إلى بناء الربط بينها. الاتفاق على قواعد مشتركة وتوثيقها بأمثلة واضحة يسهّلان استخدام البيانات بين المشاريع.
+
+## مشاريع تستخدم هذه المعايير [#projects-using-specifications]
+
+<Cards className="project-cards">
+  <Card className="project-card project-munajjam" icon={<Image src="/projects/munajjam-preview.png" alt="مستودع مُنجّم على GitHub" width={1100} height={760} sizes="(min-width: 768px) 280px, 100vw" className="project-preview" />} title="مُنجّم لسطح المكتب" href="https://github.com/alinice1998/munajjam-desktop" description="أداة مكتبية لتزمين التلاوات القرآنية ومحاذاتها مع النص." />
+  <Card className="project-card project-alketab" icon={<Image src="/projects/alketab-preview.jpg" alt="معاينة تطبيق الكتاب من متجر التطبيقات" width={1200} height={1600} sizes="(min-width: 768px) 280px, 100vw" className="project-preview" />} title="الكتاب" href="https://apps.apple.com/us/app/alketab-modern-quran-app/id543646326" description="تطبيق للقراءة والحفظ والمراجعة." />
+  <Card className="project-card project-quran-ws" icon={<Image src="/projects/quran-ws-preview.png" alt="الصفحة الرئيسية لموقع Quran.ws" width={1100} height={760} sizes="(min-width: 768px) 280px, 100vw" className="project-preview" />} title="Quran.ws" href="https://quran.ws/" description="بيانات وأدوات مفتوحة لبناء تطبيقات القرآن." />
+  <Card className="project-card project-mp3quran" icon={<Image src="/projects/mp3quran-preview.png" alt="مكتبة القراء في موقع MP3 Quran" width={1100} height={760} sizes="(min-width: 768px) 280px, 100vw" className="project-preview" />} title="MP3 Quran" href="https://www.mp3quran.net/" description="مكتبة تلاوات قرآنية لمئات القراء، مع إذاعات وتحميل." />
+</Cards>
+
+<JoinCta ar />
+
+## لماذا معيار مشترك؟ [#integration-diff]
+
+لنفترض أنك تبني تطبيقًا يشغّل التلاوة مع النص: تأخذ التلاوات من MP3 Quran، وتوقيت الآيات من مُنجّم. إذا سمّى كل مشروع بياناته بطريقته، فستكتب محوّلًا (adapter) لكل مشروع يترجم أسماءه إلى أسمائك. والمشكلة لا تقف عندك: كل مشروع آخر يكتب محوّلاته أيضًا، فيتكرر العمل نفسه في كل مكان، ويكبر مع كل مشروع جديد.
+
+أما إذا اتفقنا على الأسماء، فيتعلمها كل مشروع مرة واحدة، ويقرأ بعدها بيانات الجميع.
+
+<NetworkFigure ar />
+
+والمحوّلات ليست أسوأ ما في الأمر. بعض الاختلافات لا تظهر خطأً، بل تعطيك بيانات خاطئة: رقم آية بلا نظام عد قد يشير إلى آية أخرى في مصدر آخر. هذا ما يتغير في سجل آية واحدة:
+
+<IntegrationFigure ar />
+
+## مجالات العمل [#section-02]
+
+يجمع المعيار بين نوع من المحتوى وقواعد وصفه وتبادله. وتتوسع التوثيقات انطلاقًا من المصطلحات المشتركة إلى معايير مترابطة تُبنى عليها:
+
+<Cards className="area-cards">
+  <Card className="area-card" data-status={terminologyVersion} icon={<BookOpenText />} title="المصطلحات" href="/ar/docs/terms" description="المفاهيم والتعريفات وقواعد التسمية التي تُبنى عليها المعايير الأخرى: ٧٣ قاعدة و١٨٠ مفهومًا." />
+  <Card className="area-card" data-status="قريبًا" icon={<ScrollText />} title="البيانات النصية" description="كيفية تمثيل النص القرآني وبنيته." />
+  <Card className="area-card" data-status="قريبًا" icon={<AudioLines />} title="البيانات الصوتية" description="وصف التلاوة، بما في ذلك القارئ والرواية وما يحتويه الملف الصوتي." />
+  <Card className="area-card" data-status="قريبًا" icon={<Timer />} title="التقطيع والتزمين" description="ربط المقاطع الصوتية وتوقيت الآيات أو الكلمات بالنص، وتحديد وحدات الزمن." />
+</Cards>

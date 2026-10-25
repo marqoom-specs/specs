@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marqoom — logo direction C</title>
+  <link rel="icon" href="marqoom-mark.svg" type="image/svg+xml">
+  <style>
+    @font-face { font-family: Thmanyah; src: url('../../app/fonts/thmanyahsans-Regular.woff2'); font-weight: 400; }
+    @font-face { font-family: Thmanyah; src: url('../../app/fonts/thmanyahsans-Medium.woff2'); font-weight: 500; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f7f7f5; color: #111215; font-family: Thmanyah, sans-serif; }
+    main { max-width: 1500px; min-height: 100svh; margin: auto; padding: 4vh 4.5vw; display: flex; flex-direction: column; }
+    header, footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    header { font-size: 12px; }
+    header span:last-child, footer { color: #77797d; }
+    .hero { flex: 1; min-height: 43vh; display: flex; align-items: center; justify-content: center; gap: 36px; }
+    .hero img { width: clamp(110px, 12vw, 210px); height: auto; }
+    h1 { font-size: clamp(46px, 6.7vw, 100px); font-weight: 500; letter-spacing: -.04em; line-height: 1; margin: 0 0 17px; }
+    .hero p { margin: 0; color: #77797d; font-size: clamp(12px, 1.3vw, 18px); }
+    .samples { display: grid; grid-template-columns: 1.3fr 1fr .85fr; border: 1px solid #e2e3e2; border-radius: 12px; overflow: hidden; }
+    .sample { min-height: 28vh; display: flex; flex-direction: column; padding: 24px 28px; background: white; }
+    .sample + .sample { border-inline-start: 1px solid #e2e3e2; }
+    .sample > span { font-size: 11px; color: #8c8e92; }
+    .lockup { flex: 1; display: flex; align-items: center; justify-content: center; gap: 17px; }
+    .lockup img { width: 46px; height: 46px; }
+    .lockup strong { font-size: 31px; font-weight: 500; letter-spacing: -.025em; }
+    .dark { background: #111215; color: #f7f7f5; }
+    .dark img { filter: invert(1); }
+    .arabic { flex-direction: row-reverse; }
+    .arabic strong { font-size: 37px; letter-spacing: 0; }
+    .sizes { flex: 1; display: flex; align-items: center; justify-content: center; gap: 28px; }
+    .sizes div { display: flex; align-items: center; justify-content: center; width: 40px; height: 50px; }
+    footer { margin-top: 22px; font-size: 11px; }
+    footer a { color: inherit; text-decoration: none; }
+    footer a:hover { color: #111215; }
+    @media (max-width: 680px) {
+      main { padding: 28px 22px; }
+      .hero { min-height: 340px; gap: 22px; }
+      .hero img { width: 90px; }
+      h1 { font-size: 44px; }
+      .hero p { max-width: 190px; line-height: 1.5; }
+      .samples { grid-template-columns: 1fr; }
+      .sample { min-height: 190px; }
+      .sample + .sample { border-inline-start: 0; border-top: 1px solid #e2e3e2; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header><span>Marqoom / مرقوم</span><span>Direction C · Shared line</span></header>
+    <section class="hero" aria-label="Primary logo">
+      <img src="marqoom-mark.svg" alt="">
+      <div><h1>Marqoom</h1><p>Quranic data specifications</p></div>
+    </section>
+    <section class="samples" aria-label="Logo applications">
+      <div class="sample dark">
+        <span>Dark</span>
+        <div class="lockup"><img src="marqoom-mark.svg" alt=""><strong>Marqoom</strong></div>
+      </div>
+      <div class="sample">
+        <span>Arabic</span>
+        <div class="lockup arabic"><img src="marqoom-mark.svg" alt=""><strong lang="ar" dir="rtl">مرقوم</strong></div>
+      </div>
+      <div class="sample">
+        <span>16 / 24 / 32 px</span>
+        <div class="sizes"><div><img src="marqoom-mark.svg" width="16" height="16" alt="16 pixels"></div><div><img src="marqoom-mark.svg" width="24" height="24" alt="24 pixels"></div><div><img src="marqoom-mark.svg" width="32" height="32" alt="32 pixels"></div></div>
+      </div>
+    </section>
+    <footer><span>Independent forms, aligned by a shared rule.</span><a href="marqoom-mark.svg" download>Download SVG ↗</a></footer>
+  </main>
+</body>
+</html>

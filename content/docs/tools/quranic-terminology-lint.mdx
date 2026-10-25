@@ -1,0 +1,79 @@
+---
+title: Quranic terminology lint
+description: Reviews the terms in your code on every commit, and suggests the name to use and the naming rule behind it.
+---
+
+Quranic Terminology Lint reviews the names of Quranic terms in your code. It shows you where a name needs changing, the suggested replacement, and the naming rule it's based on. The rules live inside the tool, so once it's installed it runs on your machine, with no internet connection.
+
+Say you have a file called `example.py` that stores an ayah number and prints it:
+
+```py
+aya_number = 5
+print(aya_number)
+```
+
+When you try to commit, the check stops and shows these two notes:
+
+```text
+example.py:1: error aya_number → ayah_number (rule 019: Ta marbutah outside idafah)
+example.py:2: error aya_number → ayah_number (rule 019: Ta marbutah outside idafah)
+```
+
+Each line gives the file and line number, then the current name and the suggested one. The file itself hasn't changed: you fix the name on both lines, add the change with `git add example.py`, and commit again.
+
+## How do I add it to my project? [#set-up]
+
+You need Python 3.10 or newer, and [pre-commit](https://pre-commit.com/#install) installed. Then create a file called `.pre-commit-config.yaml` in your project's root folder, with:
+
+```yaml
+repos:
+  - repo: https://github.com/marqoom-specs/quranic-terminology-lint
+    rev: v0.4.0
+    hooks:
+      - id: quranic-terminology
+```
+
+If you already have the file, add the repository to its `repos` list. Then run this from inside the project:
+
+```bash
+pre-commit install
+```
+
+From now on, the checks run on every commit, on the files you've staged with `git add`. To review the files already in the project:
+
+```bash
+pre-commit run quranic-terminology --all-files
+```
+
+I'd start with this command and read the results, especially in an older project. A naming error stops the commit; warnings don't.
+
+## What if I can't change a name? [#exceptions]
+
+You can exempt names that an external library imposes, or data files you want to keep exactly as you received them. Add a `.terminology.json` file to the project's root folder, with the reason for each exception:
+
+```json
+{
+  "exclude": ["data/**"],
+  "external_names": ["\\bChapters\\b"],
+  "_comment": "Chapters is an export owned by our Quran API dependency."
+}
+```
+
+To skip a single line, add a comment containing `terminology: ignore`. In comments and explanations the tool also accepts names like `Tajweed`, even though the standard chooses `tajwid` for variables.
+
+## Can it fix the names? [#unsafe-fix]
+
+The setup above only runs a check: it suggests corrections and leaves your files as they are. If you want the corrections applied automatically, replace `quranic-terminology` with `quranic-terminology-unsafe-fix` in the config. Then `example.py` becomes:
+
+```py
+ayah_number = 5
+print(ayah_number)
+```
+
+We called it unsafe because renaming can affect other code. If you import `Chapters` from a library, replacing it with `Surahs` can break the import, since the library still uses the old name. So review the diff and run your tests after the change, then commit again.
+
+## Where are the details? [#more]
+
+Installing it directly, running it in CI, every rule it reviews, and the details of supported formats and exceptions are in the [tool's documentation](https://github.com/marqoom-specs/quranic-terminology-lint/blob/v0.4.0/README.md). The rules themselves are explained in the [naming standard](/docs/terms/standard). The tool is open source under the MIT license.
+
+<ToolCta />

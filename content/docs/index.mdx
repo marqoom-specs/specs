@@ -1,0 +1,46 @@
+---
+title: Quranic Data Standards
+description: Shared terms, data formats, and rules that help Quranic projects use each other's data.
+---
+
+import { terminologyVersion } from '@/lib/versions';
+import Image from 'next/image';
+import { AudioLines, BookOpenText, ScrollText, Timer } from 'lucide-react';
+
+**Marqoom (مرقوم)** brings together ongoing work on Quranic data standards. These docs explain the standards, the problems they address, and how projects can put them into practice.
+
+The aim is to reduce the decisions developers have to repeat when working with Quranic data. When sources use different names, numbering conventions, and data formats, every application has to reconcile them. Shared rules and clear examples make it easier to use data across projects.
+
+## Projects using these standards [#projects-using-specifications]
+
+<Cards className="project-cards">
+  <Card className="project-card project-munajjam" icon={<Image src="/projects/munajjam-preview.png" alt="Munajjam Desktop GitHub repository" width={1100} height={760} sizes="(min-width: 768px) 280px, 100vw" className="project-preview" />} title="Munajjam Desktop" href="https://github.com/alinice1998/munajjam-desktop" description="A desktop tool for aligning Quranic recitations with text." />
+  <Card className="project-card project-alketab" icon={<Image src="/projects/alketab-preview.jpg" alt="AlKetab app preview from the App Store" width={1200} height={1600} sizes="(min-width: 768px) 280px, 100vw" className="project-preview" />} title="AlKetab" href="https://apps.apple.com/us/app/alketab-modern-quran-app/id543646326" description="A Quran app for reading, memorization, and review." />
+  <Card className="project-card project-quran-ws" icon={<Image src="/projects/quran-ws-preview.png" alt="Quran.ws homepage" width={1100} height={760} sizes="(min-width: 768px) 280px, 100vw" className="project-preview" />} title="Quran.ws" href="https://quran.ws/" description="Open datasets and tools for building Quran applications." />
+  <Card className="project-card project-mp3quran" icon={<Image src="/projects/mp3quran-preview.png" alt="MP3 Quran reciters library" width={1100} height={760} sizes="(min-width: 768px) 280px, 100vw" className="project-preview" />} title="MP3 Quran" href="https://www.mp3quran.net/" description="A library of Quran recitations by hundreds of reciters, with radio and downloads." />
+</Cards>
+
+<JoinCta />
+
+## Why a shared standard [#integration-diff]
+
+Say you're building an app that plays a recitation alongside the text: the recitations come from MP3 Quran and the ayah timings from Munajjam. If every project names its data its own way, you write an adapter for each one to translate its names into yours. And it doesn't stop with you: every other project writes its own adapters too, so the same work is repeated everywhere, and it grows with every project that joins.
+
+If we agree on the names, each project learns them once and can then read everyone's data.
+
+<NetworkFigure />
+
+Adapters aren't the worst of it. Some differences don't fail loudly; they give you wrong data. An ayah number without its numbering system can point to a different ayah in another source. Here is what changes in one ayah record:
+
+<IntegrationFigure />
+
+## Areas of work [#section-02]
+
+A standard brings together a type of content and the rules for describing and exchanging it. The documentation grows from shared terminology into connected standards built on it:
+
+<Cards className="area-cards">
+  <Card className="area-card" data-status={terminologyVersion} icon={<BookOpenText />} title="Terminology" href="/docs/terms" description="The concepts, definitions, and naming rules the other standards build on: 73 rules and 180 concepts." />
+  <Card className="area-card" data-status="Soon" icon={<ScrollText />} title="Textual data" description="How Quranic text and its structure are represented." />
+  <Card className="area-card" data-status="Soon" icon={<AudioLines />} title="Audio data" description="How recitations are described, including the reciter, Riwayah, and the content of an audio file." />
+  <Card className="area-card" data-status="Soon" icon={<Timer />} title="Segmentation and timing" description="How audio segments and Ayah or word timings relate to the text, including time units." />
+</Cards>

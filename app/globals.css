@@ -1,0 +1,709 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+:root {
+  --font-sans: var(--font-thmanyah), ui-sans-serif, system-ui, sans-serif;
+  --color-fd-background: #fcfcfd;
+  --color-fd-foreground: #1c1d21;
+  --color-fd-card: #f6f7f8;
+  --color-fd-card-foreground: #1c1d21;
+  --color-fd-popover: #fcfcfd;
+  --color-fd-popover-foreground: #1c1d21;
+  --color-fd-primary: #1c1d21;
+  --color-fd-primary-foreground: #fff;
+  --color-fd-muted: #eff0f2;
+  --color-fd-muted-foreground: #60646c;
+  --color-fd-secondary: #eff0f2;
+  --color-fd-secondary-foreground: #363940;
+  --color-fd-accent: #eceef0;
+  --color-fd-accent-foreground: #1c1d21;
+  --color-fd-border: #e6e7ea;
+  --marqoom-glass: #f6f7f8c7;
+  --marqoom-selected: #1c1d2107;
+  --marqoom-selected-border: #1c1d2110;
+  --marqoom-text-secondary: #454952;
+  /* The figures' gold, a shade deeper in light so small text keeps its contrast. */
+  --marqoom-gold: #8c6a2c;
+  --marqoom-gold-wash: #b3873a24;
+  --marqoom-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark {
+  --color-fd-background: #08090a;
+  --color-fd-foreground: #f7f8f8;
+  --color-fd-card: #0f1011;
+  --color-fd-card-foreground: #f7f8f8;
+  --color-fd-popover: #141516;
+  --color-fd-popover-foreground: #f7f8f8;
+  --color-fd-primary: #f7f8f8;
+  --color-fd-primary-foreground: #08090a;
+  --color-fd-muted: #191a1b;
+  --color-fd-muted-foreground: #8a8f98;
+  --color-fd-secondary: #191a1b;
+  --color-fd-secondary-foreground: #d0d6e0;
+  --color-fd-accent: #191a1b;
+  --color-fd-accent-foreground: #f7f8f8;
+  --color-fd-border: #23252a;
+  --marqoom-glass: #0f1011c7;
+  --marqoom-selected: #ffffff0a;
+  --marqoom-selected-border: #ffffff0d;
+  --marqoom-text-secondary: #d0d6e0;
+  --marqoom-gold: #d8b676;
+  --marqoom-gold-wash: #d8b6761f;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+html > body[data-scroll-locked] {
+  margin-right: 0 !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+}
+::selection {
+  background: color-mix(in srgb, var(--color-fd-primary) 22%, transparent);
+}
+:focus-visible {
+  outline-offset: 4px;
+}
+
+/* Glass belongs to the navigation chrome; prose stays on a solid surface. */
+#nd-sidebar,
+#nd-subnav,
+#nd-tocnav {
+  background: var(--marqoom-glass);
+  -webkit-backdrop-filter: blur(20px) saturate(1.1);
+  backdrop-filter: blur(20px) saturate(1.1);
+}
+.dark #nd-sidebar {
+  --color-fd-muted: #191a1b;
+  --color-fd-secondary: #191a1b;
+  --color-fd-muted-foreground: #8a8f98;
+}
+/* Selection is a quiet surface; the folder rail and active stripe are omitted. */
+:is(#nd-sidebar, #nd-sidebar-mobile) :is(a[data-active], [data-state])::before {
+  content: none;
+}
+:is(#nd-sidebar, #nd-sidebar-mobile) :is(a, button) {
+  border-radius: 0.5rem;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+:is(#nd-sidebar, #nd-sidebar-mobile) a[data-active='true'] {
+  background: var(--marqoom-selected);
+  box-shadow: inset 0 0 0 1px var(--marqoom-selected-border);
+}
+:is(#nd-sidebar, #nd-sidebar-mobile) .section-icon {
+  opacity: 0.72;
+}
+#nd-toc a {
+  transition: color 160ms ease;
+}
+#nd-subnav {
+  gap: 0.5rem;
+}
+.marqoom-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+.marqoom-mark {
+  display: block;
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  object-fit: contain;
+}
+.dark .marqoom-mark {
+  filter: brightness(1.65);
+}
+.mobile-locale {
+  display: flex;
+  width: 5.2rem;
+  margin-inline-start: auto;
+}
+.locale-control[aria-busy='true'] {
+  opacity: 0.85;
+}
+.locale-control {
+  transition: opacity 150ms ease;
+}
+.toggle-indicator {
+  transition:
+    transform 300ms var(--marqoom-ease),
+    background-color 260ms ease,
+    box-shadow 260ms ease;
+}
+:is(#nd-sidebar, #nd-sidebar-mobile, #nd-subnav) .toggle-segment {
+  border-radius: 999px;
+}
+
+#nd-page {
+  min-width: 0;
+  max-width: 880px;
+  padding-bottom: 4rem;
+}
+.reading-content {
+  min-width: 0;
+}
+/* The overview hero is the one place a shader sits behind text; a scrim keeps the copy crisp. */
+.marqoom-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.9rem;
+  min-height: clamp(19rem, 42vw, 24rem);
+  margin-top: 0.5rem;
+  padding: clamp(1.4rem, 3.5vw, 2.4rem);
+  overflow: hidden;
+  border: 1px solid var(--color-fd-border);
+  border-radius: 1.1rem;
+  background: var(--color-fd-background);
+}
+.marqoom-hero-art {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* Clipped here as well: a composited canvas can escape the hero's own rounded clip. */
+  overflow: hidden;
+  border-radius: calc(1.1rem - 1px);
+  /* Shown as is when WebGPU is unavailable. */
+  background:
+    radial-gradient(120% 90% at 100% 0%, var(--marqoom-gold-wash), transparent 60%),
+    linear-gradient(180deg, var(--color-fd-card), var(--color-fd-background));
+}
+[dir='rtl'] .marqoom-hero-art {
+  background:
+    radial-gradient(120% 90% at 0% 0%, var(--marqoom-gold-wash), transparent 60%),
+    linear-gradient(180deg, var(--color-fd-card), var(--color-fd-background));
+}
+.marqoom-hero-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      95% 120% at 0% 100%,
+      var(--color-fd-background) 22%,
+      color-mix(in srgb, var(--color-fd-background) 70%, transparent) 52%,
+      transparent 78%
+    );
+}
+[dir='rtl'] .marqoom-hero-art::after {
+  background:
+    radial-gradient(
+      95% 120% at 100% 100%,
+      var(--color-fd-background) 22%,
+      color-mix(in srgb, var(--color-fd-background) 70%, transparent) 52%,
+      transparent 78%
+    );
+}
+.marqoom-hero-canvas {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+canvas.marqoom-hero-canvas {
+  width: 100%;
+  height: 100%;
+}
+.marqoom-hero[data-ready='true'] .marqoom-hero-canvas {
+  opacity: 1;
+}
+.marqoom-hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 34rem;
+}
+.marqoom-hero-copy > p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--marqoom-text-secondary);
+}
+#nd-page h1 {
+  font-size: clamp(2rem, 3vw, 2.65rem);
+  line-height: 1.22;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.reading-content > p {
+  margin-bottom: 0.5rem;
+  max-width: 62ch;
+  line-height: 1.7;
+}
+.source-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  padding: 0.7rem 0 1.2rem;
+  border-bottom: 1px solid var(--color-fd-border);
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  color: var(--color-fd-muted-foreground);
+}
+.source-note a:hover {
+  color: var(--color-fd-primary);
+}
+.status-badge {
+  border: 1px solid var(--color-fd-border);
+  background: var(--color-fd-card);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  font-variant-numeric: tabular-nums;
+}
+#nd-page .prose {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--marqoom-text-secondary);
+}
+#nd-page .prose :is(h2, h3) {
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  scroll-margin-top: 7rem;
+}
+#nd-page .prose h2 {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-fd-border);
+  font-size: 1.4rem;
+}
+#nd-page .prose :is(h2, h3) > a {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+#nd-page .prose h3 {
+  margin-top: 2rem;
+  font-size: 1.15rem;
+}
+#nd-page .prose strong {
+  font-weight: 700;
+}
+#nd-page .prose :is(p, li) {
+  overflow-wrap: anywhere;
+}
+#nd-page .prose a:not([data-card]) {
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+#nd-page .prose :is(code, pre) {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: start;
+}
+#nd-page .prose :not(pre) > code {
+  font-size: 0.82em;
+  overflow-wrap: anywhere;
+}
+#nd-page .prose table {
+  width: 100%;
+  font-size: 0.84rem;
+  line-height: 1.75;
+}
+#nd-page .prose :is(td, th) {
+  padding: 0.75rem 0.9rem;
+  min-width: 7rem;
+  vertical-align: top;
+  text-align: start;
+}
+#nd-page .prose th {
+  background: var(--color-fd-card);
+  font-weight: 500;
+}
+#nd-page .prose tr:nth-child(even) {
+  background: color-mix(in srgb, var(--color-fd-card) 40%, transparent);
+}
+#nd-page .prose blockquote {
+  font-style: normal;
+  color: var(--color-fd-muted-foreground);
+}
+#nd-page [data-card='true'] {
+  position: relative;
+  padding: 1.5rem;
+  background: var(--color-fd-card);
+  box-shadow: 0 2px 4px #00000002;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+#nd-page [data-card='true'] h3 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+#nd-page [data-card='true'] p {
+  line-height: 1.7;
+}
+#nd-page [data-card='true']:hover {
+  border-color: color-mix(in srgb, var(--color-fd-foreground) 20%, transparent);
+  box-shadow: 0 8px 24px #00000012;
+  transform: translateY(-1px);
+}
+
+.project-munajjam {
+  --project-accent: #4baeb5;
+}
+.project-alketab {
+  --project-accent: #b3873a;
+}
+.project-quran-ws {
+  --project-accent: #438f73;
+}
+.project-mp3quran {
+  --project-accent: #23a8e0;
+}
+/* Four cards per row when the column is wide, two when medium, one on phones; never three and an orphan.
+   Each clamp switches the minimum track width at a container width (44rem, then 26rem). */
+#nd-page .project-cards {
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(clamp(clamp(25% - 0.75rem, (44rem - 100%) * 999, 50% - 0.75rem), (26rem - 100%) * 999, 100%), 1fr)
+  );
+}
+#nd-page .project-card {
+  overflow: hidden;
+  padding: 1rem;
+}
+#nd-page .project-card h3 {
+  font-size: 0.95rem;
+}
+#nd-page .project-card p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+/* Fade the preview into the same surface as the card's title and description. */
+#nd-page .project-card > div:first-child {
+  position: relative;
+  width: auto;
+  height: 8.5rem;
+  margin: -1rem -1rem -0.4rem;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--color-fd-card);
+}
+#nd-page .project-card > div:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent 25%, var(--color-fd-card) 98%);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  mask-image: linear-gradient(to bottom, transparent 35%, black 90%);
+}
+#nd-page .project-card .project-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+#nd-page .project-alketab .project-preview {
+  object-position: center 45%;
+}
+#nd-page .project-card h3,
+#nd-page .project-card p {
+  position: relative;
+}
+#nd-page .project-card:is(:hover, :focus-visible) {
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--project-accent) 16%, transparent);
+}
+/* Areas of work, drawn as one stack. Planned standards are dashed outlines;
+   the published one (terminology) is solid and hatched, like built work on a drawing. */
+#nd-page .area-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  --layer-line: color-mix(in srgb, var(--color-fd-foreground) 28%, transparent);
+}
+#nd-page .area-cards > .area-card {
+  display: grid;
+  grid-template-columns: 1.25rem 1fr auto;
+  column-gap: 0.9rem;
+  align-items: baseline;
+  margin: 0;
+  padding: 0.85rem 1.1rem;
+  border: 1px dashed var(--layer-line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+#nd-page .area-cards > .area-card + .area-card {
+  border-top-style: none;
+}
+#nd-page .area-cards > .area-card:first-child {
+  border-start-start-radius: 0.6rem;
+  border-start-end-radius: 0.6rem;
+}
+#nd-page .area-cards > .area-card:last-child {
+  border-end-start-radius: 0.6rem;
+  border-end-end-radius: 0.6rem;
+}
+#nd-page .area-card > div:first-child {
+  grid-row: 1 / 3;
+  align-self: start;
+  margin: 0.15rem 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--color-fd-muted-foreground);
+}
+#nd-page .area-card > div:first-child svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+#nd-page .area-card h3 {
+  grid-column: 2;
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+#nd-page .area-card p {
+  grid-column: 2;
+  margin-top: 0.15rem !important;
+  line-height: 1.6;
+}
+/* Statuses are gold, as what is being pointed at is in the figures. */
+#nd-page .area-card::after {
+  content: attr(data-status);
+  unicode-bidi: isolate;
+  grid-column: 3;
+  grid-row: 1;
+  color: var(--marqoom-gold);
+  font-size: 0.8rem;
+}
+#nd-page .area-card:not(a) :is(h3, p) {
+  color: var(--color-fd-muted-foreground);
+}
+#nd-page .area-card:not(a) p {
+  opacity: 0.75;
+}
+/* The published standard: a solid, hatched layer that links to its pages. */
+#nd-page .area-cards > a.area-card {
+  border: 1px solid color-mix(in srgb, var(--color-fd-foreground) 55%, transparent);
+  background: repeating-linear-gradient(
+    -45deg,
+    color-mix(in srgb, var(--color-fd-foreground) 5%, transparent) 0 1px,
+    transparent 1px 7px
+  );
+}
+#nd-page .area-cards > a.area-card > div:first-child {
+  color: var(--color-fd-foreground);
+}
+#nd-page .area-cards > a.area-card::after {
+  padding: 0 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--marqoom-gold) 45%, transparent);
+  border-radius: 999px;
+  background: var(--marqoom-gold-wash);
+}
+#nd-page .area-cards > a.area-card:hover {
+  background-color: color-mix(in srgb, var(--color-fd-foreground) 4%, transparent);
+}
+#nd-page .area-cards > a.area-card:hover h3 {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+#nd-page .area-cards > a.area-card:focus-visible {
+  outline: 2px solid var(--color-fd-ring);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  #nd-page .project-card .project-preview {
+    transition: transform 400ms var(--marqoom-ease);
+  }
+  #nd-page .project-card:is(:hover, :focus-visible) .project-preview {
+    transform: scale(1.025);
+  }
+}
+
+[dir='rtl'] #nd-page h1 {
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+[dir='rtl'] #nd-page .prose {
+  font-size: 1.07rem;
+  line-height: 2;
+}
+[dir='rtl'] #nd-page .prose :is(h2, h3) {
+  letter-spacing: 0;
+  line-height: 1.7;
+}
+[dir='rtl'] .source-note {
+  font-size: 0.85rem;
+}
+
+/* Stagger whole text blocks so Arabic shaping and screen-reader text stay intact. */
+@media (prefers-reduced-motion: no-preference) {
+  .toggle-segment[data-active='true'] .toggle-label {
+    animation: toggle-reveal 260ms var(--marqoom-ease);
+  }
+  .toggle-segment:active .toggle-label {
+    transform: scale(0.94);
+  }
+  .reading-content {
+    transition:
+      filter 160ms ease,
+      opacity 160ms ease;
+  }
+  body:has(.locale-control[aria-busy='true']) .reading-content {
+    filter: blur(1px);
+    opacity: 0.92;
+  }
+  :root[data-theme-transition]
+    :is(
+      body,
+      #nd-sidebar,
+      #nd-sidebar-mobile,
+      #nd-subnav,
+      #nd-tocnav,
+      .reading-content,
+      .prose,
+      #nd-page :is(h1, h2, h3, h4, p, a, strong, blockquote),
+      .source-note,
+      .status-badge,
+      [data-card='true'],
+      .marqoom-toggle,
+      .marqoom-mark,
+      pre,
+      code,
+      th,
+      tr
+    ) {
+    transition:
+      background-color 260ms ease,
+      color 260ms ease,
+      border-color 260ms ease,
+      box-shadow 260ms ease;
+  }
+  :root[data-theme-transition] #nd-page {
+    animation: theme-soften 300ms ease;
+  }
+  :is(.reading-content, .marqoom-hero-copy) > :where(h1, p, .source-note) {
+    animation: text-reveal 800ms var(--marqoom-ease) both;
+  }
+  :is(.reading-content, .marqoom-hero-copy) > h1 {
+    animation-delay: 35ms;
+  }
+  :is(.reading-content, .marqoom-hero-copy) > p {
+    animation-delay: 80ms;
+  }
+  .reading-content > .source-note {
+    animation-delay: 110ms;
+  }
+  .reading-content > .prose {
+    animation: content-reveal 650ms var(--marqoom-ease) 160ms both;
+  }
+}
+@keyframes toggle-reveal {
+  from {
+    opacity: 0.55;
+    filter: blur(1.5px);
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+@keyframes theme-soften {
+  0%,
+  100% {
+    filter: blur(0);
+  }
+  40% {
+    filter: blur(1px);
+  }
+}
+@keyframes text-reveal {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+@keyframes content-reveal {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+@media (min-width: 768px) {
+  .mobile-locale {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  #nd-page {
+    padding-inline: 1.25rem;
+  }
+  #nd-page h1 {
+    font-size: 2rem;
+  }
+  /* Too narrow to share: the art takes the top band and the copy sits below it. */
+  .marqoom-hero {
+    min-height: 0;
+    padding-top: 8.5rem;
+  }
+  .marqoom-hero-art {
+    bottom: auto;
+    height: 10rem;
+  }
+  :is(.marqoom-hero-art, [dir='rtl'] .marqoom-hero-art)::after {
+    background: linear-gradient(to top, var(--color-fd-background) 14%, transparent 62%);
+  }
+  .marqoom-toggle {
+    height: 2.75rem;
+  }
+  #nd-page .prose table {
+    font-size: 0.8rem;
+  }
+  #nd-page [data-card='true'] {
+    padding: 1.2rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  #nd-page [data-card='true']:hover {
+    transform: none;
+  }
+}

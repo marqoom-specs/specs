@@ -1,0 +1,388 @@
+/* The visitor questions: a sheet from the bottom on phones, a card in the reading corner on wider screens. */
+.visitor-survey {
+  position: fixed;
+  z-index: 40;
+  width: auto;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  color: var(--color-fd-foreground);
+}
+.visitor-survey[data-surface='card'] {
+  inset: auto;
+  inset-block-end: 1.25rem;
+  inset-inline-end: 1.25rem;
+  width: min(23rem, calc(100vw - 2.5rem));
+}
+.visitor-survey[data-surface='sheet'] {
+  inset: auto 0 0;
+  width: 100%;
+}
+.visitor-survey::backdrop {
+  background: #00000052;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.vs-panel {
+  padding: 1rem 1.2rem 1.15rem;
+  border: 1px solid var(--color-fd-border);
+  border-radius: 1rem;
+  background: var(--color-fd-popover);
+  box-shadow:
+    0 18px 50px #0000002e,
+    0 2px 6px #00000012;
+}
+[data-surface='sheet'] .vs-panel {
+  max-height: 88dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
+  border-bottom: 0;
+  border-radius: 1.25rem 1.25rem 0 0;
+}
+.vs-grab {
+  display: grid;
+  place-items: center;
+  height: 1.75rem;
+  margin-inline: -1.25rem;
+  touch-action: none;
+  cursor: grab;
+}
+.vs-grab::before {
+  content: '';
+  width: 2.4rem;
+  height: 0.25rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-fd-foreground) 22%, transparent);
+}
+.vs-top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.vs-progress {
+  display: flex;
+  gap: 0.3rem;
+}
+.vs-progress span {
+  width: 1.4rem;
+  height: 0.2rem;
+  border-radius: 999px;
+  background: var(--color-fd-border);
+  transition: background-color 300ms ease;
+}
+/* Gold marks the way through, as it marks what is being pointed at in the figures. */
+.vs-progress span[data-state] {
+  background: var(--marqoom-gold);
+}
+.vs-count {
+  color: var(--color-fd-muted-foreground);
+  font-size: 0.75rem;
+}
+.vs-close {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin-inline-start: auto;
+  margin-inline-end: -0.45rem;
+  border-radius: 999px;
+  color: var(--color-fd-muted-foreground);
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+}
+.vs-close:hover {
+  background: var(--marqoom-selected);
+  color: var(--color-fd-foreground);
+}
+.vs-close svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+.vs-eyebrow {
+  margin: 0;
+  color: var(--marqoom-gold);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.vs-lead {
+  margin: 0.3rem 0 0.9rem;
+  color: var(--marqoom-text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+.visitor-survey h2 {
+  margin: 0;
+  font-size: 1.12rem;
+  font-weight: 500;
+  line-height: 1.45;
+  outline: none;
+}
+.visitor-survey h2 + .vs-lead {
+  margin-bottom: 0;
+}
+.vs-hint {
+  margin: 0.15rem 0 0;
+  color: var(--color-fd-muted-foreground);
+  font-size: 0.78rem;
+}
+.vs-options {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+}
+.vs-options button {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--color-fd-border);
+  border-radius: 0.7rem;
+  color: var(--marqoom-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  text-align: start;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+.vs-options button:hover {
+  border-color: color-mix(in srgb, var(--color-fd-foreground) 28%, transparent);
+  color: var(--color-fd-foreground);
+}
+.vs-options button[aria-pressed='true'] {
+  border-color: color-mix(in srgb, var(--marqoom-gold) 60%, transparent);
+  background: var(--marqoom-gold-wash);
+  color: var(--color-fd-foreground);
+}
+.vs-mark {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 1rem;
+  height: 1rem;
+  border: 1.5px solid color-mix(in srgb, var(--color-fd-foreground) 35%, transparent);
+  border-radius: 50%;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+[data-kind='check'] .vs-mark {
+  border-radius: 0.3rem;
+}
+[aria-pressed='true'] .vs-mark {
+  border-color: var(--marqoom-gold);
+  background: var(--marqoom-gold);
+}
+[aria-pressed='true'] .vs-mark::after {
+  content: '';
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--color-fd-popover);
+}
+[data-kind='check'][aria-pressed='true'] .vs-mark::after {
+  width: 0.5rem;
+  height: 0.28rem;
+  border: solid var(--color-fd-popover);
+  border-width: 0 0 2px 2px;
+  border-radius: 0;
+  background: none;
+  transform: translateY(-1px) rotate(-45deg);
+}
+.vs-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.vs-primary,
+.vs-quiet {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    opacity 160ms ease;
+}
+.vs-primary {
+  margin-inline-start: auto;
+  background: var(--color-fd-primary);
+  color: var(--color-fd-primary-foreground);
+}
+.vs-primary:hover {
+  background: color-mix(in srgb, var(--color-fd-primary) 85%, transparent);
+}
+.vs-primary:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.vs-quiet {
+  margin-inline-start: -0.9rem;
+  color: var(--color-fd-muted-foreground);
+}
+.vs-quiet:hover {
+  color: var(--color-fd-foreground);
+}
+.vs-note {
+  margin: 0.6rem 0 0;
+  color: var(--color-fd-muted-foreground);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+[data-surface='sheet'] .vs-primary {
+  flex: 1 1 10rem;
+}
+/* The last step's call is the one wide button, with the way out under it. */
+.vs-actions[data-end] {
+  flex-direction: column-reverse;
+  align-items: stretch;
+  gap: 0.2rem;
+}
+.vs-actions[data-end] > * {
+  flex: none;
+  margin: 0;
+}
+/* After a dismissal the card waits in the same corner as a pill, for the rest of the visit. */
+.vs-pill {
+  position: fixed;
+  z-index: 39;
+  inset-block-end: calc(1.25rem + env(safe-area-inset-bottom));
+  inset-inline-end: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.3rem;
+  padding-inline-start: 0.35rem;
+  border: 1px solid var(--color-fd-border);
+  border-radius: 999px;
+  background: var(--color-fd-popover);
+  color: var(--color-fd-foreground);
+  box-shadow:
+    0 10px 30px #00000020,
+    0 2px 6px #00000010;
+}
+.vs-pill-open {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.25rem;
+  padding-inline: 0.6rem 0.2rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.vs-pill-open .vs-progress span {
+  width: 0.75rem;
+}
+.vs-pill .vs-close {
+  margin: 0;
+}
+.vs-pill button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-fd-primary) 60%, transparent);
+  outline-offset: 1px;
+}
+@media (max-width: 767px) {
+  .vs-pill {
+    inset-block-end: calc(1rem + env(safe-area-inset-bottom));
+    inset-inline-end: 1rem;
+  }
+}
+@media print {
+  .vs-pill {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .vs-pill {
+    animation: vs-pill-in 320ms var(--marqoom-ease) backwards;
+  }
+  .vs-panel {
+    transition: transform 260ms var(--marqoom-ease);
+  }
+  .visitor-survey[open] .vs-panel {
+    animation: vs-card-in 420ms var(--marqoom-ease) backwards;
+  }
+  .visitor-survey[data-surface='sheet'][open] .vs-panel {
+    animation-name: vs-sheet-in;
+  }
+  .visitor-survey[open]::backdrop {
+    animation: vs-fade 300ms ease backwards;
+  }
+  .visitor-survey[data-closing] .vs-panel {
+    animation: vs-card-out 220ms ease forwards;
+  }
+  .visitor-survey[data-surface='sheet'][data-closing] .vs-panel {
+    animation-name: vs-sheet-out;
+  }
+  .visitor-survey[data-closing]::backdrop {
+    animation: vs-fade-out 220ms ease forwards;
+  }
+  .vs-step {
+    animation: vs-step 320ms var(--marqoom-ease) backwards;
+  }
+}
+@keyframes vs-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+}
+@keyframes vs-card-out {
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+@keyframes vs-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+@keyframes vs-sheet-out {
+  to {
+    transform: translateY(100%);
+  }
+}
+@keyframes vs-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes vs-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vs-pill-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+}
+@keyframes vs-step {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}

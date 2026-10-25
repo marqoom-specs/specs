@@ -1,0 +1,60 @@
+---
+title: Quranic terminology
+description: The names we agreed on for Quranic terms in code, and how to use them in your project.
+---
+
+Say you're building a Quran app and need a variable for the ayah number. You might call it `aya_number`, your colleague writes `ayah_number`, and another library uses `verse_number`. They all mean the ayah number, but now you search for three spellings to find where it's used, and you have to pick one every time you add new code.
+
+That's the problem the terminology standard tries to solve: one name for each concept, agreed on across code, databases, and documentation. The figures below walk through the whole idea.
+
+## How did we choose the names? [#one-name]
+
+The main rule: a Quranic concept keeps its Arabic name, written in Latin letters. So we write `surah` and `ayah`, not `chapter` and `verse`, even when the English word looks close, because we don't want the original Quranic concept to get lost in translation. General concepts that aren't specific to the Quran keep their usual English names, such as `word`, `page`, and `letter`.
+
+Then we collected the different spellings each concept has across projects and libraries, and chose one for it, derived from how the name is said in Arabic. For example, `sura`, `surat`, and `soorah` all point to `surah`. Every rule that led us to these names, from when to keep the Arabic to how each letter is spelled, is in the [naming standard](/docs/terms/standard). Pick a concept to see its spellings.
+
+<SpellingsFigure />
+
+## What does each name mean? [#dictionary]
+
+A name on its own isn't enough; we also need to agree on what it describes. So every name has a dictionary entry that explains the concept, what it doesn't cover, and which concepts it connects to. Search the map for a term, or move over a point (tap it on a phone) to see its connections.
+
+<DictionaryExample intro={false} />
+
+## What are registries? [#registries]
+
+Some concepts take their value from a fixed list. For example, Al-Baqarah has 285, 286, or 287 ayahs, depending on the numbering system. If you store an ayah number without its system, whoever reads your data can't tell which ayah you mean.
+
+That's why the registries name every member of these lists: the numbering systems, the qiraat with their rawis and riwayahs, the surah names, the places of prostration, and more.
+
+<CountsFigure />
+
+<TransmissionExample />
+
+## How do I use them in my project? [#use]
+
+The easiest way is to add [Quranic Terminology Lint](/docs/tools/quranic-terminology-lint) to your project's pre-commit. Then every commit is checked: if you write `aya_number`, for example, it tells you the name we agreed on and the rule behind it.
+
+<div className="term-steps">
+
+1. **Add the hook** to your project's `.pre-commit-config.yaml`.
+2. **Run `pre-commit install`** once. The tool needs Python 3.10 or newer.
+3. **Write code as usual.** If a name differs from what we agreed on, the commit stops and shows you the name to use.
+
+</div>
+
+```yaml title=".pre-commit-config.yaml"
+repos:
+  - repo: https://github.com/marqoom-specs/quranic-terminology-lint
+    rev: v0.4.0
+    hooks:
+      - id: quranic-terminology
+```
+
+```sh
+pre-commit install
+```
+
+```text title="A finding"
+src/model.ts:12: error getSuraNo → getSurahNumber (rule 068: Reference numbers)
+```

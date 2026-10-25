@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Marqoom</title>
+  <style>
+    path { fill: #1c1d21; }
+    @media (prefers-color-scheme: dark) { path { fill: #f7f8f8; } }
+  </style>
+  <path d="M20 6C13 5.3 10 10.8 9.3 18.5L5 55.5Q4.7 58 7.1 58H22.5Q25 58 25 55.5V36.5Q25 32 29.5 32H35Q39.5 32 39.5 36.5V55.5Q39.5 58 42 58H57Q59.3 58 59 55.7L55 21C54 12.5 51.5 10 44 9Z"/>
+</svg>

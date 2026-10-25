@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "marqoom",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  // The site, and the old address that next.config.mjs redirects to it.
+  "routes": [
+    { "pattern": "marqoom-specs.com", "custom_domain": true },
+    { "pattern": "marqoom-temp.hadeel.studio", "custom_domain": true }
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  // Answers from the visitor questions; the schema is in migrations/.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "marqoom",
+      "database_id": "589899ce-d520-46e2-8621-cfe929f9975c",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "services": [
+    {
+      // Self-reference; the service name must match the worker name.
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "marqoom"
+    }
+  ]
+}
