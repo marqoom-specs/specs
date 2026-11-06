@@ -143,7 +143,7 @@ sourceRevision: "9bf0db1"
 - الرسم هو إثبات الحروف وحذفها وفصلها ووصلها، أما الضبط فهو علامات النطق التي توضع على الحروف.
 - الخط هو صورة الحروف في مصحف بعينه، أما الرسم فهو ما يثبت في كل مصحف كتب به.
 
-**مرتبط به:** <span dir="ltr">[`rasm_uthmani`](/ar/docs/terms/dictionary/mushaf#rasm_uthmani)، [`rasm_imlai`](/ar/docs/terms/dictionary/mushaf#rasm_imlai)، [`mushaf_mark`](/ar/docs/terms/dictionary/dabt#mushaf_mark)، [`font`](/ar/docs/terms/dictionary/mushaf#font)، [`mushaf`](/ar/docs/terms/dictionary/core#mushaf)، [`mushaf_edition`](/ar/docs/terms/dictionary/core#mushaf_edition)، [`omitted_alif`](/ar/docs/terms/dictionary/dabt#omitted_alif)، [`orthographic_mark`](/ar/docs/terms/dictionary/dabt#orthographic_mark)، [`tashkil`](/ar/docs/terms/dictionary/dabt#tashkil)</span>
+**مرتبط به:** <span dir="ltr">[`rasm_uthmani`](/ar/docs/terms/dictionary/mushaf#rasm_uthmani)، [`rasm_imlai`](/ar/docs/terms/dictionary/mushaf#rasm_imlai)، [`mushaf_mark`](/ar/docs/terms/dictionary/dabt#mushaf_mark)، [`font`](/ar/docs/terms/dictionary/mushaf#font)، [`mushaf`](/ar/docs/terms/dictionary/core#mushaf)، [`mushaf_edition`](/ar/docs/terms/dictionary/core#mushaf_edition)، [`dagger_alif`](/ar/docs/terms/dictionary/dabt#dagger_alif)، [`orthographic_mark`](/ar/docs/terms/dictionary/dabt#orthographic_mark)، [`tashkil`](/ar/docs/terms/dictionary/dabt#tashkil)</span>
 
 ### الرسم الإملائي — Rasm Imlai [#rasm_imlai]
 

@@ -69,6 +69,8 @@
 #nd-page .concept-fields { font-size: 0.84rem; line-height: 1.7; }
 #nd-page .concept-fields :is(td, th) { padding: 0.3rem 0.65rem; }
 #nd-page .concept-fields td:first-child { width: 10rem; color: var(--color-fd-muted-foreground); }
+/* A former code's anchor inside an entry heading lands where the heading itself would. */
+#nd-page h3 span[id] { display: inline-block; scroll-margin-top: 7rem; }
 #nd-page .reference-table { max-height: 26rem; overflow: auto; margin-block: 1.5rem; border: 1px solid var(--color-fd-border); border-radius: 0.6rem; }
 #nd-page .reference-table > div { margin: 0; overflow: visible; }
 #nd-page .reference-table table { margin: 0; }
