@@ -851,7 +851,7 @@ sourceRevision: "9bf0db1"
 | Version | `v0.1` |
 | Vocalized | السُّكُون |
 | Dabt name | السُّكُون — رَأْس الخَاء المُهْمَلَة |
-| Name by shape | رَأْس خَاء بِلَا نُقْطَة |
+| Name by shape | رَأْس حَاء |
 | Mushaf introduction name | رَأْس خَاء صَغِيرَة دُون نُقْطَة |
 | Symbol | ـْ |
 | Characters | `U+0652` ARABIC SUKUN, `U+06E1` ARABIC SMALL HIGH DOTLESS HEAD OF KHAH |

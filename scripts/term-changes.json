@@ -14,5 +14,15 @@
       "ar": "كان `omitted_alif` («الألف المحذوفة») اسم هذه العلامة حتى نوفمبر 2026، ثم سُميت باسمها المتعارف عليه، وهو الذي تستعمله [القاعدة 015](/ar/docs/terms/standard#rule-015)، فأُهمل."
     },
     "reason": "Arabic review: «الألف الخنجرية» (dagger alif) is the name in common use. The dabt name «الأَلِف المَحْذُوفَة — أَلِف صَغِيرَة قَائِمَة» stays as a source name (rule 040)."
+  },
+  "sukun": {
+    "rows": {
+      "byShape": {
+        "from": "رَأْس خَاء بِلَا نُقْطَة",
+        "to": "رَأْس حَاء"
+      }
+    },
+    "changed": "2026-11-06",
+    "reason": "Arabic review: tajweed teachers describe the shape as «رأس الحاء»; a khaa without its dot is a haa, so it is the same shape said plainly. The dabt name «رَأْس الخَاء المُهْمَلَة» and the mushaf introduction's wording «رَأْس خَاء صَغِيرَة دُون نُقْطَة» are source names and stay (rule 040)."
   }
 }

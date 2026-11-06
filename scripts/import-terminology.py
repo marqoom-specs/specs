@@ -79,13 +79,14 @@ def versioned(text, locale):
     return text
 
 
-# Terms Marqoom renamed after review, in scripts/term-changes.json (shared with
-# build-visual-lab-data.py), keyed by the source's code. A new name replaces the old one in
-# the entry (heading, code, vocalized row, definition), in every link to it, and in the
-# dictionary index; the entry and its index row move to their alphabetical place, and sorted
-# lists are sorted again. The old code is recorded as a deprecated name with a dated note
-# (rules 046, 047); lib/rehype-reading.mjs gives the entry its deprecated names as anchors. Source names such as the
-# dabt name are left as they are (rule 040).
+# Terms Marqoom changed after review, in scripts/term-changes.json (shared with
+# build-visual-lab-data.py), keyed by the source's code. `rows` rewords a field of the entry
+# in place. A new `code` replaces the old one in the entry (heading, code, vocalized row,
+# definition), in every link to it, and in the dictionary index; the entry and its index row
+# move to their alphabetical place, and sorted lists are sorted again. The old code is
+# recorded as a deprecated name with a dated note (rules 046, 047), and
+# lib/rehype-reading.mjs gives the entry its deprecated names as anchors. Source names such
+# as the dabt name and the mushaf introduction's wording are left as they are (rule 040).
 CHANGES = json.loads((ROOT / 'scripts/term-changes.json').read_text())
 changed_in = {}
 LINKS = re.compile(r'\[`[a-z0-9_]+`\]\([^)]+\)(?:(?:, |، )\[`[a-z0-9_]+`\]\([^)]+\))+')
@@ -103,8 +104,24 @@ def entry_bounds(text, code):
     return heading.start(), heading.end() + following.start() if following else len(text)
 
 
+ROW_LABELS = {'byShape': {'en': 'Name by shape', 'ar': 'اسمه بشكله'}}
+
+
 def changed(text, locale, page):
     for old, c in CHANGES.items():
+        # A field of the entry reworded, in place.
+        bounds = entry_bounds(text, old)
+        if bounds and 'rows' in c:
+            block = text[bounds[0]:bounds[1]]
+            for field, row in c['rows'].items():
+                label = ROW_LABELS[field][locale]
+                before, after = f"| {label} | {row['from']} |", f"| {label} | {row['to']} |"
+                assert block.count(before) == 1, f'{before} not found in {locale}/{old}'
+                block = block.replace(before, after)
+            text = text[:bounds[0]] + block + text[bounds[1]:]
+            changed_in.setdefault((old, locale), []).append(page)
+        if 'code' not in c:
+            continue
         new = c['code']
         ltr = (lambda s: f'<span dir="ltr">{s}</span>') if locale == 'ar' else (lambda s: s)
         bounds = entry_bounds(text, old)
@@ -310,8 +327,9 @@ with tarfile.open(ARCHIVE) as archive:
             'pages': ['index', 'standard', 'dictionary', 'registries'],
         })
 
-        for code in CHANGES:
-            assert len(changed_in.get((code, locale), [])) == 2, f'{code} must change in its entry and the index ({locale})'
+        for code, c in CHANGES.items():
+            expected = ('rows' in c) + 2 * ('code' in c)  # the entry, plus the index row for a new code
+            assert len(changed_in.get((code, locale), [])) == expected, f'{code} must change in its entry and the index ({locale})'
 
     # Keep the source license with the downloadable original revision.
     publish(Path('public/sources/QURAN-WS-LICENSE.txt'), read('LICENSE'))

@@ -56,6 +56,8 @@ def first_sentence(text):
 # Terms Marqoom renamed after review, as in import-terminology.py: the entry takes its new
 # code and names, links to it follow, and its old code becomes a recorded spelling.
 for old, change in json.loads((ROOT / 'scripts/term-changes.json').read_text()).items():
+    if 'code' not in change:
+        continue  # a reworded field the map does not show
     entry = next(entry for entry in entries if entry['concept'] == old)
     assert entry['names']['arabic']['singular'] == change['formerArabic'], f'{old} no longer has its former name'
     entry['concept'] = entry['names']['code'] = change['code']
