@@ -33,21 +33,22 @@ That's why the registries name every member of these lists: the numbering system
 
 ## How do I use them in my project? [#use]
 
-The easiest way is to add [Quranic Terminology Lint](/docs/tools/quranic-terminology-lint) to your project's pre-commit. Then every commit is checked: if you write `aya_number`, for example, it tells you the name we agreed on and the rule behind it.
+The easiest way is to add [Quranic Terminology Lint](/docs/tools/quranic-terminology-lint) to your project's pre-commit. Then every commit is checked: if you store ayah numbers without saying which numbering system they follow, or write `aya_number`, for example, it tells you what we agreed on and the rule behind it.
 
 <div className="term-steps">
 
 1. **Add the hook** to your project's `.pre-commit-config.yaml`.
-2. **Run `pre-commit install`** once. The tool needs Python 3.10 or newer.
-3. **Write code as usual.** If a name differs from what we agreed on, the commit stops and shows you the name to use.
+2. **Run `pre-commit install`** once. The first time, pre-commit builds the tool, and downloads Rust itself if you don't have it.
+3. **Write code as usual.** If something differs from what we agreed on, you see a note with what to use instead, and an error stops the commit.
 
 </div>
 
 ```yaml title=".pre-commit-config.yaml"
 repos:
   - repo: https://github.com/marqoom-specs/quranic-terminology-lint
-    rev: v0.4.0
+    rev: v0.5.0
     hooks:
+      - id: quranic-data
       - id: quranic-terminology
 ```
 
@@ -56,5 +57,5 @@ pre-commit install
 ```
 
 ```text title="A finding"
-src/model.ts:12: error getSuraNo → getSurahNumber (rule 068: Reference numbers)
+src/model.ts:12: error getSuraNo → getSurahNumber (rule 019: Ta marbutah outside idafah; rule 068: Reference numbers)
 ```
