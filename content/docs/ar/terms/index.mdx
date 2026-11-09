@@ -33,21 +33,22 @@ description: الأسماء التي اتفقنا عليها للمصطلحات 
 
 ## كيف أستخدمها في مشروعي؟ [#use]
 
-أسهل طريقة أن تضيف أداة [Quranic Terminology Lint](/ar/docs/tools/quranic-terminology-lint) إلى pre-commit في مشروعك. بعدها يُفحص كل commit، فإذا كتبت `aya_number` مثلًا، تخبرك الأداة بالاسم الذي اتفقنا عليه والقاعدة التي يستند إليها.
+أسهل طريقة أن تضيف أداة [Quranic Terminology Lint](/ar/docs/tools/quranic-terminology-lint) إلى pre-commit في مشروعك. بعدها يُفحص كل commit: إذا حفظت أرقام الآيات من غير أن تذكر نظام العد، أو كتبت `aya_number` مثلًا، تخبرك الأداة بما اتفقنا عليه والقاعدة التي يستند إليها.
 
 <div className="term-steps">
 
 1. **أضف الأداة** إلى ملف `.pre-commit-config.yaml` في مشروعك.
-2. **شغّل `pre-commit install`** مرة واحدة. تحتاج الأداة Python 3.10 أو أحدث.
-3. **اكتب الكود كعادتك.** إذا اختلف اسم عما اتفقنا عليه، يتوقف الـ commit ويظهر لك الاسم الصحيح.
+2. **شغّل `pre-commit install`** مرة واحدة. في المرة الأولى يبني pre-commit الأداة، وينزّل Rust بنفسه إذا لم يكن عندك.
+3. **اكتب الكود كعادتك.** إذا اختلف شيء عما اتفقنا عليه، تظهر لك ملاحظة بالبديل، والخطأ يوقف الـ commit.
 
 </div>
 
 ```yaml title=".pre-commit-config.yaml"
 repos:
   - repo: https://github.com/marqoom-specs/quranic-terminology-lint
-    rev: v0.4.0
+    rev: v0.5.0
     hooks:
+      - id: quranic-data
       - id: quranic-terminology
 ```
 
@@ -56,5 +57,5 @@ pre-commit install
 ```
 
 ```text title="مثال على ملاحظة"
-src/model.ts:12: error getSuraNo → getSurahNumber (rule 068: Reference numbers)
+src/model.ts:12: error getSuraNo → getSurahNumber (rule 019: Ta marbutah outside idafah; rule 068: Reference numbers)
 ```

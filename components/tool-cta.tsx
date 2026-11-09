@@ -5,8 +5,9 @@ import { useState } from 'react';
 // The setup the tool page shows; keep `rev` on the documented release.
 const config = `repos:
   - repo: https://github.com/marqoom-specs/quranic-terminology-lint
-    rev: v0.4.0
+    rev: v0.5.0
     hooks:
+      - id: quranic-data
       - id: quranic-terminology
 `;
 
@@ -27,8 +28,8 @@ export function ToolCta({ ar = false }: { ar?: boolean }) {
     <div className="join-cta-copy">
       <strong>{ar ? 'جرّبها في مشروعك' : 'Try it in your project'}</strong>
       <p>{ar
-        ? <>انسخ الإعداد إلى ملف <code dir="ltr">.pre-commit-config.yaml</code>، ثم شغّل <code dir="ltr">pre-commit install</code>. وإذا وجدت اقتراحًا لا يناسب الكود عندك، شاركنا مثالًا صغيرًا.</>
-        : <>Copy the setup into <code>.pre-commit-config.yaml</code>, then run <code>pre-commit install</code>. If a suggestion doesn&apos;t fit your code, share a small example.</>}</p>
+        ? <>انسخ الإعداد إلى ملف <code dir="ltr">.pre-commit-config.yaml</code>، ثم شغّل <code dir="ltr">pre-commit install</code>. وإذا وجدت ملاحظة لا تناسب بياناتك أو الكود عندك، شاركنا مثالًا صغيرًا.</>
+        : <>Copy the setup into <code>.pre-commit-config.yaml</code>, then run <code>pre-commit install</code>. If a finding doesn&apos;t fit your data or your code, share a small example.</>}</p>
     </div>
     <div className="join-cta-actions">
       <button type="button" onClick={copy}>

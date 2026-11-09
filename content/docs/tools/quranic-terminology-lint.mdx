@@ -1,63 +1,108 @@
 ---
 title: Quranic terminology lint
-description: Reviews the terms in your code on every commit, and suggests the name to use and the naming rule behind it.
+description: Reviews the data your project stores or publishes, and the names of terms in your code, on every commit.
 ---
 
-Quranic Terminology Lint reviews the names of Quranic terms in your code. It shows you where a name needs changing, the suggested replacement, and the naming rule it's based on. The rules live inside the tool, so once it's installed it runs on your machine, with no internet connection.
+Quranic Terminology Lint has two checks. The first reviews the data your project stores or publishes for others, such as JSON and CSV files and API responses, and tells you what someone else would read wrongly. The second reviews the names of Quranic terms in your code, and suggests the name we agreed on. The standard and the registries live inside the tool, so once it's installed it runs on your machine, with no internet connection.
 
-Say you have a file called `example.py` that stores an ayah number and prints it:
+Say your app exports the ayah timings of Surah Al-Baqarah to a file called `exports/al-baqarah.json`:
+
+```json
+{
+  "surah": 2,
+  "ayahs": [
+    { "ayah": 1, "start_ms": 0, "end_ms": 4037 },
+    { "ayah": 2, "start_ms": 4037, "end_ms": 8111 },
+    …
+  ]
+}
+```
+
+The file has 285 ayahs. When you commit, the commit goes through, but the data check shows this warning:
+
+```text
+Meaning — what a consumer would read wrongly
+  ! warning  ayah numbers that are not Kufi, and nothing says so: rule 072 reads unstated numbers as
+             Kufi, so a consumer would pair them with the wrong ayahs (surah 2 has 285 ayahs here
+             and 286 in Kufi). The count fits `madani_first`, `madani_last`, `makki`, `dimashqi`.
+             at exports/al-baqarah.json
+             →  state the riwayah or the numbering
+             basis: rule 072
+```
+
+The idea is simple: Al-Baqarah has 285 ayahs in the Madani count, as in the riwayah of Warsh, and 286 in the Kufi count. The file doesn't say which count it follows, so whoever reads it will assume the Kufi count, as rule 072 says. Then every timing after the first place where the two counts differ is paired with the wrong ayah, and the data still loads without any visible error.
+
+The fix is one line in the file itself:
+
+```json
+{
+  "surah": 2,
+  "riwayah": "warsh_an_nafi",
+  "ayahs": [ … ]
+}
+```
+
+With this line, whoever reads your file knows from the qiraat registry that the numbers follow the later Madani count, without having to ask you.
+
+The second check is for names. Say you have a file called `example.py` that stores an ayah number and prints it:
 
 ```py
 aya_number = 5
 print(aya_number)
 ```
 
-When you try to commit, the check stops and shows these two notes:
+When you commit, the check stops the commit and shows these two notes:
 
 ```text
 example.py:1: error aya_number → ayah_number (rule 019: Ta marbutah outside idafah)
 example.py:2: error aya_number → ayah_number (rule 019: Ta marbutah outside idafah)
 ```
 
-Each line gives the file and line number, then the current name and the suggested one. The file itself hasn't changed: you fix the name on both lines, add the change with `git add example.py`, and commit again.
+Each line gives the file and line number, then the current name, the suggested one, and the rule. The file itself hasn't changed: you fix the name on both lines, add the change with `git add example.py`, and commit again.
 
 ## How do I add it to my project? [#set-up]
 
-You need Python 3.10 or newer, and [pre-commit](https://pre-commit.com/#install) installed. Then create a file called `.pre-commit-config.yaml` in your project's root folder, with:
+You need [pre-commit](https://pre-commit.com/#install) installed. Then create a file called `.pre-commit-config.yaml` in your project's root folder, with:
 
 ```yaml
 repos:
   - repo: https://github.com/marqoom-specs/quranic-terminology-lint
-    rev: v0.4.0
+    rev: v0.5.0
     hooks:
+      - id: quranic-data
       - id: quranic-terminology
 ```
 
-If you already have the file, add the repository to its `repos` list. Then run this from inside the project:
+If you already have the file, add the repository to its `repos` list. The names check is optional: if you only care about the data check, remove the last line. Then run this from inside the project:
 
 ```bash
 pre-commit install
 ```
 
-From now on, the checks run on every commit, on the files you've staged with `git add`. To review the files already in the project:
+The first time, pre-commit builds the tool, and downloads Rust itself if you don't have it, so it can take a few minutes. From then on, the checks run on every commit, on the files you've staged with `git add`. To review the files already in the project:
 
 ```bash
-pre-commit run quranic-terminology --all-files
+pre-commit run --all-files
 ```
 
-I'd start with this command and read the results, especially in an older project. A naming error stops the commit; warnings don't.
+I'd start with this command and read the results, especially in an older project. An error stops the commit; warnings and notes don't.
 
-## What if I can't change a name? [#exceptions]
+## What if I can't change the file or the name? [#exceptions]
 
-You can exempt names that an external library imposes, or data files you want to keep exactly as you received them. Add a `.terminology.json` file to the project's root folder, with the reason for each exception:
+Sometimes you can't edit a data file, because it comes to you from another source, for example. Then state its riwayah in a `.terminology.json` file in the project's root folder. In the same file you exempt names that an external library imposes, or files you want to keep exactly as you received them, with the reason for each exception:
 
 ```json
 {
+  "data": {
+    "files": { "exports/al-baqarah.json": { "riwayah": "warsh_an_nafi" } }
+  },
   "exclude": ["data/**"],
   "external_names": ["\\bChapters\\b"],
   "_comment": "Chapters is an export owned by our Quran API dependency."
 }
 ```
+
+One thing to watch: if the file is published for other projects, they don't see this setting. So write the riwayah in the published file itself, as in the first example.
 
 To skip a single line, add a comment containing `terminology: ignore`. In comments and explanations the tool also accepts names like `Tajweed`, even though the standard chooses `tajwid` for variables.
 
@@ -70,10 +115,10 @@ ayah_number = 5
 print(ayah_number)
 ```
 
-We called it unsafe because renaming can affect other code. If you import `Chapters` from a library, replacing it with `Surahs` can break the import, since the library still uses the old name. So review the diff and run your tests after the change, then commit again.
+We called it unsafe because renaming can affect other code. If you import `Chapters` from a library, replacing it with `Surahs` can break the import, since the library still uses the old name. So review the diff and run your tests after the change, then commit again. This is for names only: the tool never edits data files.
 
 ## Where are the details? [#more]
 
-Installing it directly, running it in CI, every rule it reviews, and the details of supported formats and exceptions are in the [tool's documentation](https://github.com/marqoom-specs/quranic-terminology-lint/blob/v0.4.0/README.md). The rules themselves are explained in the [naming standard](/docs/terms/standard). The tool is open source under the MIT license.
+Installing it directly, running it in CI, everything the two checks review, and the details of the configuration are in the [tool's documentation](https://github.com/marqoom-specs/quranic-terminology-lint/blob/v0.5.0/README.md). The rules themselves are explained in the [naming standard](/docs/terms/standard), and the numbering systems and qiraat in the [registries](/docs/terms/registries). The tool is open source under the MIT license.
 
 <ToolCta />
