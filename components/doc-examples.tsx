@@ -67,7 +67,6 @@ export function TransmissionExample({ ar = false }: { ar?: boolean }) {
 
 const projects = [
   { id: 'munajjam', name: 'Munajjam', nameAr: 'مُنجّم' },
-  { id: 'alketab', name: 'AlKetab', nameAr: 'الكتاب' },
   { id: 'quran-ws', name: 'Quran.ws', nameAr: 'Quran.ws' },
   { id: 'mp3quran', name: 'MP3 Quran', nameAr: 'MP3 Quran' },
 ];
@@ -125,7 +124,7 @@ export function NetworkFigure({ ar = false }: { ar?: boolean }) {
   const stage = useRef<HTMLDivElement>(null);
   const number = (value: number) => ar ? value.toLocaleString('ar-u-nu-arab') : String(value);
 
-  // Below the fold, the network starts with you and one project and grows to the five on this page as it comes into view.
+  // Below the fold, the network starts with you and one project and grows to the four on this page as it comes into view.
   useEffect(() => {
     const element = stage.current;
     if (!element || matchMedia('(prefers-reduced-motion: reduce)').matches || element.getBoundingClientRect().top < innerHeight) return;
@@ -151,8 +150,8 @@ export function NetworkFigure({ ar = false }: { ar?: boolean }) {
 
   const without = (count * (count - 1)) / 2;
   return <Figure caption={ar
-    ? 'هذا أسوأ الاحتمالات: أن يتبادل كل مشروعين البيانات. وحتى لو لم يحدث ذلك، فمشروع واحد يأخذ من أربعة مصادر يكتب أربعة محوّلات. أما مع المعيار، فيكفي كلَّ مشروع محوّلٌ واحد، ولا يحتاج إليه إن استخدم الأسماء نفسها.'
-    : 'This is the worst case, where every two projects exchange data. Even without it, one project reading from four sources writes four adapters. With the standard, each project needs one adapter at most, and none if it uses the names directly.'}>
+    ? 'هذا أسوأ الاحتمالات: أن يتبادل كل مشروعين البيانات. وحتى لو لم يحدث ذلك، فمشروع واحد يأخذ من ثلاثة مصادر يكتب ثلاثة محوّلات. أما مع المعيار، فيكفي كلَّ مشروع محوّلٌ واحد، ولا يحتاج إليه إن استخدم الأسماء نفسها.'
+    : 'This is the worst case, where every two projects exchange data. Even without it, one project reading from three sources writes three adapters. With the standard, each project needs one adapter at most, and none if it uses the names directly.'}>
     <div className="figure-intro">
       <strong>{ar ? 'كم محوّلًا نحتاج؟' : 'How many adapters does it take?'}</strong>
       <p>{ar

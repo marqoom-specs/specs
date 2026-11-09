@@ -4,7 +4,6 @@ import { SurveyButton } from './visitor-survey';
 
 const projects = [
   { id: 'munajjam', name: 'Munajjam', nameAr: 'مُنجّم' },
-  { id: 'alketab', name: 'AlKetab', nameAr: 'الكتاب' },
   { id: 'quran-ws', name: 'Quran.ws', nameAr: 'Quran.ws' },
   { id: 'mp3quran', name: 'MP3 Quran', nameAr: 'MP3 Quran' },
 ];

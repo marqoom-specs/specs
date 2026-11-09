@@ -357,21 +357,18 @@ canvas.marqoom-hero-canvas {
 .project-munajjam {
   --project-accent: #4baeb5;
 }
-.project-alketab {
-  --project-accent: #b3873a;
-}
 .project-quran-ws {
   --project-accent: #438f73;
 }
 .project-mp3quran {
   --project-accent: #23a8e0;
 }
-/* Four cards per row when the column is wide, two when medium, one on phones; never three and an orphan.
-   Each clamp switches the minimum track width at a container width (44rem, then 26rem). */
+/* Three cards per row when the column is wide, one on phones; never two and an orphan.
+   The clamp switches the minimum track width at a container width (36rem). */
 #nd-page .project-cards {
   grid-template-columns: repeat(
     auto-fill,
-    minmax(clamp(clamp(25% - 0.75rem, (44rem - 100%) * 999, 50% - 0.75rem), (26rem - 100%) * 999, 100%), 1fr)
+    minmax(clamp(33.333% - 0.75rem, (36rem - 100%) * 999, 100%), 1fr)
   );
 }
 #nd-page .project-card {
@@ -416,9 +413,6 @@ canvas.marqoom-hero-canvas {
   margin: 0;
   border: 0;
   border-radius: 0;
-}
-#nd-page .project-alketab .project-preview {
-  object-position: center 45%;
 }
 #nd-page .project-card h3,
 #nd-page .project-card p {
