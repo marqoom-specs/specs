@@ -154,7 +154,7 @@ sourceRevision: "9bf0db1"
 - [معجم مصطلحات التجويد](https://tajweed.quranpedia.net/term/show/66) — `66`
 - [Rule-driven tajweed engine — rule corpus](https://github.com/quranpedia/tajweed-engine) — `izhar-halqi-noon`
 
-### Letter Relation — علاقة الحرفين [#letter_relation]
+### Letter Relation — التجاور [#letter_relation]
 
 <!-- source: standards/terminology/concepts/letter_relation.yml -->
 
@@ -166,7 +166,7 @@ sourceRevision: "9bf0db1"
 | Origin | `quranic` |
 | Tier | `extended` |
 | Version | `v0.1` |
-| Vocalized | عَلَاقَة الحَرْفَيْن |
+| Vocalized | التَّجَاوُر |
 | Other spellings | `letter_relations`, `alaqat_al_huruf`, `ilaqat_al_harfayn` |
 | English gloss | `relation of two letters` |
 
@@ -175,6 +175,8 @@ sourceRevision: "9bf0db1"
 **Purpose:** Used as a classification tagging the place where two letters are merged or sounded apart, so that the cause of the ruling is known and not only the ruling.
 
 - The relation is a cause; idgham and izhar are the ruling that follows from it.
+
+> «علاقة الحرفين» was this classification's Arabic name until November 2026; it was renamed after an Arabic review, so it is deprecated. Its code `letter_relation` stays ([rule 037](/docs/terms/standard#rule-037)).
 
 **Related:** [`idgham`](/docs/terms/dictionary/tajwid#idgham), [`izhar`](/docs/terms/dictionary/tajwid#izhar), [`mutamathilan`](/docs/terms/dictionary/tajwid#mutamathilan), [`mutajanisan`](/docs/terms/dictionary/tajwid#mutajanisan)
 

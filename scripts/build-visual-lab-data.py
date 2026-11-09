@@ -53,6 +53,29 @@ def first_sentence(text):
     return re.split(r'(?<=\.)\s', ' '.join(text.split()), maxsplit=1)[0]
 
 
+# Terms Marqoom renamed after review, as in import-terminology.py: the entry takes its new
+# names, and a new code; links to it follow, and its old code becomes a recorded spelling.
+for old, change in json.loads((ROOT / 'scripts/term-changes.json').read_text()).items():
+    if 'formerArabic' not in change:
+        continue  # a reworded field the map does not show
+    entry = next(entry for entry in entries if entry['concept'] == old)
+    assert entry['names']['arabic']['singular'] == change['formerArabic'], f'{old} no longer has its former name'
+    entry['names']['arabic']['singular'] = change['arabic']
+    for before, after in change.get('wording', []):
+        entry['definition'] = entry['definition'].replace(before, after)
+    entry['definition'] = entry['definition'].replace(change['formerArabic'], change['arabic'])
+    if 'code' not in change:
+        continue
+    entry['concept'] = entry['names']['code'] = change['code']
+    entry['names']['display'] = change['display']
+    for other in entries:
+        other['related'] = [change['code'] if code == old else code for code in other.get('related') or []]
+        if other.get('parent') == old:
+            other['parent'] = change['code']
+    spellings[change['code']] = [s for s in spellings.pop(old, []) if s not in (change['code'], change['code'].replace('_', '-'))]
+    spellings[change['code']] += [old, old.replace('_', '-')]
+    known = known - {old} | {change['code']}
+
 categories = sorted({entry['category'] for entry in entries})
 data = {
     'spellings': len(aliases),

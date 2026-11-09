@@ -36,6 +36,40 @@ sourceRevision: "9bf0db1"
 
 **مرتبط به:** <span dir="ltr">[`ayah`](/ar/docs/terms/dictionary/structure#ayah)، [`ayah_ending`](/ar/docs/terms/dictionary/structure#ayah_ending)، [`ayah_numbering_system`](/ar/docs/terms/dictionary/ayah_numbering#ayah_numbering_system)</span>
 
+### الألف الخنجرية — Dagger Alif [#dagger_alif]
+
+<!-- source: standards/terminology/concepts/omitted_alif.yml -->
+
+| الحقل | القيمة |
+| --- | --- |
+| `code` | <span dir="ltr">`dagger_alif`</span> |
+| `kind` | <span dir="ltr">`mark`</span> |
+| الأب | <span dir="ltr">[`orthographic_mark`](/ar/docs/terms/dictionary/dabt#orthographic_mark)</span> |
+| الأصل | <span dir="ltr">`quranic`</span> |
+| المستوى | <span dir="ltr">`core`</span> |
+| الإصدار | <span dir="ltr">`v0.1`</span> |
+| بالحركات | الأَلِف الخَنْجَرِيَّة |
+| اسمه في الضبط | الأَلِف المَحْذُوفَة — أَلِف صَغِيرَة قَائِمَة |
+| اسمه بشكله | أَلِف صَغِيرَة قَائِمَة فَوْق الحَرْف |
+| اسمه في تعريف المصحف | مِنَ الحُرُوف الصَّغِيرَة الدَّالَّة على المَتْرُوك مِنَ الرَّسْم |
+| الرمز | ا صَغِيرَة قَائِمَة |
+| المحارف | <span dir="ltr">`U+0670` ARABIC LETTER SUPERSCRIPT ALEF</span> |
+| عائلة العلامة | <span dir="ltr">`imlaiyyah`</span> |
+| تهجئات أخرى | <span dir="ltr">`alif_mahdhufah`، `small-alef`، `small_alef`، `small_alif`، `superscript_alif`</span> |
+| أسماء متروكة | <span dir="ltr">`omitted_alif`</span> |
+
+**التعريف:** الألف الخنجرية علامة تدل على ألف محذوفة من الرسم واجبة النطق.
+
+**الغرض:** نستخدمها قيمة من علامات الرسم، فنعرف بها المواضع التي يخالف فيها الرسم اللفظ في الكلمة.
+
+> كان `omitted_alif` («الألف المحذوفة») اسم هذه العلامة حتى نوفمبر 2026، ثم سُميت باسمها المتعارف عليه، وهو الذي تستعمله [القاعدة 015](/ar/docs/terms/standard#rule-015)، فأُهمل.
+
+**مرتبط به:** <span dir="ltr">[`rasm`](/ar/docs/terms/dictionary/mushaf#rasm)، [`orthographic_mark`](/ar/docs/terms/dictionary/dabt#orthographic_mark)</span>
+
+**المصادر:**
+
+- مصحف حفص — كلمة كلمة — `standard!small-alef`
+
 ### الضمة — Dammah [#dammah]
 
 <!-- source: standards/terminology/concepts/dammah.yml -->
@@ -411,37 +445,6 @@ sourceRevision: "9bf0db1"
 
 - [مباحث في علوم القرآن](https://files.turath.io/books-v3/11368.json) — `1/152`
 
-### الألف المحذوفة — Omitted Alif [#omitted_alif]
-
-<!-- source: standards/terminology/concepts/omitted_alif.yml -->
-
-| الحقل | القيمة |
-| --- | --- |
-| `code` | <span dir="ltr">`omitted_alif`</span> |
-| `kind` | <span dir="ltr">`mark`</span> |
-| الأب | <span dir="ltr">[`orthographic_mark`](/ar/docs/terms/dictionary/dabt#orthographic_mark)</span> |
-| الأصل | <span dir="ltr">`quranic`</span> |
-| المستوى | <span dir="ltr">`core`</span> |
-| الإصدار | <span dir="ltr">`v0.1`</span> |
-| بالحركات | الأَلِف المَحْذُوفَة |
-| اسمه في الضبط | الأَلِف المَحْذُوفَة — أَلِف صَغِيرَة قَائِمَة |
-| اسمه بشكله | أَلِف صَغِيرَة قَائِمَة فَوْق الحَرْف |
-| اسمه في تعريف المصحف | مِنَ الحُرُوف الصَّغِيرَة الدَّالَّة على المَتْرُوك مِنَ الرَّسْم |
-| الرمز | ا صَغِيرَة قَائِمَة |
-| المحارف | <span dir="ltr">`U+0670` ARABIC LETTER SUPERSCRIPT ALEF</span> |
-| عائلة العلامة | <span dir="ltr">`imlaiyyah`</span> |
-| تهجئات أخرى | <span dir="ltr">`alif_mahdhufah`، `dagger_alif`، `small-alef`، `small_alef`، `small_alif`، `superscript_alif`</span> |
-
-**التعريف:** الألف المحذوفة علامة تدل على ألف محذوفة من الرسم واجبة النطق.
-
-**الغرض:** نستخدمها قيمة من علامات الرسم، فنعرف بها المواضع التي يخالف فيها الرسم اللفظ في الكلمة.
-
-**مرتبط به:** <span dir="ltr">[`rasm`](/ar/docs/terms/dictionary/mushaf#rasm)، [`orthographic_mark`](/ar/docs/terms/dictionary/dabt#orthographic_mark)</span>
-
-**المصادر:**
-
-- مصحف حفص — كلمة كلمة — `standard!small-alef`
-
 ### العلامة الإملائية — Orthographic Mark [#orthographic_mark]
 
 <!-- source: standards/terminology/concepts/orthographic_mark.yml -->
@@ -451,7 +454,7 @@ sourceRevision: "9bf0db1"
 | `code` | <span dir="ltr">`orthographic_mark`</span> |
 | `kind` | <span dir="ltr">`classification`</span> |
 | الأب | <span dir="ltr">[`mushaf_mark`](/ar/docs/terms/dictionary/dabt#mushaf_mark)</span> |
-| القيم | <span dir="ltr">[`hamzah`](/ar/docs/terms/dictionary/dabt#hamzah)، [`hamzat_al_wasl`](/ar/docs/terms/dictionary/dabt#hamzat_al_wasl)، [`maddah`](/ar/docs/terms/dictionary/dabt#maddah)، [`omitted_alif`](/ar/docs/terms/dictionary/dabt#omitted_alif)، [`small_noon`](/ar/docs/terms/dictionary/dabt#small_noon)، [`small_waw`](/ar/docs/terms/dictionary/dabt#small_waw)، [`small_yaa`](/ar/docs/terms/dictionary/dabt#small_yaa)</span> |
+| القيم | <span dir="ltr">[`dagger_alif`](/ar/docs/terms/dictionary/dabt#dagger_alif)، [`hamzah`](/ar/docs/terms/dictionary/dabt#hamzah)، [`hamzat_al_wasl`](/ar/docs/terms/dictionary/dabt#hamzat_al_wasl)، [`maddah`](/ar/docs/terms/dictionary/dabt#maddah)، [`small_noon`](/ar/docs/terms/dictionary/dabt#small_noon)، [`small_waw`](/ar/docs/terms/dictionary/dabt#small_waw)، [`small_yaa`](/ar/docs/terms/dictionary/dabt#small_yaa)</span> |
 | الأصل | <span dir="ltr">`quranic`</span> |
 | المستوى | <span dir="ltr">`core`</span> |
 | الإصدار | <span dir="ltr">`v0.1`</span> |
@@ -461,7 +464,7 @@ sourceRevision: "9bf0db1"
 
 **الغرض:** نستخدم العلامة الإملائية أبًا للعلامات التي تتعلق برسم الكلمة وليس بحركتها ولا بالوقف عليها.
 
-**مرتبط به:** <span dir="ltr">[`mushaf_mark`](/ar/docs/terms/dictionary/dabt#mushaf_mark)، [`rasm`](/ar/docs/terms/dictionary/mushaf#rasm)، [`omitted_alif`](/ar/docs/terms/dictionary/dabt#omitted_alif)</span>
+**مرتبط به:** <span dir="ltr">[`mushaf_mark`](/ar/docs/terms/dictionary/dabt#mushaf_mark)، [`rasm`](/ar/docs/terms/dictionary/mushaf#rasm)، [`dagger_alif`](/ar/docs/terms/dictionary/dabt#dagger_alif)</span>
 
 **المصادر:**
 
@@ -803,7 +806,7 @@ sourceRevision: "9bf0db1"
 
 - مصحف حفص — كلمة كلمة — `standard!small-waw`
 
-### الياء الصغيرة — Small Yaa [#small_yaa]
+### الياء الفارسية — Small Yaa [#small_yaa]
 
 <!-- source: standards/terminology/concepts/small_yaa.yml -->
 
@@ -815,7 +818,7 @@ sourceRevision: "9bf0db1"
 | الأصل | <span dir="ltr">`quranic`</span> |
 | المستوى | <span dir="ltr">`core`</span> |
 | الإصدار | <span dir="ltr">`v0.1`</span> |
-| بالحركات | اليَاء الصَّغِيرَة |
+| بالحركات | اليَاء الفَارِسِيَّة |
 | اسمه في الضبط | اليَاء الصَّغِيرَة — عَلَامَة صِلَة هَاء الضَّمِير |
 | اسمه بشكله | يَاء صَغِيرَة مَرْدُودَة بَعْد الهَاء |
 | اسمه في تعريف المصحف | اليَاء الصَّغِيرَة المَرْدُودَة إِلى خَلْف |
@@ -824,9 +827,11 @@ sourceRevision: "9bf0db1"
 | عائلة العلامة | <span dir="ltr">`imlaiyyah`</span> |
 | تهجئات أخرى | <span dir="ltr">`small-ya`، `small_ya`، `ya_saghirah`، `yaa_saghirah`</span> |
 
-**التعريف:** الياء الصغيرة علامة تدل على صلة هاء الضمير المكسورة بياء لفظية في حال الوصل.
+**التعريف:** الياء الفارسية علامة تدل على صلة هاء الضمير المكسورة بياء لفظية في حال الوصل.
 
 **الغرض:** نستخدمها قيمة من علامات الرسم، فنعرف بها المواضع التي يخالف فيها الرسم اللفظ في الكلمة.
+
+> كان «الياء الصغيرة» اسم هذه العلامة بالعربية حتى نوفمبر 2026، ثم غُيِّر بعد مراجعة لغوية، فأُهمل. ويبقى اسمها البرمجي `small_yaa` ([القاعدة 037](/ar/docs/terms/standard#rule-037)). و«الياء الفارسية» هنا اسم هذه العلامة، لا الحرف «ی» (U+06CC FARSI YEH).
 
 **مرتبط به:** <span dir="ltr">[`madd_al_silah`](/ar/docs/terms/dictionary/tajwid#madd_al_silah)</span>
 
@@ -848,7 +853,7 @@ sourceRevision: "9bf0db1"
 | الإصدار | <span dir="ltr">`v0.1`</span> |
 | بالحركات | السُّكُون |
 | اسمه في الضبط | السُّكُون — رَأْس الخَاء المُهْمَلَة |
-| اسمه بشكله | رَأْس خَاء بِلَا نُقْطَة |
+| اسمه بشكله | رَأْس حَاء |
 | اسمه في تعريف المصحف | رَأْس خَاء صَغِيرَة دُون نُقْطَة |
 | الرمز | ـْ |
 | المحارف | <span dir="ltr">`U+0652` ARABIC SUKUN، `U+06E1` ARABIC SMALL HIGH DOTLESS HEAD OF KHAH</span> |

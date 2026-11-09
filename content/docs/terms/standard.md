@@ -91,7 +91,7 @@ An adjective translated into English precedes the noun it describes.
 
 | Arabic name | Code spelling |
 | --- | --- |
-| الأَلِف المَحْذُوفَة | `omitted_alif` |
+| الأَلِف الخَنْجَرِيَّة | `dagger_alif` |
 
 ### 006. Order of translated head nouns [#rule-006]
 

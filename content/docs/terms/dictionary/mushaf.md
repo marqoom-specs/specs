@@ -143,7 +143,7 @@ sourceRevision: "9bf0db1"
 - The rasm is which letters are written, omitted, joined or kept apart; the dabt is the marks of pronunciation placed on the letters.
 - The script is the shape of the letters in one mushaf; the rasm is what holds in every mushaf written in it.
 
-**Related:** [`rasm_uthmani`](/docs/terms/dictionary/mushaf#rasm_uthmani), [`rasm_imlai`](/docs/terms/dictionary/mushaf#rasm_imlai), [`mushaf_mark`](/docs/terms/dictionary/dabt#mushaf_mark), [`font`](/docs/terms/dictionary/mushaf#font), [`mushaf`](/docs/terms/dictionary/core#mushaf), [`mushaf_edition`](/docs/terms/dictionary/core#mushaf_edition), [`omitted_alif`](/docs/terms/dictionary/dabt#omitted_alif), [`orthographic_mark`](/docs/terms/dictionary/dabt#orthographic_mark), [`tashkil`](/docs/terms/dictionary/dabt#tashkil)
+**Related:** [`rasm_uthmani`](/docs/terms/dictionary/mushaf#rasm_uthmani), [`rasm_imlai`](/docs/terms/dictionary/mushaf#rasm_imlai), [`mushaf_mark`](/docs/terms/dictionary/dabt#mushaf_mark), [`font`](/docs/terms/dictionary/mushaf#font), [`mushaf`](/docs/terms/dictionary/core#mushaf), [`mushaf_edition`](/docs/terms/dictionary/core#mushaf_edition), [`dagger_alif`](/docs/terms/dictionary/dabt#dagger_alif), [`orthographic_mark`](/docs/terms/dictionary/dabt#orthographic_mark), [`tashkil`](/docs/terms/dictionary/dabt#tashkil)
 
 ### Rasm Imlai — الرسم الإملائي [#rasm_imlai]
 

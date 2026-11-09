@@ -36,6 +36,40 @@ sourceRevision: "9bf0db1"
 
 **Related:** [`ayah`](/docs/terms/dictionary/structure#ayah), [`ayah_ending`](/docs/terms/dictionary/structure#ayah_ending), [`ayah_numbering_system`](/docs/terms/dictionary/ayah_numbering#ayah_numbering_system)
 
+### Dagger Alif — الألف الخنجرية [#dagger_alif]
+
+<!-- source: standards/terminology/concepts/omitted_alif.yml -->
+
+| field | value |
+| --- | --- |
+| `code` | `dagger_alif` |
+| `kind` | `mark` |
+| Parent | [`orthographic_mark`](/docs/terms/dictionary/dabt#orthographic_mark) |
+| Origin | `quranic` |
+| Tier | `core` |
+| Version | `v0.1` |
+| Vocalized | الأَلِف الخَنْجَرِيَّة |
+| Dabt name | الأَلِف المَحْذُوفَة — أَلِف صَغِيرَة قَائِمَة |
+| Name by shape | أَلِف صَغِيرَة قَائِمَة فَوْق الحَرْف |
+| Mushaf introduction name | مِنَ الحُرُوف الصَّغِيرَة الدَّالَّة على المَتْرُوك مِنَ الرَّسْم |
+| Symbol | ا صَغِيرَة قَائِمَة |
+| Characters | `U+0670` ARABIC LETTER SUPERSCRIPT ALEF |
+| Mark family | `imlaiyyah` |
+| Other spellings | `alif_mahdhufah`, `small-alef`, `small_alef`, `small_alif`, `superscript_alif` |
+| Deprecated names | `omitted_alif` |
+
+**Definition:** Restores an alif omitted from the Uthmani skeleton but obligatory in pronunciation.
+
+**Purpose:** Used as a value of the orthographic marks, so that software can tell where the rasm departs from the pronunciation.
+
+> `omitted_alif` («الألف المحذوفة») was this mark's name until November 2026; it was renamed to the name in common use, the one [rule 015](/docs/terms/standard#rule-015) uses, so it is deprecated.
+
+**Related:** [`rasm`](/docs/terms/dictionary/mushaf#rasm), [`orthographic_mark`](/docs/terms/dictionary/dabt#orthographic_mark)
+
+**Sources:**
+
+- مصحف حفص — كلمة كلمة — `standard!small-alef`
+
 ### Dammah — الضمة [#dammah]
 
 <!-- source: standards/terminology/concepts/dammah.yml -->
@@ -411,37 +445,6 @@ sourceRevision: "9bf0db1"
 
 - [مباحث في علوم القرآن](https://files.turath.io/books-v3/11368.json) — `1/152`
 
-### Omitted Alif — الألف المحذوفة [#omitted_alif]
-
-<!-- source: standards/terminology/concepts/omitted_alif.yml -->
-
-| field | value |
-| --- | --- |
-| `code` | `omitted_alif` |
-| `kind` | `mark` |
-| Parent | [`orthographic_mark`](/docs/terms/dictionary/dabt#orthographic_mark) |
-| Origin | `quranic` |
-| Tier | `core` |
-| Version | `v0.1` |
-| Vocalized | الأَلِف المَحْذُوفَة |
-| Dabt name | الأَلِف المَحْذُوفَة — أَلِف صَغِيرَة قَائِمَة |
-| Name by shape | أَلِف صَغِيرَة قَائِمَة فَوْق الحَرْف |
-| Mushaf introduction name | مِنَ الحُرُوف الصَّغِيرَة الدَّالَّة على المَتْرُوك مِنَ الرَّسْم |
-| Symbol | ا صَغِيرَة قَائِمَة |
-| Characters | `U+0670` ARABIC LETTER SUPERSCRIPT ALEF |
-| Mark family | `imlaiyyah` |
-| Other spellings | `alif_mahdhufah`, `dagger_alif`, `small-alef`, `small_alef`, `small_alif`, `superscript_alif` |
-
-**Definition:** Restores an alif omitted from the Uthmani skeleton but obligatory in pronunciation.
-
-**Purpose:** Used as a value of the orthographic marks, so that software can tell where the rasm departs from the pronunciation.
-
-**Related:** [`rasm`](/docs/terms/dictionary/mushaf#rasm), [`orthographic_mark`](/docs/terms/dictionary/dabt#orthographic_mark)
-
-**Sources:**
-
-- مصحف حفص — كلمة كلمة — `standard!small-alef`
-
 ### Orthographic Mark — العلامة الإملائية [#orthographic_mark]
 
 <!-- source: standards/terminology/concepts/orthographic_mark.yml -->
@@ -451,7 +454,7 @@ sourceRevision: "9bf0db1"
 | `code` | `orthographic_mark` |
 | `kind` | `classification` |
 | Parent | [`mushaf_mark`](/docs/terms/dictionary/dabt#mushaf_mark) |
-| Values | [`hamzah`](/docs/terms/dictionary/dabt#hamzah), [`hamzat_al_wasl`](/docs/terms/dictionary/dabt#hamzat_al_wasl), [`maddah`](/docs/terms/dictionary/dabt#maddah), [`omitted_alif`](/docs/terms/dictionary/dabt#omitted_alif), [`small_noon`](/docs/terms/dictionary/dabt#small_noon), [`small_waw`](/docs/terms/dictionary/dabt#small_waw), [`small_yaa`](/docs/terms/dictionary/dabt#small_yaa) |
+| Values | [`dagger_alif`](/docs/terms/dictionary/dabt#dagger_alif), [`hamzah`](/docs/terms/dictionary/dabt#hamzah), [`hamzat_al_wasl`](/docs/terms/dictionary/dabt#hamzat_al_wasl), [`maddah`](/docs/terms/dictionary/dabt#maddah), [`small_noon`](/docs/terms/dictionary/dabt#small_noon), [`small_waw`](/docs/terms/dictionary/dabt#small_waw), [`small_yaa`](/docs/terms/dictionary/dabt#small_yaa) |
 | Origin | `quranic` |
 | Tier | `core` |
 | Version | `v0.1` |
@@ -461,7 +464,7 @@ sourceRevision: "9bf0db1"
 
 **Purpose:** Used as the parent of the marks that concern how a word is written, rather than its vowel or how it is stopped on.
 
-**Related:** [`mushaf_mark`](/docs/terms/dictionary/dabt#mushaf_mark), [`rasm`](/docs/terms/dictionary/mushaf#rasm), [`omitted_alif`](/docs/terms/dictionary/dabt#omitted_alif)
+**Related:** [`mushaf_mark`](/docs/terms/dictionary/dabt#mushaf_mark), [`rasm`](/docs/terms/dictionary/mushaf#rasm), [`dagger_alif`](/docs/terms/dictionary/dabt#dagger_alif)
 
 **Sources:**
 
@@ -803,7 +806,7 @@ sourceRevision: "9bf0db1"
 
 - مصحف حفص — كلمة كلمة — `standard!small-waw`
 
-### Small Yaa — الياء الصغيرة [#small_yaa]
+### Small Yaa — الياء الفارسية [#small_yaa]
 
 <!-- source: standards/terminology/concepts/small_yaa.yml -->
 
@@ -815,7 +818,7 @@ sourceRevision: "9bf0db1"
 | Origin | `quranic` |
 | Tier | `core` |
 | Version | `v0.1` |
-| Vocalized | اليَاء الصَّغِيرَة |
+| Vocalized | اليَاء الفَارِسِيَّة |
 | Dabt name | اليَاء الصَّغِيرَة — عَلَامَة صِلَة هَاء الضَّمِير |
 | Name by shape | يَاء صَغِيرَة مَرْدُودَة بَعْد الهَاء |
 | Mushaf introduction name | اليَاء الصَّغِيرَة المَرْدُودَة إِلى خَلْف |
@@ -827,6 +830,8 @@ sourceRevision: "9bf0db1"
 **Definition:** Marks the silah of the pronoun haa with kasrah, pronounced as a yaa in continuation.
 
 **Purpose:** Used as a value of the orthographic marks, so that software can tell where the rasm departs from the pronunciation.
+
+> «الياء الصغيرة» was this mark's Arabic name until November 2026; it was renamed after an Arabic review, so it is deprecated. Its code `small_yaa` stays ([rule 037](/docs/terms/standard#rule-037)). «الياء الفارسية» here names this mark, not the letter ی (U+06CC FARSI YEH).
 
 **Related:** [`madd_al_silah`](/docs/terms/dictionary/tajwid#madd_al_silah)
 
@@ -848,7 +853,7 @@ sourceRevision: "9bf0db1"
 | Version | `v0.1` |
 | Vocalized | السُّكُون |
 | Dabt name | السُّكُون — رَأْس الخَاء المُهْمَلَة |
-| Name by shape | رَأْس خَاء بِلَا نُقْطَة |
+| Name by shape | رَأْس حَاء |
 | Mushaf introduction name | رَأْس خَاء صَغِيرَة دُون نُقْطَة |
 | Symbol | ـْ |
 | Characters | `U+0652` ARABIC SUKUN, `U+06E1` ARABIC SMALL HIGH DOTLESS HEAD OF KHAH |

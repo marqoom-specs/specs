@@ -22,17 +22,20 @@ outputs = {}
 # which it does not publish, instructions for the upstream build, since these pages are edited
 # here, and the dictionary's opening note, which only pointed to its contributing section.
 # In Arabic a dictionary category is a «موضوع» (topic), not a «مجال».
+# Rule 005's example uses the dagger alif's current code (see scripts/term-changes.json).
 EDITS = {
     'standard': {
         'en': [
             (' See the [decision record](/docs/terms/decisions) for the reasoning and how letters with shared name spellings are distinguished.', ''),
             (' The [decision record](/docs/terms/decisions) explains the distinction.', ''),
             (', with explanations in the [decision record](/docs/terms/decisions).', '.'),
+            ('| الأَلِف المَحْذُوفَة | `omitted_alif` |', '| الأَلِف الخَنْجَرِيَّة | `dagger_alif` |'),
         ],
         'ar': [
             (' وتفاصيل القرار، ومنها كيفية تمييز الحروف التي تشترك أسماؤها في التهجئة، في [سجل القرارات](/ar/docs/terms/decisions).', ''),
             (' ويوضح [سجل القرارات](/ar/docs/terms/decisions) سبب هذا الفصل.', ''),
             ('، مع شرح قراراتها في [سجل القرارات](/ar/docs/terms/decisions).', '.'),
+            ('| الأَلِف المَحْذُوفَة | `omitted_alif` |', '| الأَلِف الخَنْجَرِيَّة | `dagger_alif` |'),
         ],
     },
     'registries': {
@@ -73,6 +76,140 @@ def versioned(text, locale):
     text = text.replace(before, after)
     # An entry with another status stops the import, so the change is decided rather than hidden.
     assert before.split('`')[0] not in text, f'An entry is not a draft in {locale}; decide how to show it'
+    return text
+
+
+# Terms Marqoom changed after review, in scripts/term-changes.json (shared with
+# build-visual-lab-data.py), keyed by the source's code. `rows` rewords a field of the entry
+# in place. A new `code` replaces the old one in the entry (heading, code, vocalized row,
+# definition), in every link to it, and in the dictionary index; the entry and its index row
+# move to their alphabetical place, and sorted lists are sorted again. Without a new `code`,
+# `arabic` renames the entry in Arabic only: every use of the old Arabic name follows it,
+# after `wording` fixes the Arabic sentences it changes, and the entry gains a dated note.
+# The old code is recorded as a deprecated name with a dated note (rules 046, 047), and
+# lib/rehype-reading.mjs gives the entry its deprecated names as anchors. Source names such
+# as the dabt name and the mushaf introduction's wording are left as they are (rule 040).
+CHANGES = json.loads((ROOT / 'scripts/term-changes.json').read_text())
+changed_in = {}
+LINKS = re.compile(r'\[`[a-z0-9_]+`\]\([^)]+\)(?:(?:, |، )\[`[a-z0-9_]+`\]\([^)]+\))+')
+
+
+def link_code(item):
+    return re.match(r'\[`([a-z0-9_]+)`\]', item)[1]
+
+
+def entry_bounds(text, code):
+    heading = re.search(rf'^### .+ \[#{code}\]$', text, re.M)
+    if not heading:
+        return None
+    following = re.search(r'^#{2,3} ', text[heading.end():], re.M)
+    return heading.start(), heading.end() + following.start() if following else len(text)
+
+
+ROW_LABELS = {'byShape': {'en': 'Name by shape', 'ar': 'اسمه بشكله'}}
+
+
+def renamed_in_arabic(text, locale, page, code, c):
+    # Source names are vocalized, so the plain old name only matches Marqoom's own uses of it.
+    if locale == 'ar':
+        for before, after in c.get('wording', []):
+            text = text.replace(before, after)
+    text = text.replace(c['formerArabic'], c['arabic'])
+    if any(line.startswith(f'| [`{code}`](') and f"| {c['arabic']} |" in line for line in text.split('\n')):
+        changed_in.setdefault((code, locale), []).append(page)
+    bounds = entry_bounds(text, code)
+    if bounds:
+        block = text[bounds[0]:bounds[1]]
+        assert c['arabic'] in block.split('\n', 1)[0]
+        label = 'بالحركات' if locale == 'ar' else 'Vocalized'
+        before = f"| {label} | {c['formerVocalized']} |"
+        assert block.count(before) == 1, f'{before} not found in {locale}/{code}'
+        block = block.replace(before, f"| {label} | {c['vocalized']} |")
+        related = '**مرتبط به:**' if locale == 'ar' else '**Related:**'
+        assert block.count(related) == 1
+        block = block.replace(related, f"> {c['note'][locale]}\n\n{related}")
+        text = text[:bounds[0]] + block + text[bounds[1]:]
+        changed_in.setdefault((code, locale), []).append(page)
+    return text
+
+
+def changed(text, locale, page):
+    for old, c in CHANGES.items():
+        # A field of the entry reworded, in place.
+        bounds = entry_bounds(text, old)
+        if bounds and 'rows' in c:
+            block = text[bounds[0]:bounds[1]]
+            for field, row in c['rows'].items():
+                label = ROW_LABELS[field][locale]
+                before, after = f"| {label} | {row['from']} |", f"| {label} | {row['to']} |"
+                assert block.count(before) == 1, f'{before} not found in {locale}/{old}'
+                block = block.replace(before, after)
+            text = text[:bounds[0]] + block + text[bounds[1]:]
+            changed_in.setdefault((old, locale), []).append(page)
+        if 'code' not in c:
+            if 'formerArabic' in c:
+                text = renamed_in_arabic(text, locale, page, old, c)
+            continue
+        new = c['code']
+        ltr = (lambda s: f'<span dir="ltr">{s}</span>') if locale == 'ar' else (lambda s: s)
+        bounds = entry_bounds(text, old)
+        if bounds:
+            block = text[bounds[0]:bounds[1]]
+            heading, rest = block.split('\n', 1)
+            assert c['formerArabic'] in heading and (locale == 'ar' or c['formerDisplay'] in heading)
+            heading = (heading.replace(c['formerArabic'], c['arabic']).replace(c['formerDisplay'], c['display'])
+                       .replace(f'[#{old}]', f'[#{new}]'))
+            replacements = [
+                (f"| `code` | {ltr(f'`{old}`')} |", f"| `code` | {ltr(f'`{new}`')} |"),
+                (f"| {'بالحركات' if locale == 'ar' else 'Vocalized'} | {c['formerVocalized']} |",
+                 f"| {'بالحركات' if locale == 'ar' else 'Vocalized'} | {c['vocalized']} |"),
+                (f"{'**التعريف:**' if locale == 'ar' else '**Definition:**'} {c['formerArabic']}",
+                 f"{'**التعريف:**' if locale == 'ar' else '**Definition:**'} {c['arabic']}"),
+            ]
+            if locale == 'en':
+                replacements.pop()  # the English definition does not start with the Arabic name
+            for before, after in replacements:
+                assert rest.count(before) == 1, f'{before} not found in {locale}/{old}'
+                rest = rest.replace(before, after)
+            spellings = re.search(r'^\| (?:Other spellings|تهجئات أخرى) \| (.+) \|$', rest, re.M)
+            sep = '، ' if locale == 'ar' else ', '
+            items = [s for s in re.findall(r'`([^`]+)`', spellings[1]) if s != new]
+            label = 'أسماء متروكة' if locale == 'ar' else 'Deprecated names'
+            assert f'| {label} |' not in rest, f'{old} already has deprecated names'
+            rest = (rest[:spellings.start()] + f"| {spellings[0].split(' | ')[0][2:]} | {ltr(sep.join(f'`{s}`' for s in items))} |\n"
+                    + f'| {label} | {ltr(f"`{old}`")} |' + rest[spellings.end():])
+            related = '**مرتبط به:**' if locale == 'ar' else '**Related:**'
+            assert rest.count(related) == 1
+            rest = rest.replace(related, f"> {c['note'][locale]}\n\n{related}")
+            block = heading + '\n' + rest
+            text = text[:bounds[0]] + text[bounds[1]:]
+            codes = re.findall(r'^### .+ \[#([a-z0-9_]+)\]$', text, re.M)
+            after = next((code for code in codes if code > new), None)
+            at = entry_bounds(text, after)[0] if after else len(text.rstrip('\n')) + 1
+            text = text[:at] + block + text[at:]
+            changed_in.setdefault((old, locale), []).append(page)
+        # Every link to the entry, and the lists that were in alphabetical order.
+        def relink(match):
+            items = re.split(r', |، ', match[0])
+            was_sorted = [link_code(i) for i in items] == sorted(link_code(i) for i in items)
+            items = [re.sub(rf'^\[`{old}`\]\(([^)#]*)#{old}\)$', rf'[`{new}`](\1#{new})', i) for i in items]
+            if was_sorted:
+                items.sort(key=link_code)
+            return (', ' if ', ' in match[0] else '، ').join(items)
+        text = LINKS.sub(relink, text)
+        text = re.sub(rf'\[`{old}`\]\(([^)#]*)#{old}\)', rf'[`{new}`](\1#{new})', text)
+        # The index row: its names, and its place in the table.
+        lines = text.split('\n')
+        rows = [i for i, line in enumerate(lines) if line.startswith(f'| [`{new}`](')]
+        for i in rows:
+            line = lines.pop(i).replace(f"| {c['formerDisplay']} |", f"| {c['display']} |").replace(c['formerArabic'], c['arabic'])
+            j = i
+            while j > 0 and lines[j - 1].startswith('| [`') and link_code(lines[j - 1][2:]) > new:
+                j -= 1
+            lines.insert(j, line)
+            changed_in.setdefault((old, locale), []).append(page)
+        text = '\n'.join(lines)
+        assert f'`{old}`]' not in text and f'#{old})' not in text, f'A link to {old} is left in {locale}/{page}'
     return text
 
 
@@ -199,14 +336,14 @@ with tarfile.open(ARCHIVE) as archive:
             publish(destination / f'{name}.md', page(fields, edit(adapted, name, locale), source))
 
         index = rewrite(dictionary_body[:categories[0].start()], 'dictionary')
-        publish(destination / 'dictionary/index.md', page(dictionary_fields, edit(index, 'dictionary', locale), dictionary_path))
+        publish(destination / 'dictionary/index.md', page(dictionary_fields, edit(changed(index, locale, 'index'), 'dictionary', locale), dictionary_path))
         reconstructed = index
         for i, category in enumerate(categories):
             end = categories[i + 1].start() if i + 1 < len(categories) else len(dictionary_body)
             fields = {**dictionary_fields, 'title': category[1], 'description': category[2]}
             body = rewrite(dictionary_body[category.end():end], 'dictionary')
             reconstructed += category[0] + body
-            publish(destination / f'dictionary/{category[2]}.md', page(fields, versioned(body, locale), dictionary_path))
+            publish(destination / f'dictionary/{category[2]}.md', page(fields, versioned(changed(body, locale, category[2]), locale), dictionary_path))
         assert prose(dictionary_body) == prose(reconstructed), f'Dictionary content lost in {locale}'
         json_file(destination / 'dictionary/meta.json', {
             'title': 'القاموس' if locale == 'ar' else 'Dictionary',
@@ -217,6 +354,10 @@ with tarfile.open(ARCHIVE) as archive:
             'defaultOpen': True,
             'pages': ['index', 'standard', 'dictionary', 'registries'],
         })
+
+        for code, c in CHANGES.items():
+            expected = ('rows' in c) + 2 * ('formerArabic' in c)  # the entry, plus the index row for a new name
+            assert len(changed_in.get((code, locale), [])) == expected, f'{code} must change in its entry and the index ({locale})'
 
     # Keep the source license with the downloadable original revision.
     publish(Path('public/sources/QURAN-WS-LICENSE.txt'), read('LICENSE'))

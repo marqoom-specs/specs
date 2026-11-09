@@ -1,0 +1,58 @@
+{
+  "omitted_alif": {
+    "code": "dagger_alif",
+    "display": "Dagger Alif",
+    "arabic": "الألف الخنجرية",
+    "vocalized": "الأَلِف الخَنْجَرِيَّة",
+    "formerCode": "omitted_alif",
+    "formerDisplay": "Omitted Alif",
+    "formerArabic": "الألف المحذوفة",
+    "formerVocalized": "الأَلِف المَحْذُوفَة",
+    "changed": "2026-11-06",
+    "note": {
+      "en": "`omitted_alif` («الألف المحذوفة») was this mark's name until November 2026; it was renamed to the name in common use, the one [rule 015](/docs/terms/standard#rule-015) uses, so it is deprecated.",
+      "ar": "كان `omitted_alif` («الألف المحذوفة») اسم هذه العلامة حتى نوفمبر 2026، ثم سُميت باسمها المتعارف عليه، وهو الذي تستعمله [القاعدة 015](/ar/docs/terms/standard#rule-015)، فأُهمل."
+    },
+    "reason": "Arabic review: «الألف الخنجرية» (dagger alif) is the name in common use. The dabt name «الأَلِف المَحْذُوفَة — أَلِف صَغِيرَة قَائِمَة» stays as a source name (rule 040)."
+  },
+  "sukun": {
+    "rows": {
+      "byShape": {
+        "from": "رَأْس خَاء بِلَا نُقْطَة",
+        "to": "رَأْس حَاء"
+      }
+    },
+    "changed": "2026-11-06",
+    "reason": "Arabic review: tajweed teachers describe the shape as «رأس الحاء»; a khaa without its dot is a haa, so it is the same shape said plainly. The dabt name «رَأْس الخَاء المُهْمَلَة» and the mushaf introduction's wording «رَأْس خَاء صَغِيرَة دُون نُقْطَة» are source names and stay (rule 040)."
+  },
+  "small_yaa": {
+    "arabic": "الياء الفارسية",
+    "vocalized": "اليَاء الفَارِسِيَّة",
+    "formerArabic": "الياء الصغيرة",
+    "formerVocalized": "اليَاء الصَّغِيرَة",
+    "changed": "2026-11-09",
+    "note": {
+      "en": "«الياء الصغيرة» was this mark's Arabic name until November 2026; it was renamed after an Arabic review, so it is deprecated. Its code `small_yaa` stays ([rule 037](/docs/terms/standard#rule-037)). «الياء الفارسية» here names this mark, not the letter ی (U+06CC FARSI YEH).",
+      "ar": "كان «الياء الصغيرة» اسم هذه العلامة بالعربية حتى نوفمبر 2026، ثم غُيِّر بعد مراجعة لغوية، فأُهمل. ويبقى اسمها البرمجي `small_yaa` ([القاعدة 037](/ar/docs/terms/standard#rule-037)). و«الياء الفارسية» هنا اسم هذه العلامة، لا الحرف «ی» (U+06CC FARSI YEH)."
+    },
+    "reason": "Arabic review: the mark is called «الياء الفارسية». Only the Arabic name changes; the code and the English name stay (rule 037). The dabt name, shape and mushaf-introduction wording are source names and stay (rule 040)."
+  },
+  "letter_relation": {
+    "arabic": "التجاور",
+    "vocalized": "التَّجَاوُر",
+    "formerArabic": "علاقة الحرفين",
+    "formerVocalized": "عَلَاقَة الحَرْفَيْن",
+    "wording": [
+      [
+        "علاقة الحرفين هي نسبة",
+        "التجاور هو نسبة"
+      ]
+    ],
+    "changed": "2026-11-09",
+    "note": {
+      "en": "«علاقة الحرفين» was this classification's Arabic name until November 2026; it was renamed after an Arabic review, so it is deprecated. Its code `letter_relation` stays ([rule 037](/docs/terms/standard#rule-037)).",
+      "ar": "كان «علاقة الحرفين» اسم هذا التصنيف بالعربية حتى نوفمبر 2026، ثم غُيِّر بعد مراجعة لغوية، فأُهمل. ويبقى اسمه البرمجي `letter_relation` ([القاعدة 037](/ar/docs/terms/standard#rule-037))."
+    },
+    "reason": "Arabic review: the classification is called «التجاور». Only the Arabic name changes; the code and the English name stay (rule 037). `wording` keeps the definition grammatical with a masculine name."
+  }
+}
