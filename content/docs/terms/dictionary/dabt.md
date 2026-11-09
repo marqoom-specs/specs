@@ -806,7 +806,7 @@ sourceRevision: "9bf0db1"
 
 - مصحف حفص — كلمة كلمة — `standard!small-waw`
 
-### Small Yaa — الياء الصغيرة [#small_yaa]
+### Small Yaa — الياء الفارسية [#small_yaa]
 
 <!-- source: standards/terminology/concepts/small_yaa.yml -->
 
@@ -818,7 +818,7 @@ sourceRevision: "9bf0db1"
 | Origin | `quranic` |
 | Tier | `core` |
 | Version | `v0.1` |
-| Vocalized | اليَاء الصَّغِيرَة |
+| Vocalized | اليَاء الفَارِسِيَّة |
 | Dabt name | اليَاء الصَّغِيرَة — عَلَامَة صِلَة هَاء الضَّمِير |
 | Name by shape | يَاء صَغِيرَة مَرْدُودَة بَعْد الهَاء |
 | Mushaf introduction name | اليَاء الصَّغِيرَة المَرْدُودَة إِلى خَلْف |
@@ -830,6 +830,8 @@ sourceRevision: "9bf0db1"
 **Definition:** Marks the silah of the pronoun haa with kasrah, pronounced as a yaa in continuation.
 
 **Purpose:** Used as a value of the orthographic marks, so that software can tell where the rasm departs from the pronunciation.
+
+> «الياء الصغيرة» was this mark's Arabic name until November 2026; it was renamed after an Arabic review, so it is deprecated. Its code `small_yaa` stays ([rule 037](/docs/terms/standard#rule-037)). «الياء الفارسية» here names this mark, not the letter ی (U+06CC FARSI YEH).
 
 **Related:** [`madd_al_silah`](/docs/terms/dictionary/tajwid#madd_al_silah)
 

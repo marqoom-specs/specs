@@ -83,8 +83,10 @@ def versioned(text, locale):
 # build-visual-lab-data.py), keyed by the source's code. `rows` rewords a field of the entry
 # in place. A new `code` replaces the old one in the entry (heading, code, vocalized row,
 # definition), in every link to it, and in the dictionary index; the entry and its index row
-# move to their alphabetical place, and sorted lists are sorted again. The old code is
-# recorded as a deprecated name with a dated note (rules 046, 047), and
+# move to their alphabetical place, and sorted lists are sorted again. Without a new `code`,
+# `arabic` renames the entry in Arabic only: every use of the old Arabic name follows it,
+# after `wording` fixes the Arabic sentences it changes, and the entry gains a dated note.
+# The old code is recorded as a deprecated name with a dated note (rules 046, 047), and
 # lib/rehype-reading.mjs gives the entry its deprecated names as anchors. Source names such
 # as the dabt name and the mushaf introduction's wording are left as they are (rule 040).
 CHANGES = json.loads((ROOT / 'scripts/term-changes.json').read_text())
@@ -107,6 +109,30 @@ def entry_bounds(text, code):
 ROW_LABELS = {'byShape': {'en': 'Name by shape', 'ar': 'اسمه بشكله'}}
 
 
+def renamed_in_arabic(text, locale, page, code, c):
+    # Source names are vocalized, so the plain old name only matches Marqoom's own uses of it.
+    if locale == 'ar':
+        for before, after in c.get('wording', []):
+            text = text.replace(before, after)
+    text = text.replace(c['formerArabic'], c['arabic'])
+    if any(line.startswith(f'| [`{code}`](') and f"| {c['arabic']} |" in line for line in text.split('\n')):
+        changed_in.setdefault((code, locale), []).append(page)
+    bounds = entry_bounds(text, code)
+    if bounds:
+        block = text[bounds[0]:bounds[1]]
+        assert c['arabic'] in block.split('\n', 1)[0]
+        label = 'بالحركات' if locale == 'ar' else 'Vocalized'
+        before = f"| {label} | {c['formerVocalized']} |"
+        assert block.count(before) == 1, f'{before} not found in {locale}/{code}'
+        block = block.replace(before, f"| {label} | {c['vocalized']} |")
+        related = '**مرتبط به:**' if locale == 'ar' else '**Related:**'
+        assert block.count(related) == 1
+        block = block.replace(related, f"> {c['note'][locale]}\n\n{related}")
+        text = text[:bounds[0]] + block + text[bounds[1]:]
+        changed_in.setdefault((code, locale), []).append(page)
+    return text
+
+
 def changed(text, locale, page):
     for old, c in CHANGES.items():
         # A field of the entry reworded, in place.
@@ -121,6 +147,8 @@ def changed(text, locale, page):
             text = text[:bounds[0]] + block + text[bounds[1]:]
             changed_in.setdefault((old, locale), []).append(page)
         if 'code' not in c:
+            if 'formerArabic' in c:
+                text = renamed_in_arabic(text, locale, page, old, c)
             continue
         new = c['code']
         ltr = (lambda s: f'<span dir="ltr">{s}</span>') if locale == 'ar' else (lambda s: s)
@@ -328,7 +356,7 @@ with tarfile.open(ARCHIVE) as archive:
         })
 
         for code, c in CHANGES.items():
-            expected = ('rows' in c) + 2 * ('code' in c)  # the entry, plus the index row for a new code
+            expected = ('rows' in c) + 2 * ('formerArabic' in c)  # the entry, plus the index row for a new name
             assert len(changed_in.get((code, locale), [])) == expected, f'{code} must change in its entry and the index ({locale})'
 
     # Keep the source license with the downloadable original revision.

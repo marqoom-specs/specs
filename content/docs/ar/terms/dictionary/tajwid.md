@@ -154,7 +154,7 @@ sourceRevision: "9bf0db1"
 - [معجم مصطلحات التجويد](https://tajweed.quranpedia.net/term/show/66) — `66`
 - [Rule-driven tajweed engine — rule corpus](https://github.com/quranpedia/tajweed-engine) — `izhar-halqi-noon`
 
-### علاقة الحرفين — Letter Relation [#letter_relation]
+### التجاور — Letter Relation [#letter_relation]
 
 <!-- source: standards/terminology/concepts/letter_relation.yml -->
 
@@ -166,15 +166,17 @@ sourceRevision: "9bf0db1"
 | الأصل | <span dir="ltr">`quranic`</span> |
 | المستوى | <span dir="ltr">`extended`</span> |
 | الإصدار | <span dir="ltr">`v0.1`</span> |
-| بالحركات | عَلَاقَة الحَرْفَيْن |
+| بالحركات | التَّجَاوُر |
 | تهجئات أخرى | <span dir="ltr">`letter_relations`، `alaqat_al_huruf`، `ilaqat_al_harfayn`</span> |
 | مقابل إنجليزي | <span dir="ltr">`relation of two letters`</span> |
 
-**التعريف:** علاقة الحرفين هي نسبة الحرفين المتجاورين أحدهما إلى الآخر في المخرج والصفة، وهي تماثل أو تجانس أو تقارب أو تباعد. وعليها يُبنى إدغام الأول في الثاني أو إظهاره.
+**التعريف:** التجاور هو نسبة الحرفين المتجاورين أحدهما إلى الآخر في المخرج والصفة، وهي تماثل أو تجانس أو تقارب أو تباعد. وعليها يُبنى إدغام الأول في الثاني أو إظهاره.
 
 **الغرض:** نستخدمها تصنيفًا نوسم به الموضع الذي يقع فيه إدغام الحرفين أو إظهارهما، حتى يُعرف سبب الحكم وليس الحكم وحده.
 
 - العلاقة سبب، والإدغام والإظهار حكم يترتب عليها.
+
+> كان «علاقة الحرفين» اسم هذا التصنيف بالعربية حتى نوفمبر 2026، ثم غُيِّر بعد مراجعة لغوية، فأُهمل. ويبقى اسمه البرمجي `letter_relation` ([القاعدة 037](/ar/docs/terms/standard#rule-037)).
 
 **مرتبط به:** <span dir="ltr">[`idgham`](/ar/docs/terms/dictionary/tajwid#idgham)، [`izhar`](/ar/docs/terms/dictionary/tajwid#izhar)، [`mutamathilan`](/ar/docs/terms/dictionary/tajwid#mutamathilan)، [`mutajanisan`](/ar/docs/terms/dictionary/tajwid#mutajanisan)</span>
 
@@ -518,7 +520,7 @@ sourceRevision: "9bf0db1"
 
 **التعريف:** المتجانسان حرفان اتحدا في المخرج واختلفا في الصفة، مثل الدال والتاء في «قد تبين».
 
-**الغرض:** نستخدمه قيمة من قيم علاقة الحرفين، فنقرأ منه سبب الإدغام أو الإظهار في الموضع بدلًا من استنباطه من الحرفين في كل مرة.
+**الغرض:** نستخدمه قيمة من قيم التجاور، فنقرأ منه سبب الإدغام أو الإظهار في الموضع بدلًا من استنباطه من الحرفين في كل مرة.
 
 **مرتبط به:** <span dir="ltr">[`letter_relation`](/ar/docs/terms/dictionary/tajwid#letter_relation)، [`idgham`](/ar/docs/terms/dictionary/tajwid#idgham)، [`izhar`](/ar/docs/terms/dictionary/tajwid#izhar)</span>
 
@@ -544,7 +546,7 @@ sourceRevision: "9bf0db1"
 
 **التعريف:** المتماثلان حرفان اتحدا في المخرج والصفة، مثل الباء في «اضرب بعصاك».
 
-**الغرض:** نستخدمه قيمة من قيم علاقة الحرفين، فنقرأ منه سبب الإدغام أو الإظهار في الموضع بدلًا من استنباطه من الحرفين في كل مرة.
+**الغرض:** نستخدمه قيمة من قيم التجاور، فنقرأ منه سبب الإدغام أو الإظهار في الموضع بدلًا من استنباطه من الحرفين في كل مرة.
 
 **مرتبط به:** <span dir="ltr">[`letter_relation`](/ar/docs/terms/dictionary/tajwid#letter_relation)، [`idgham`](/ar/docs/terms/dictionary/tajwid#idgham)، [`izhar`](/ar/docs/terms/dictionary/tajwid#izhar)</span>
 
