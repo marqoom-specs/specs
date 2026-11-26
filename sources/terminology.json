@@ -16,8 +16,8 @@
     "LICENSES/CC-BY-4.0.txt": "d557539df68e771cc1eedcc91d13f70fca930e508d11eedcafa4b15db49e3744"
   },
   "publishedFiles": {
-    "content/docs/terms/standard.md": "7025448aca61ba73396d21ac063ecf94534a32fa91ae7f528eb5649b59f218b3",
-    "content/docs/terms/registries.md": "00e4a7caf4274b2454e2111948e5b097ed1cd6fbba4f0f03c83499dc0741b884",
+    "content/docs/terms/standard.md": "63d93c425223ff0463091c2baeff3dbf260bfc116582b3e4709b1b5fddce00b4",
+    "content/docs/terms/registries.md": "2c099ccb8d9281caf786b70c465e15fe7bb29d56ac3e39dcc99e19d3d90a0626",
     "content/docs/terms/dictionary/index.md": "3ed8363a10b4696ef5b8eb683ee0b0725d66ac2a2f63cd47cd1595b41b14f2bc",
     "content/docs/terms/dictionary/core.md": "1dd5d95671908ef3f4ce117e2b3fa898e925979b512b69230a30b6470c41c1a6",
     "content/docs/terms/dictionary/structure.md": "7035be6ee4229a4f8cc2604150f24d760d8bda761c9a5de84f10b0fc1448bea1",
@@ -40,8 +40,8 @@
     "content/docs/terms/dictionary/quranic_sciences.md": "5b39a68c15c46b90b62d774237b639b43926eddb64046018056d0cc3e4084343",
     "content/docs/terms/dictionary/meta.json": "7cd2ca2e2edb37bebf7a9e90e7cf217da27b82c5e4bec700083a45cd1f9dc218",
     "content/docs/terms/meta.json": "30a664aa607146f034152d5df8bd2579ca5b75a6791c4eb4f9844b71f5b57fcc",
-    "content/docs/ar/terms/standard.md": "694baf76f199a5474c6a63e39d547e4dbf7c5aff55777f3fc0df2043c3361e17",
-    "content/docs/ar/terms/registries.md": "86a3e8813f00acfdeb82606fab64a20d130e29aaa30f6ffe76fa85399b22f84f",
+    "content/docs/ar/terms/standard.md": "dce421711fce2fb1128926cff74e3f35165a86c538fa930256791064d80ab8a0",
+    "content/docs/ar/terms/registries.md": "359c70dbee4359033ba01f3462915352349e86fa9866e5000c047cad5294f97b",
     "content/docs/ar/terms/dictionary/index.md": "b5bb5450dc96778291029d13d18435353c62e984e4fd4f394c3c418eb313033d",
     "content/docs/ar/terms/dictionary/core.md": "7b249bb06173353a9914761cea5a7946c411b53e775e7edcbb5c5a3acab970b0",
     "content/docs/ar/terms/dictionary/structure.md": "661f313f1d63c1f504721b32b3c3ec8823e0103a90cb3d514b5a304af42e37f6",

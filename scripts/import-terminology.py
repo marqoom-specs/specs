@@ -18,11 +18,34 @@ CHECK.add_argument('--check', action='store_true')
 checking = CHECK.parse_args().check
 outputs = {}
 
+# The one exception to writing a name in full: a short code a registry records.
+CLEAR_NAMES = {
+    'en': 'Choose a name that identifies the data rather than `data` or `item` when its kind is known.\n',
+    'ar': 'واختر الاسم الذي يوضح المقصود بدل `data` أو `item` عندما تعرف نوع البيانات.\n',
+}
+SHORT_CODE_RULE = {
+    'en': (
+        '\nA short code recorded in a registry is the one exception. Where a name has to stay short, such as a file name, '
+        'the `short_code` of an entry may stand for its code: `As-Hf` for `hafs_an_asim`. Both forms are valid there, '
+        'and both name the same entry; the code stays the one code name everywhere else ([rule 001](#rule-001)). '
+        'A short code is not an alternative spelling ([rule 044](#rule-044)), and it is never made up when a name is written: '
+        'an entry with no recorded short code is written in full.\n'
+    ),
+    'ar': (
+        '\nويُستثنى من ذلك الرمز المختصر المسجَّل في أحد السجلات. فحيث يلزم أن يبقى الاسم قصيرًا، كاسم ملف، '
+        'يجوز أن يقوم `short_code` المسجَّل للمدخل مقام اسمه البرمجي: `As-Hf` عن `hafs_an_asim`. والصورتان صحيحتان هناك، '
+        'وتدلان على المدخل نفسه؛ ويبقى الاسم البرمجي هو الاسم الوحيد في كل موضع آخر ([القاعدة 001](#rule-001)). '
+        'وليس الرمز المختصر تهجئة بديلة ([القاعدة 044](#rule-044))، ولا يُرتجل عند كتابة الاسم: '
+        'المدخل الذي لم يُسجَّل له رمز مختصر يُكتب اسمه كاملًا.\n'
+    ),
+}
+
 # Marqoom's own changes to the imported text. It leaves out pointers to the decision record,
 # which it does not publish, instructions for the upstream build, since these pages are edited
 # here, and the dictionary's opening note, which only pointed to its contributing section.
 # In Arabic a dictionary category is a «موضوع» (topic), not a «مجال».
 # Rule 005's example uses the dagger alif's current code (see scripts/term-changes.json).
+# The standard's "Clear names" section allows a registered short code (see scripts/short-codes.json).
 EDITS = {
     'standard': {
         'en': [
@@ -30,12 +53,14 @@ EDITS = {
             (' The [decision record](/docs/terms/decisions) explains the distinction.', ''),
             (', with explanations in the [decision record](/docs/terms/decisions).', '.'),
             ('| الأَلِف المَحْذُوفَة | `omitted_alif` |', '| الأَلِف الخَنْجَرِيَّة | `dagger_alif` |'),
+            (CLEAR_NAMES['en'], CLEAR_NAMES['en'] + SHORT_CODE_RULE['en']),
         ],
         'ar': [
             (' وتفاصيل القرار، ومنها كيفية تمييز الحروف التي تشترك أسماؤها في التهجئة، في [سجل القرارات](/ar/docs/terms/decisions).', ''),
             (' ويوضح [سجل القرارات](/ar/docs/terms/decisions) سبب هذا الفصل.', ''),
             ('، مع شرح قراراتها في [سجل القرارات](/ar/docs/terms/decisions).', '.'),
             ('| الأَلِف المَحْذُوفَة | `omitted_alif` |', '| الأَلِف الخَنْجَرِيَّة | `dagger_alif` |'),
+            (CLEAR_NAMES['ar'], CLEAR_NAMES['ar'] + SHORT_CODE_RULE['ar']),
         ],
     },
     'registries': {
@@ -213,6 +238,51 @@ def changed(text, locale, page):
     return text
 
 
+# Short codes Marqoom registers, in scripts/short-codes.json, keyed by registry and then by
+# code. The registry's table gains a `short_code` column beside `alternative_spellings`, filled
+# for the rows that have one, and a dated note above it. A short code must be new to the
+# table: a name belongs to one entry (rule 001).
+SHORT_CODES = json.loads((ROOT / 'scripts/short-codes.json').read_text())
+
+
+def cells(line):
+    parts = [cell.strip() for cell in line[1:-1].split('|')]
+    assert '| ' + ' | '.join(parts) + ' |' == line, f'Unexpected table row: {line}'
+    return parts
+
+
+def short_coded(text, locale):
+    for registry, added in SHORT_CODES.items():
+        codes = added['codes']
+        heading = re.search(rf'^## .+ \[#{registry}\]$', text, re.M)
+        assert heading, f'No registry {registry} in {locale}'
+        following = re.search(r'^## ', text[heading.end():], re.M)
+        end = heading.end() + following.start() if following else len(text)
+        lines = text[heading.end():end].split('\n')
+        first = next(i for i, line in enumerate(lines) if line.startswith('| `code` |'))
+        column = cells(lines[first]).index('`alternative_spellings`') + 1
+        taken, found = set(), set()
+        for i in range(first, len(lines)):
+            if not lines[i].startswith('|'):
+                break
+            row = cells(lines[i])
+            if i == first:
+                value = '`short_code`'
+            elif i == first + 1:
+                value = '---'
+            else:
+                value = codes.get(row[0], '')
+                found.update({row[0]} & set(codes))
+                taken.update(name.lower() for name in [row[0], *row[column - 1].split(',')] if name)
+            lines[i] = '| ' + ' | '.join(row[:column] + [value] + row[column:]) + ' |'
+        assert found == set(codes), f'Short codes for unknown {registry} entries: {set(codes) - found}'
+        short = [code.lower() for code in codes.values()]
+        assert len(set(short)) == len(short) and not set(short) & taken, f'A short code in {registry} is already a name'
+        lines.insert(first, f"> {added['note'][locale]}\n")
+        text = text[:heading.end()] + '\n'.join(lines) + text[end:]
+    return text
+
+
 def edit(text, name, locale):
     for before, after in EDITS.get(name, {}).get(locale, []):
         assert text.count(before) == 1, f'Edited text not found in {locale}/{name}: {before}'
@@ -333,7 +403,8 @@ with tarfile.open(ARCHIVE) as archive:
                 assert anchors == [f'rule-{i:03d}' for i in range(1, 74)]
             adapted = rewrite(body, name)
             assert prose(body) == prose(adapted), f'Content lost in {locale}/{name}'
-            publish(destination / f'{name}.md', page(fields, edit(adapted, name, locale), source))
+            edited = edit(adapted, name, locale)
+            publish(destination / f'{name}.md', page(fields, short_coded(edited, locale) if name == 'registries' else edited, source))
 
         index = rewrite(dictionary_body[:categories[0].start()], 'dictionary')
         publish(destination / 'dictionary/index.md', page(dictionary_fields, edit(changed(index, locale, 'index'), 'dictionary', locale), dictionary_path))
