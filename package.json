@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "check:content": "python3 scripts/import-terminology.py --check",
+    "check:content": "python3 scripts/import-terminology.py --check && python3 scripts/build-audio.py --check",
     "check:reading": "node scripts/check-reading.mjs && python3 scripts/build-visual-lab-data.py --check",
     "dev": "next dev",
     "build": "next build",

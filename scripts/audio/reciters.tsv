@@ -1,0 +1,257 @@
+# The reciter registry — سجل القراء.
+#
+# The proposed code and name of each reciter in the audio standard (v0.1). A
+# recitation and a file name write a reciter by `code`; the tags of a file
+# write the two names. One row is one person, listed once.
+#
+# A code is two lowercase words joined by `-`, and the rows are sorted by code.
+# `english` is empty when the English name is not known yet.
+#
+# scripts/build-audio.py writes this table into the registries page
+# of the audio standard in both languages, and checks it.
+#
+# code	arabic	english
+abdelaziz-sheim	عبدالعزيز سحيم	Abdelaziz sheim
+abdelmoujib-benkirane	عبد المجيب بنكيران	Abdelmoujib Benkirane
+abdulaziz-ahmad	عبدالعزيز الأحمد	Abdul Aziz Al-Ahmad
+abdulaziz-asiri	عبدالعزيز العسيري	Abdulaziz Alasiri
+abdulaziz-turki	عبدالعزيز التركي	Abdulaziz Alturki
+abdulaziz-zahrani	عبدالعزيز الزهراني	Abdulaziz Az-Zahrani
+abdulbadi-ghailan	عبدالبديع غيلان	Abdulbadi Ghailan
+abdulbari-muhammad	عبدالبارئ محمد	Abdulbari Mohammad
+abdulbari-thubaiti	عبدالبارئ الثبيتي	Abdelbari Al-Toubayti
+abdulbasit-abdulsamad	عبدالباسط عبدالصمد	Abdulbasit Abdulsamad
+abdulelah-aoun	عبدالإله بن عون	Abdulelah bin Aoun
+abdulghani-abdullah	عبدالغني عبدالله	Abdulghani Abdullah
+abdulhadi-kanakeri	عبدالهادي أحمد كناكري	Abdulhadi Kanakeri
+abdulkareem-hazmi	عبدالكريم الحازمي	Abdulkareem Alhazmi
+abdullah-abdal	عبدالله عبدل	Abdullah Abdal
+abdullah-basfar	عبدالله بصفر	Abdullah Basfer
+abdullah-buaijan	عبدالله البعيجان	Abdullah Albuajan
+abdullah-bukhari	عبدالله بخاري	Abdullah Bukhari
+abdullah-buraimi	عبدالله البريمي	Abdullah Al-Burimi
+abdullah-fahmi	عبدالله فهمي	Abdullah Fahmi
+abdullah-ghailan	عبدالله غيلان	Abdullah Qaulan
+abdullah-juhani	عبدالله عواد الجهني	Abdullah Al-Johany
+abdullah-kamel	عبدالله كامل	Abdullah Kamel
+abdullah-kandari	عبدالله الكندري	Abdullah Al-Kandari
+abdullah-khalaf	عبدالله الخلف	Abdullah Al-Khalaf
+abdullah-khayyat	عبدالله خياط	Abdullah Khayyat
+abdullah-matrood	عبدالله المطرود	Abdullah Al-Mattrod
+abdullah-mishal	عبدالله المشعل	Abdullah Al-Mishal
+abdullah-mousa	عبدالله الموسى	Abdullah Al-Mousa
+abdullah-qarafi	عبدالله القرافي	Abdullah Alqarafi
+abdulmajeed-arkani	عبدالمجيد الأركاني	Abdulmajeed Al-Arkani
+abdulmalik-askar	عبدالملك العسكر	Abdulmalik Alaskar
+abdulmohsen-askar	عبدالمحسن العسكر	Abdulmohsin Al-Askar
+abdulmohsen-harthi	عبدالمحسن الحارثي	Abdulmohsin Al-Harthy
+abdulmohsen-obaikan	عبدالمحسن العبيكان	Abdulmohsin Al-Obaikan
+abdulmohsen-qasim	عبدالمحسن القاسم	Abdulmohsen Al-Qasim
+abdulrahman-badr	عبدالرحمن بن عبدالرزاق البدر	Abdul Rahman bin Abdul Razzaq Al Badr
+abdulrahman-majed	عبدالرحمن الماجد	Abdulrahman Al-Majed
+abdulrahman-oosi	عبدالرحمن العوسي	Abdulrahman Aloosi
+abdulrahman-shahat	عبدالرحمن الشحات	Abdulrahman Alshahhat
+abdulrahman-sudais	عبدالرحمن السديس	Abdulrahman Alsudaes
+abdulrahman-suwayid	عبدالرحمن السويّد	Abdulrahman Alsuwayid
+abdulrasheed-sufi	عبدالرشيد صوفي	Abdulrasheed Soufi
+abdulwadood-haneef	عبدالودود حنيف	Abdulwadood Haneef
+abdulwali-arkani	عبدالولي الأركاني	Abdulwali Al-Arkani
+abubakr-shatri	شيخ أبو بكر الشاطري	Shaik Abu Bakr Al Shatri
+adel-kalbani	عادل الكلباني	Adel Al-Khalbany
+adel-rayyan	عادل ريان	Adel Ryyan
+ahmad-ajmi	أحمد بن علي العجمي	Ahmad Al-Ajmy
+ahmad-amer	أحمد عامر	Ahmed Amer
+ahmad-deeban	أحمد ديبان	Ahmad Deban
+ahmad-hawashi	أحمد الحواشي	Ahmad Al-Hawashi
+ahmad-hudhaifi	أحمد الحذيفي	Ahmad Alhuthaifi
+ahmad-humaid	أحمد طالب بن حميد	Ahmad Talib bin Humaid
+ahmad-masarawi	أحمد عيسى المعصراوي	Ahmad Issa Al Maasaraawi
+ahmad-naina	أحمد نعينع	Ahmad Nauina
+ahmad-nufais	أحمد النفيس	Ahmad Al Nufais
+ahmad-saber	أحمد صابر	Ahmad Saber
+ahmad-saud	أحمد سعود	Ahmad Saud
+ahmad-shaheen	أحمد خليل شاهين	Ahmad Shaheen
+ahmad-suwailem	أحمد السويلم	Ahmed Al-Swailem
+ahmad-tarabulsi	أحمد خضر الطرابلسي	Ahmad Khader Al-Tarabulsi
+akhil-rawa	أخيل عبدالحي روا	Akhil Abdulhayy Rawa
+akram-alaqmi	أكرم العلاقمي	Akram Alalaqmi
+ali-abuhashim	علي أبو هاشم	Ali Abo-Hashim
+ali-hudhaifi	علي بن عبدالرحمن الحذيفي	Ali Alhuthaifi
+ali-jaber	علي جابر	Ali Jaber
+ali-souissi	علي حجاج السويسي	Ali Hajjaj Alsouasi
+alijon-hamdan	عليجان قوري حمدان	Alijon Qori
+anas-emadi	أنس العمادي	Anas Alemadi
+ashri-omran	العشري عمران	Alashri Omran
+asim-luhaidan	عاصم اللحیدان	Asim Al-Luhaidan
+badr-turki	بدر التركي	Bader Alturki
+bandar-baleela	بندر بليله	Bandar Balilah
+dawood-hamza	داود حمزة	Dawood Hamza
+dokali-alim	الدوكالي محمد العالم	Addokali Mohammad Alalim
+fahad-kandari	فهد الكندري	Fahad Al-Kandari
+fahad-otaibi	فهد العتيبي	Fahad Al-Otaibi
+faisal-hajri	فيصل الهاجري	Faisal Al-Hajry
+fares-abbad	فارس عباد	Fares Abbad
+fateh-zubair	الفاتح محمد الزبير	Alfateh Alzubair
+fawaz-kaabi	فواز الكعبي	Fawaz Alkabi
+fouad-khamiri	فؤاد الخامري	Fouad Alkhamery
+haitham-dukhain	هيثم الدخين	Haitham Aldukhain
+haitham-jadani	هيثم الجدعاني	Hitham Aljadani
+hamad-daghriri	حمد الدغريري	Hamad Al Daghriri
+hani-rifai	هاني الرفاعي	Hani Arrifai
+haroon-baqai	هارون بقائي	Haroon Baqai
+hashim-abudalal	هاشم أبو دلال	Hashim Abu Dalal
+hassan-daghriri	حسن الدغريري	Hassan Aldaghriri
+hassan-saleh	حسن صالح	Hasan Saleh
+hatem-waer	حاتم فريد الواعر	Hatem Fareed Alwaer
+hazza-balushi	هزاع البلوشي	Hazza Al-Balushi
+hicham-lharraz	هشام الهراز	Hicham Lharraz
+husayni-azazi	الحسيني العزازي	Alhusayni Al-Azazi
+hussain-sheikh	حسين آل الشيخ	Hussain Alshaik
+ibrahim-akhdar	إبراهيم الأخضر	Ibrahim Al-Akdar
+ibrahim-asiri	إبراهيم العسيري	Ibrahim Al-Asiri
+ibrahim-dosari	إبراهيم الدوسري	Ibrahim Aldosari
+ibrahim-jibreen	إبراهيم الجبرين	Ibrahim Al-Jebreen
+ibrahim-jormy	إبراهيم الجرمي	Ibrahim Aljormy
+ibrahim-kshidan	إبراهيم كشيدان	Ibrahim Kshidan
+ibrahim-saadan	إبراهيم السعدان	Ibrahem Assadan
+ibrahim-shahri	إبراهيم الشهري	Ibrahim Al-Shahri
+idrees-abkar	إدريس أبكر	Idrees Abkr
+imad-hafez	عماد زهير حافظ	Emad Hafez
+islam-sobhi	إسلام صبحي	Islam Sobhi
+issa-sanankoua	عيسى عمر سناكو	Issa Omar Sanankoua
+jamaan-osaimi	جمعان العصيمي	Jamaan Alosaimi
+jamal-abdullah	جمال شاكر عبدالله	Jamal Shaker Abdullah
+jamaluddin-zailai	جمال الدين الزيلعي	Jamal Addeen Alzailaie
+junaid-abdullah	جنيد آدم عبدالله	Junaid Adam Abdullah
+khalid-abdulkafi	خالد عبدالكافي	Khalid Abdulkafi
+khalid-ghamdi	خالد الغامدي	Khalid Algamdi
+khalid-jalil	خالد الجليل	Khalid Al-Jileel
+khalid-mohammadi	خالد كريم محمدي	Khalid Mohammadi
+khalid-mohanna	خالد المهنا	Khalid Almohana
+khalid-qahtani	خالد القحطاني	Khaled Al-Qahtani
+khalid-sharekh	خالد الشارخ	Khalid Alsharekh
+khalid-shuraimi	خالد الشريمي	Khalid Al-Shoraimy
+khalid-wahaibi	خالد الوهيبي	Khalid Al-Wehabi
+khalid-ziyadi	خالد الزيادي	Khalid Alziyadi
+khalifa-tunaiji	خليفة الطنيجي	Khalifa Altunaiji
+laayoun-kouchi	العيون الكوشي	Aloyoon Al-Koshi
+lafi-oni	لافي العوني	Lafi Al-Oni
+maher-muaiqly	ماهر المعيقلي	Maher Al Meaqli
+maher-shakhashiro	ماهر شخاشيرو	Maher Shakhashero
+mahmoud-abdulhakam	محمود عبدالحكم	Mahmoud Abdul Hakam
+mahmoud-banna	محمود علي البنا	Mahmoud Ali Albanna
+mahmoud-harfoush	محمود حرفوش	Mahmoud Harfoush
+mahmoud-husary	محمود خليل الحصري	Mahmoud Khalil Al-Hussary
+mahmoud-rifai	محمود الرفاعي	Mahmood Al rifai
+mahmoud-sheimy	محمود الشيمي	Mahmood AlSheimy
+majed-anazi	ماجد العنزي	Majed Al-Enezi
+majed-zamil	ماجد الزامل	Majed Al-Zamil
+malallah-jaber	مال الله عبدالرحمن الجابر	Mal-Allah Abdulrhman Aljaber
+mansour-salimi	منصور السالمي	Mansour Al-Salemi
+marwan-akri	مروان العكري	Marwan Alakri
+mishary-alafasy	مشاري العفاسي	Mishary Alafasi
+moeedh-harthi	معيض الحارثي	Moeedh Alharthi
+muammar-za	معمر الأندونيسي	Muamar (From Indonesia)
+muftah-saltani	مفتاح السلطني	Muftah Alsaltany
+muhammad-abdulkareem	محمد عبدالكريم	Mohammad Abdullkarem
+muhammad-abdullah	محمد عبدالحكيم سعيد العبدالله	Mohammad Al-Abdullah
+muhammad-abusnaina	محمد أبو سنينة	Muhammad Abu Sneina
+muhammad-ali	محمد حفص علي	Mohammed Hafas Ali
+muhammad-anuar	محمد خير النور	Muhammed Khairul Anuar
+muhammad-ayyub	محمد أيوب	Mohammed Ayyub
+muhammad-barrak	محمد البراك	Mohammed Al-Barrak
+muhammad-bukhait	محمد البخيت	Mohammad Albukheet
+muhammad-burhaji	محمد برهجي	Muhammad Burhaji
+muhammad-dibirov	محمد ديبيروف	Mohammad Dibirov
+muhammad-faqih	محمد الفقيه	Muhammad Al Faqih
+muhammad-hafiz	محمد الحافظ	Muhammad Al-Hafiz
+muhammad-iraoui	محمد الأيراوي	Mohammad Al-Airawy
+muhammad-jibreel	محمد جبريل	Mohammed Jibreel
+muhammad-khalil	محمد خليل القارئ	Mohammad Khalil Al-Qari
+muhammad-khan	محمد عثمان خان	Mohammed Osman Khan
+muhammad-luhaidan	محمد اللحيدان	Mohammed Al-Lohaidan
+muhammad-minshawi	محمد صديق المنشاوي	Mohammed Siddiq Al-Minshawi
+muhammad-monshed	محمد المنشد	Mohammad AlMonshed
+muhammad-muhaisni	محمد المحيسني	Mohammed Al-Muhasny
+muhammad-qeniwa	محمد الأمين قنيوة	Mohammed Al-Amin Qeniwa
+muhammad-refaat	محمد رفعت	Mohammad Refat
+muhammad-saayed	محمد سايد	Mohammad Saayed
+muhammad-shah	محمد صالح عالم شاه	Mohammad Saleh Alim Shah
+muhammad-shareef	محمد رشاد الشريف	Mohammad Rashad Alshareef
+muhammad-tablawi	محمد الطبلاوي	Mohammad Al-Tablaway
+muhammad-zubaidi	محمد الزبيدي	Mohammed Al-Zubaidi
+mukhtar-haj	مختار الحاج	Mukhtar Al-Haj
+musa-bilal	موسى بلال	Mousa Bilal
+mustafa-azzawi	مصطفى رعد العزاوي	Mustafa raad Alazawy
+mustafa-ismail	مصطفى إسماعيل	Mustafa Ismail
+mustafa-lahouni	مصطفى اللاهوني	Mustafa Al-Lahoni
+nabil-rifai	نبيل الرفاعي	Nabil Al Rifay
+nadhir-maliki	نذير المالكي	Nathier Almalki
+nasser-asfour	ناصر العصفور	Nasser Alosfor
+nasser-majed	ناصر الماجد	Nasser Almajed
+nasser-obaid	ناصر العبيد	Nasser Al obaid
+nasser-qatami	ناصر القطامي	Nasser Alqatami
+neama-hassan	نعمة الحسان	Neamah Al-Hassan
+noreen-siddiq	نورين محمد صديق	Noreen Mohammad Siddiq
+okasha-kameny	عكاشة كميني	Okasha Kameny
+omar-duraiwiz	عمر الدريويز	Omar Al Darweez
+omar-kazabri	عمر القزابري	Omar Al-Qazabri
+othman-ansari	عثمان الأنصاري	Othman Al-Ansary
+peshawa-kurdi	بيشه وا قادر الكردي	Peshawa Qadr Al-Kurdi
+raad-kurdi	رعد محمد الكردي	Raad Al Kurdi
+rachid-belalia	رشيد بلعالية	Rachid Belalya
+rachid-ifrad	رشيد إفراد	Rasheed Ifrad
+ramadan-shakoor	رمضان شكور	Ramadan Shakoor
+rami-duais	رامي الدعيس	Rami Aldeais
+rodziah-abdulrahman	رضية عبدالرحمن	Rodziah Abdulrahman
+rogayah-sulong	رقية سولونق	Rogayah Sulong
+saad-ghamdi	سعد الغامدي	Saad Al-Ghamdi
+saad-muqrin	سعد المقرن	Saad Almqren
+saber-abdulhakam	صابر عبدالحكم	Saber Abdulhakm
+sahl-yassin	سهل ياسين	Sahl Yassin
+saidin-abdulrahman	سيدين عبدالرحمن	Saidin Abdulrahman
+salah-budair	صلاح البدير	Salah Albudair
+salah-bukhatir	صلاح بو خاطر	Slaah Bukhatir
+salah-hashim	صلاح الهاشم	Salah Alhashim
+salah-musalli	صلاح مصلي	Salah Musali
+saleh-habdan	صالح الهبدان	Saleh Al-Habdan
+saleh-quraishi	صالح القريشي	Saleh Alquraishi
+saleh-sahood	صالح الصاهود	Saleh Alsahood
+saleh-shamrani	صالح الشمراني	Saleh Alshamrani
+saleh-talib	صالح آل طالب	Saleh Al-Talib
+salman-otaibi	سلمان العتيبي	Salman Alotaibi
+salman-siddiq	سلمان الصديق	Salman Alsadeiq
+sami-dosari	سامي الدوسري	Sami Al-Dosari
+sami-hassan	سامي الحسن	Sami Al-Hasn
+sapinah-mamat	سابينة مامات	Sapinah Mamat
+saud-shuraim	سعود الشريم	Saud Al-Shuraim
+sayed-hashemi	سيد أحمد هاشمي	Sayed Ahmad Hashemi
+sayed-ramadan	سيد رمضان	Sayeed Ramadan
+shaban-sayyad	شعبان الصياد	Shaban Al-Sayiaad
+shirzad-taher	شيرزاد عبدالرحمن طاهر	Shirazad Taher
+tareq-daawob	طارق عبدالغني دعوب	Tareq Abdulgani daawob
+tawfeeq-sayegh	توفيق الصايغ	Tawfeeq As-Sayegh
+wadee-yamani	وديع اليمني	Wadeea Al-Yamani
+waleed-dulaimi	وليد الدليمي	Walid Al-Dulaimi
+waleed-naehi	وليد النائحي	Waleed Alnaehi
+waleed-shamsan	الوليد الشمسان	Alwaleed Alshamsan
+wasel-methen	واصل المذن	Wasel Almethen
+wishear-arbili	وشيار حيدر اربيلي	Wishear Hayder Arbili
+yahya-hawwa	يحيى حوا	Yahya Hawwa
+yassen-jazairi	القارئ ياسين	Al-Qaria Yassen
+yasser-dosari	ياسر الدوسري	Yasser Al-Dosari
+yasser-faylakawi	ياسر الفيلكاوي	Yasser Al-Faylakawi
+yasser-mazrouei	ياسر المزروعي	Yasser Al-Mazroyee
+yasser-qurashi	ياسر القرشي	Yasser Al-Qurashi
+yasser-salama	ياسر سلامة	Yasser Salamah
+younes-souilass	يونس اسويلص	Younes Souilass
+yousef-ahmad	يوسف بن نوح أحمد	Yousef Bin Noah Ahmad
+yousef-aidarous	يوسف العيدروس	Yusuf ALaidroos
+yousef-dosari	يوسف بن سعيد الدوسري	Yusof Addosari
+yousef-shoaey	يوسف الشويعي	Yousef Alshoaey
+youssef-edghouch	يوسف الدغوش	Youssef Edghouch
+zafar-qulaib	ظفر القليب	
+zain-ahmad	الزين محمد أحمد	Alzain Mohammad Ahmad
+zakaria-hamama	زكريا حمامة	Zakaria Hamamah
+zaki-daghistani	زكي داغستاني	Zaki Daghistani
+zamri-abdullah	أستاذ زامري	Ustaz Zamri

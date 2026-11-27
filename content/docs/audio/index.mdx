@@ -1,0 +1,43 @@
+---
+title: Quranic audio data
+description: What must be known about a recitation, its reciter, its audio files and their timings.
+---
+
+## The problem [#problem]
+
+Quranic audio data is the recitation and everything around it: who recited it, in which qiraah and riwayah, where it was recorded, and the audio file itself with its quality. Even the most popular recitations miss a lot of this data, and every source describes what it has in its own way. The goal is that every recitation has enough data for developers to build on.
+
+## What this standard defines [#defines]
+
+This standard is a content model: it defines what must be known about a recitation, its reciter, its audio files and their timings. It covers recitations only, not the text and not other audio like tafsir or spoken translation. It does not decide ids, field names or formats, except the two things that let sources match each other: the reciter code and the file fingerprint. The section on [file names and tags](/docs/audio/file-names) gives one way to write this information on the file itself. The JSON here is only an example, taken from MP3Quran v4, which is not released yet; in it, null means unknown. The names of qiraat, riwayahs, styles and ayah numberings come from the [Marqoom terminology standard](/docs/terms).
+
+### Levels [#levels]
+
+Every piece of information has one of three levels.
+
+| Level | What it means |
+| --- | --- |
+| Required | It must be known. If it is unknown, the thing it describes has an issue. |
+| Expected | It should be known. If it is unknown, the data can be used, but it is incomplete. |
+| Optional | It is good to have, when it is known. |
+
+A source follows this standard when it gives each piece of information, or says that it is unknown. Three rules apply:
+
+- Unknown is not none. A file with no origin is an original; a file with an unknown origin may be a copy.
+- What a source does not say stays unknown. We never assume it, like assuming Hafs because it is the usual riwayah.
+- A piece that names several things, like the date, place and occasion, is known only when all of them are known.
+
+## Content models [#models]
+
+The standard has four models. Each one answers one question.
+
+| Model | Arabic | The question it answers |
+| --- | --- | --- |
+| [Reciter](/docs/audio/models#reciter) | القارئ | Who recited it? |
+| [Recitation](/docs/audio/models#recitation) | تسجيل التلاوة | In which riwayah was it recited, and in which style? |
+| [Audio file](/docs/audio/models#audio-file) | الملف الصوتي | Where is the sound, and what does the file hold? |
+| [Timing](/docs/audio/models#timing) | التوقيت الصوتي | When is each ayah heard inside the file? |
+
+A reciter has one or more recitations. A recitation is published in one or more audio files. An audio file can have timings. So the reciter is not the recitation, and the recitation is not the file.
+
+<ModelsFigure />

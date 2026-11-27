@@ -1,0 +1,346 @@
+{
+  "models": [
+    {
+      "id": "reciter",
+      "name": {
+        "en": "Reciter",
+        "ar": "القارئ"
+      },
+      "question": {
+        "en": "Who recited it?",
+        "ar": "من القارئ؟"
+      },
+      "pieces": [
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Name in Arabic",
+            "ar": "الاسم بالعربية"
+          }
+        },
+        {
+          "level": "expected",
+          "known": true,
+          "label": {
+            "en": "Name in English",
+            "ar": "الاسم بالإنجليزية"
+          }
+        },
+        {
+          "level": "expected",
+          "known": true,
+          "label": {
+            "en": "Source",
+            "ar": "المصدر"
+          }
+        },
+        {
+          "level": "optional",
+          "known": false,
+          "label": {
+            "en": "Country",
+            "ar": "البلد"
+          }
+        },
+        {
+          "level": "optional",
+          "known": false,
+          "label": {
+            "en": "Year of birth",
+            "ar": "سنة الميلاد"
+          }
+        }
+      ]
+    },
+    {
+      "id": "recitation",
+      "name": {
+        "en": "Recitation",
+        "ar": "تسجيل التلاوة"
+      },
+      "question": {
+        "en": "In which riwayah was it recited, and in which style?",
+        "ar": "بأي رواية قُرئ، وبأي نمط أداء؟"
+      },
+      "pieces": [
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Reciter",
+            "ar": "القارئ"
+          }
+        },
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Qiraah and riwayah",
+            "ar": "القراءة والرواية"
+          }
+        },
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Style",
+            "ar": "نمط الأداء"
+          }
+        },
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Source",
+            "ar": "المصدر"
+          }
+        },
+        {
+          "level": "expected",
+          "known": false,
+          "label": {
+            "en": "Date, place and occasion",
+            "ar": "التاريخ والمكان والمناسبة"
+          }
+        },
+        {
+          "level": "expected",
+          "known": false,
+          "label": {
+            "en": "Producer",
+            "ar": "المنتج"
+          }
+        },
+        {
+          "level": "expected",
+          "known": false,
+          "label": {
+            "en": "Owner and license",
+            "ar": "المالك والترخيص"
+          }
+        },
+        {
+          "level": "optional",
+          "known": false,
+          "label": {
+            "en": "Tariq and wajh",
+            "ar": "الطريق والوجه"
+          }
+        },
+        {
+          "level": "optional",
+          "known": false,
+          "label": {
+            "en": "Pace",
+            "ar": "مرتبة القراءة"
+          }
+        }
+      ]
+    },
+    {
+      "id": "audio-file",
+      "name": {
+        "en": "Audio file",
+        "ar": "الملف الصوتي"
+      },
+      "question": {
+        "en": "Where is the sound, and what does the file hold?",
+        "ar": "أين الصوت، وماذا يحوي الملف؟"
+      },
+      "pieces": [
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Recitation",
+            "ar": "تسجيل التلاوة"
+          }
+        },
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Scope",
+            "ar": "النطاق"
+          }
+        },
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Number or ayah key",
+            "ar": "الرقم أو مفتاح الآية"
+          }
+        },
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Format",
+            "ar": "الصيغة"
+          }
+        },
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Bitrate",
+            "ar": "معدل البت"
+          }
+        },
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Fingerprint",
+            "ar": "البصمة"
+          }
+        },
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Location",
+            "ar": "مكان الملف"
+          }
+        },
+        {
+          "level": "expected",
+          "known": true,
+          "label": {
+            "en": "Duration",
+            "ar": "المدة"
+          }
+        },
+        {
+          "level": "expected",
+          "known": true,
+          "label": {
+            "en": "Size",
+            "ar": "الحجم"
+          }
+        },
+        {
+          "level": "expected",
+          "known": true,
+          "label": {
+            "en": "Sample rate and channels",
+            "ar": "معدل العينات والقنوات"
+          }
+        },
+        {
+          "level": "expected",
+          "known": false,
+          "label": {
+            "en": "Effects",
+            "ar": "المؤثرات"
+          }
+        },
+        {
+          "level": "expected",
+          "known": false,
+          "label": {
+            "en": "Origin",
+            "ar": "الأصل"
+          }
+        }
+      ]
+    },
+    {
+      "id": "timing",
+      "name": {
+        "en": "Timing",
+        "ar": "التوقيت الصوتي"
+      },
+      "question": {
+        "en": "When is each ayah heard inside the file?",
+        "ar": "متى تُسمع كل آية داخل الملف؟"
+      },
+      "pieces": [
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Audio file",
+            "ar": "الملف الصوتي"
+          }
+        },
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Unit",
+            "ar": "الوحدة"
+          }
+        },
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Numbering",
+            "ar": "العد"
+          }
+        },
+        {
+          "level": "required",
+          "known": true,
+          "label": {
+            "en": "Entries",
+            "ar": "المداخل"
+          }
+        },
+        {
+          "level": "expected",
+          "known": true,
+          "label": {
+            "en": "Maker and method",
+            "ar": "المُعِدّ والطريقة"
+          }
+        }
+      ]
+    }
+  ],
+  "file": {
+    "duration_ms": 38060,
+    "surah_number": 1
+  },
+  "entries": [
+    {
+      "ayah_key": "1:1",
+      "start_ms": 1100,
+      "end_ms": 4623
+    },
+    {
+      "ayah_key": "1:2",
+      "start_ms": 4623,
+      "end_ms": 8581
+    },
+    {
+      "ayah_key": "1:3",
+      "start_ms": 8581,
+      "end_ms": 11259
+    },
+    {
+      "ayah_key": "1:4",
+      "start_ms": 11480,
+      "end_ms": 13978
+    },
+    {
+      "ayah_key": "1:5",
+      "start_ms": 13978,
+      "end_ms": 18016
+    },
+    {
+      "ayah_key": "1:6",
+      "start_ms": 18370,
+      "end_ms": 20694
+    },
+    {
+      "ayah_key": "1:7",
+      "start_ms": 20694,
+      "end_ms": 34810
+    }
+  ],
+  "reciters": 244
+}

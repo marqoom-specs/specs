@@ -10,7 +10,7 @@ import data from '@/lib/visual-lab-data.json';
 
 const differing = data.counts.surahs.filter(({ counts }) => new Set(counts).size > 1).length;
 
-function Figure({ caption, children }: { caption: string; children: ReactNode }) {
+export function Figure({ caption, children }: { caption: string; children: ReactNode }) {
   const figure = useRef<HTMLElement>(null);
   useEffect(() => {
     const element = figure.current;

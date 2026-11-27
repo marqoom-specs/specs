@@ -1,0 +1,58 @@
+---
+title: File name and tags
+description: One way to write what the models say on the file itself, in its name and in its tags.
+---
+
+When a file is downloaded, everything its source knows about it stays behind. Its name and the tags inside it are all that go with it. The audio file in [our example](/docs/audio/models#audio-file) shows what they carry today: it is named `001.mp3`, and its tags give a title, an artist, an album and the year 2008. None of them says the riwayah or the style.
+
+The data a source gives about a file, the tags inside the file and the name of the file describe the same thing in three forms. The data says everything in the models, the tags say part of it, and the name says only what tells one file from another. This page gives one way to write the tags and the name. A source can follow the [content models](/docs/audio/models) and keep its own file names.
+
+## The name [#name]
+
+A name is a row of fields joined by `_`, like this one:
+
+<FileNameFigure />
+
+| Field | In the example | What it says |
+| --- | --- | --- |
+| Category | `QR` | Nothing in the models. It marks the file as a Quran recitation. |
+| Producer and year | `SC1447` | The producer of the recitation, by its short code, and a year, here 1447 in the Hijri calendar. The year can be left out. |
+| Reciter | `ibrahim-dosari` | The reciter, by the code in the [reciter registry](/docs/audio/registries#reciters). |
+| Riwayah | `As-Hf` | The qiraah and the riwayah of the recitation, by their short code or by their full code, `hafs-an-asim`. Both are valid. |
+| Wajh | `mdd` | The wajh of the recitation, by its code. Two wajhs are joined by a hyphen, like `qsr-wmim`. It is left out when no wajh is named. |
+| Bitrate | `128kbps` | The bitrate of the file, as it is measured, followed by `kbps`. |
+| Effects | `FX` | Effects were added to the file. `effects` is also valid. It is left out when they were not. |
+| Surah | `001` | The scope of the file and its number: the surah number, in three digits. |
+| Extension | `.mp3` | The format of the file. |
+
+## The tags [#tags]
+
+The tags inside the file say the same in words:
+
+| Tag | What it holds |
+| --- | --- |
+| Title | The surah: its number, its name in English and its name in Arabic, like `001 - Al-Fatihah (The Opening) سورة الفاتحة`. |
+| Artist | The name of the reciter in Arabic and in English, as the reciter registry gives them. |
+| Album | The recitation, named by its style, its riwayah and its wajh, like «المصحف المرتل برواية حفص عن عاصم بالتوسط». |
+| Publisher, composer and copyright | The name of the producer. |
+| Link, cover and comment | A link to the publisher, the logo of the producer and a note about the project. They repeat nothing in the models. |
+
+## Keeping them true to the models [#rules]
+
+Three rules keep the name and the tags true to the models:
+
+- They add nothing about the recitation. Every field and tag that describes it repeats a piece of the models, so it can be written from the models and checked against them.
+- If a name or a tag disagrees with the file, the file has an issue: for example, a file named `128kbps` whose measured bitrate is 64.
+- Renaming a file does not change it, because the name is outside the file. Writing a tag does. We rewrote the tags of our example file: its sound stayed the same, and its fingerprint changed. So a tagged file is another audio file, and its origin is the file before tagging.
+
+## What the name cannot say yet [#limits]
+
+The name cannot yet say everything the models hold:
+
+- It has no field for the style. Two recitations that differ only in style, like the murattal and the mujawwad of one reciter, get the same file names.
+- It cannot say that something is unknown. The producer cannot be left out, and a name without `FX` says that no effects were added.
+- It can name only a surah file, not an ayah, a page or a juz file.
+- It has no code for a tariq, and none for a recitation of a whole qiraah.
+- Neither the name nor the tags carry the license.
+
+The codes of the fields are listed in the registries, under [File name codes](/docs/audio/registries#file-name-codes).

@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class Page(HTMLParser):
     def __init__(self, text):
         super().__init__()
-        self.ids, self.headings, self.links = set(), [], set()
+        self.ids, self.headings, self.links, self.rows = set(), [], set(), 0
         self.lang = self.direction = None
         self.in_article = False
         self.feed(text)
@@ -31,6 +31,8 @@ class Page(HTMLParser):
                 self.headings.append(attrs['id'])
         if tag == 'a' and attrs.get('href'):
             self.links.add(attrs['href'])
+        if tag == 'tr' and self.in_article:
+            self.rows += 1
 
     def handle_endtag(self, tag):
         if tag == 'article':
@@ -93,15 +95,24 @@ for prefix in ['', '/ar']:
         with urlopen(BASE + prefix + '/docs/' + old) as response:
             assert response.url == BASE + prefix + '/docs/' + new, response.url
 
-for locale, query in [('en', 'hamzah'), ('ar', '%D8%A7%D9%84%D9%87%D9%85%D8%B2%D8%A9')]:
+# The audio standard: its four models, and a registries page that holds every reciter and file name code.
+reciters = sum(1 for line in (ROOT / 'scripts/audio/reciters.tsv').read_text().splitlines() if line and not line.startswith('#'))
+for prefix in ['', '/ar']:
+    assert pages[prefix + '/docs/audio/models'].headings == ['reciter', 'recitation', 'audio-file', 'timing'], f'Missing audio models: {prefix}'
+    registries = pages[prefix + '/docs/audio/registries']
+    assert registries.headings == ['reciters', 'file-name-codes', 'riwayah-codes', 'wajh-codes'], f'Missing audio registries: {prefix}'
+    # Each of the three tables has a header row; the codes are the 20 riwayahs and the 5 wajh codes.
+    assert registries.rows == reciters + 20 + 5 + 3, f'Missing audio registry rows: {prefix}: {registries.rows}'
+
+for locale, query, part in [('en', 'hamzah', '/terms/dictionary/'), ('ar', '%D8%A7%D9%84%D9%87%D9%85%D8%B2%D8%A9', '/terms/dictionary/'), ('en', 'Abdulbasit', '/audio/registries'), ('ar', '%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A', '/audio/registries')]:
     results = json.loads(get(f'/api/search?query={query}&locale={locale}'))
     assert results, f'Empty search results: {locale}'
     assert all(item['url'].startswith('/ar/docs' if locale == 'ar' else '/docs') for item in results), f'Wrong search locale: {locale}'
-    assert any('/terms/dictionary/' in item['url'] for item in results), f'Dictionary missing from search: {locale}'
+    assert any(part in item['url'] for item in results), f'{part} missing from search: {locale} {query}'
 
 for download in downloads:
     with urlopen(BASE + download) as response:
         assert response.status == 200 and response.read(1), download
 if errors:
     raise SystemExit('\n'.join(sorted(set(errors))))
-print(f'Verified {len(pages)} bilingual pages, {checked_links} internal links, {len(downloads)} source downloads, redirects and search. Each language: 73 rules, 180 concepts, 19 categories, 8 registries.')
+print(f'Verified {len(pages)} bilingual pages, {checked_links} internal links, {len(downloads)} source downloads, redirects and search. Each language: 73 rules, 180 concepts, 19 categories, 8 registries; 4 audio models and {reciters} reciters.')
