@@ -432,3 +432,19 @@ sourceRevision: "9bf0db1"
 | tayyibat_al_nashr | طَيِّبَة النَّشْر | Tayyibat al-Nashr | qasidah | اِبْن الجَزَرِيّ | ten | nafi,ibn_kathir,abu_amr,ibn_amir,asim,hamzah,kisai,abu_jafar,yaqub,khalaf_al_ashir | tayyibah,tayyiba,taybah,al_tayyibah,al-tayyibah,tayyibat_al_nashr,tariq_al_tayyibah | nashr muqaddimah/7 |
 | durrah | الدُّرَّة | Al-Durrah | qasidah | اِبْن الجَزَرِيّ | three | abu_jafar,yaqub,khalaf_al_ashir | durra,al_durrah,al-durrah,durrat_al_mudiyyah,al_durrah_al_mudiyyah,tariq_al_durrah | nashr muqaddimah/7 |
 | taysir | التَّيْسِير | Al-Taysir | book | أَبُو عَمْرو الدَّانِيّ | seven | nafi,ibn_kathir,abu_amr,ibn_amir,asim,hamzah,kisai | tayseer,al_taysir,al-taysir,tariq_al_taysir | nashr 1/58 |
+
+## الأوجه — `wajh` [#wajh]
+
+<!-- source: scripts/registries/wajh.tsv -->
+
+المفهوم: [`wajh`](/ar/docs/terms/dictionary/qiraat#wajh) · الملف: `scripts/registries/wajh.tsv` · الصفوف: 5
+
+> في العمود `short_code` الرمز المختصر للوجه كما يُكتب في أسماء ملفات التلاوات: `qsr` و`qasr_al_munfasil` اسمان للوجه نفسه. ويجوز أن يقوم مقام الاسم البرمجي حيث يلزم أن يبقى الاسم قصيرًا ([الأسماء الواضحة](/ar/docs/terms/standard#section-93)).
+
+| `code` | `arabic` | `display` | `kind` | `excludes` | `alternative_spellings` | `short_code` | `ref` |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| qasr_al_munfasil | قَصْر المُنْفَصِل | Qasr al-Munfasil | wajh | tawassut_al_munfasil | qasr,qasr_munfasil,qasr_al_madd_munfasil,qasr-al-munfasil | qsr | nashr 1/321 |
+| tawassut_al_munfasil | تَوَسُّط المُنْفَصِل | Tawassut al-Munfasil | wajh | qasr_al_munfasil | tawassut,tawassut_munfasil,tawassut_al_madd_munfasil,tawassut-al-munfasil | mdd | nashr 1/323 |
+| silat_meem_al_jama | صِلَة مِيم الجَمْع | Silat Meem al-Jama | wajh | sukun_meem_al_jama | silat_mim_al_jama,silat_meem_al_jam,silat_mim_al_jam,silat_al_meem,silat-meem-al-jama | wmim | nashr 1/273 |
+| sukun_meem_al_jama | سُكُون مِيم الجَمْع | Sukun Meem al-Jama | wajh | silat_meem_al_jama | iskan_meem_al_jama,sukun_mim_al_jama,iskan_mim_al_jama,sukun_meem_al_jam,sukun_al_meem,iskan_al_meem,sukun-meem-al-jama | smim | nashr 1/273 |
+| jama | الجَمْع | Jama | jama |  | jam,jam_al_qiraat,jama_al_qiraat,al_jama,al-jama | jmea | nashr 2/194 |

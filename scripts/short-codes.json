@@ -28,5 +28,20 @@
       "ishaq_an_khalaf_al_ashir": "Kh-Is",
       "idris_an_khalaf_al_ashir": "Kh-Id"
     }
+  },
+  "wajh": {
+    "changed": "2026-11-27",
+    "reason": "Recitation file names write a wajh by a short code (`qsr`, `mdd`). Registering the five codes beside the rows they stand for makes both forms valid in a file name, the short code and the full code, and keeps the mapping in one place.",
+    "note": {
+      "en": "`short_code` is the short form of a row's code that recitation file names use: `qsr` and `qasr_al_munfasil` name the same wajh. It may stand for the code where a name has to stay short ([Clear names](/docs/terms/standard#section-93)).",
+      "ar": "في العمود `short_code` الرمز المختصر للوجه كما يُكتب في أسماء ملفات التلاوات: `qsr` و`qasr_al_munfasil` اسمان للوجه نفسه. ويجوز أن يقوم مقام الاسم البرمجي حيث يلزم أن يبقى الاسم قصيرًا ([الأسماء الواضحة](/ar/docs/terms/standard#section-93))."
+    },
+    "codes": {
+      "qasr_al_munfasil": "qsr",
+      "tawassut_al_munfasil": "mdd",
+      "silat_meem_al_jama": "wmim",
+      "sukun_meem_al_jama": "smim",
+      "jama": "jmea"
+    }
   }
 }

@@ -54,5 +54,14 @@
       "ar": "كان «علاقة الحرفين» اسم هذا التصنيف بالعربية حتى نوفمبر 2026، ثم غُيِّر بعد مراجعة لغوية، فأُهمل. ويبقى اسمه البرمجي `letter_relation` ([القاعدة 037](/ar/docs/terms/standard#rule-037))."
     },
     "reason": "Arabic review: the classification is called «التجاور». Only the Arabic name changes; the code and the English name stay (rule 037). `wording` keeps the definition grammatical with a masculine name."
+  },
+  "wajh": {
+    "registry": "wajh",
+    "changed": "2026-11-27",
+    "note": {
+      "en": "The wajhs recitations name — `qasr_al_munfasil`, `tawassut_al_munfasil`, `silat_meem_al_jama`, `sukun_meem_al_jama` — and the label `jama` are in the [`wajh` registry](/docs/terms/registries#wajh), added on 27 November 2026; the full enumeration of the wajhs of the ten qiraat is still open.",
+      "ar": "الأوجه التي تسميها التلاوات، وهي قصر المنفصل وتوسطه وصلة ميم الجمع وسكونها، ومعها تسمية «الجمع»، مسجلة في [سجل `wajh`](/ar/docs/terms/registries#wajh) منذ 27 نوفمبر 2026. أما حصر أوجه القراءات العشر كلها فلا يزال مفتوحًا."
+    },
+    "reason": "The term had no list of its members, so a recitation could say that it took a wajh but had no agreed name for which one. The registry (scripts/registries/wajh.tsv) lists the wajhs recitations name in their labels, each cited to al-Nashr, with codes derived by the standard's rules. The definition, the purpose and the code of the term stay."
   }
 }

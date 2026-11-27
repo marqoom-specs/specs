@@ -159,6 +159,7 @@ sourceRevision: "9bf0db1"
 | Version | `v0.1` |
 | Vocalized | الوَجْه |
 | Arabic plural | أَوْجُه |
+| Registry | [`wajh`](/docs/terms/registries#wajh) |
 | Other spellings | `wajh_al_ada`, `awjuh`, `wujuh`, `wajh_qiraah` |
 | English gloss | `permitted variant` |
 
@@ -167,6 +168,8 @@ sourceRevision: "9bf0db1"
 **Purpose:** Used when a recording or a lesson needs to state which of the permitted wajhs was taken, without attributing the difference to a riwayah or a tariq.
 
 - A wajh does not change what the reading is attributed to; a tariq does.
+
+> The wajhs recitations name — `qasr_al_munfasil`, `tawassut_al_munfasil`, `silat_meem_al_jama`, `sukun_meem_al_jama` — and the label `jama` are in the [`wajh` registry](/docs/terms/registries#wajh), added on 27 November 2026; the full enumeration of the wajhs of the ten qiraat is still open.
 
 **Related:** [`tariq`](/docs/terms/dictionary/qiraat#tariq), [`riwayah`](/docs/terms/dictionary/qiraat#riwayah), [`madd_arid_li_al_sukun`](/docs/terms/dictionary/tajwid#madd_arid_li_al_sukun)
 

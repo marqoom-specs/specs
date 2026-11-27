@@ -88,7 +88,7 @@ for prefix in ['', '/ar']:
     categories = [page for route, page in pages.items() if route.startswith(prefix + '/docs/terms/dictionary/')]
     assert len(categories) == 19, f'Missing categories: {prefix}'
     assert sum(len(page.headings) for page in categories) == 180, f'Missing concepts: {prefix}'
-    assert len(pages[prefix + '/docs/terms/registries'].headings) == 7
+    assert len(pages[prefix + '/docs/terms/registries'].headings) == 8
     for old, new in [('vocabulary', 'terms/dictionary'), ('quranic-vocabulary-standard', 'terms/standard'), ('quranic-vocab-skill', 'terms'), ('terms/sources', 'terms'), ('terms/decisions', 'terms/standard'), ('terms/naming', 'terms/standard')]:
         with urlopen(BASE + prefix + '/docs/' + old) as response:
             assert response.url == BASE + prefix + '/docs/' + new, response.url
@@ -104,4 +104,4 @@ for download in downloads:
         assert response.status == 200 and response.read(1), download
 if errors:
     raise SystemExit('\n'.join(sorted(set(errors))))
-print(f'Verified {len(pages)} bilingual pages, {checked_links} internal links, {len(downloads)} source downloads, redirects and search. Each language: 73 rules, 180 concepts, 19 categories, 7 registries.')
+print(f'Verified {len(pages)} bilingual pages, {checked_links} internal links, {len(downloads)} source downloads, redirects and search. Each language: 73 rules, 180 concepts, 19 categories, 8 registries.')
