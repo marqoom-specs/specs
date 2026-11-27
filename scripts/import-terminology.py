@@ -25,14 +25,14 @@ CLEAR_NAMES = {
 }
 SHORT_CODE_RULE = {
     'en': (
-        '\nA short code recorded in a registry is the one exception. Where a name has to stay short, such as a file name, '
+        '\nA short code recorded in a registry is the one exception. Where a name has to stay short, such as a [file name](/docs/audio/file-names#name), '
         'the `short_code` of an entry may stand for its code: `As-Hf` for `hafs_an_asim`. Both forms are valid there, '
         'and both name the same entry; the code stays the one code name everywhere else ([rule 001](#rule-001)). '
         'A short code is not an alternative spelling ([rule 044](#rule-044)), and it is never made up when a name is written: '
         'an entry with no recorded short code is written in full.\n'
     ),
     'ar': (
-        '\nويُستثنى من ذلك الرمز المختصر المسجَّل في أحد السجلات. فحيث يلزم أن يبقى الاسم قصيرًا، كاسم ملف، '
+        '\nويُستثنى من ذلك الرمز المختصر المسجَّل في أحد السجلات. فحيث يلزم أن يبقى الاسم قصيرًا، [كاسم ملف](/ar/docs/audio/file-names#name)، '
         'يجوز أن يقوم `short_code` المسجَّل للمدخل مقام اسمه البرمجي: `As-Hf` عن `hafs_an_asim`. والصورتان صحيحتان هناك، '
         'وتدلان على المدخل نفسه؛ ويبقى الاسم البرمجي هو الاسم الوحيد في كل موضع آخر ([القاعدة 001](#rule-001)). '
         'وليس الرمز المختصر تهجئة بديلة ([القاعدة 044](#rule-044))، ولا يُرتجل عند كتابة الاسم: '

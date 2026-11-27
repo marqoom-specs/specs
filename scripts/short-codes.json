@@ -3,8 +3,8 @@
     "changed": "2026-11-26",
     "reason": "Recitation file names write a riwayah by a short code (`As-Hf`). Registering the 20 codes makes both forms valid in a file name, the short code and the full code, and keeps the mapping in one place instead of in every consumer. The code stays the one code name (rule 001); a short code is a recorded second form, not a code name (rule 008) and not an alternative spelling (rule 044). Only riwayahs take one: in a file name `Kh` stands for both the rawi `khalaf` and the qiraah `khalaf_al_ashir`, and a name belongs to one entry. Al-Bazzi is `Ik-Ba`; Raqim 1.0.5 still writes `Ik-Bz`.",
     "note": {
-      "en": "`short_code` was added on 26 November 2026. It is the short form of a riwayah's code that recitation file names use: `As-Hf` and `hafs_an_asim` name the same riwayah. It may stand for the code where a name has to stay short ([Clear names](/docs/terms/standard#section-93)).",
-      "ar": "أُضيف العمود `short_code` في 26 نوفمبر 2026، وفيه الرمز المختصر للرواية كما يُكتب في أسماء ملفات التلاوات: `As-Hf` و`hafs_an_asim` اسمان للرواية نفسها. ويجوز أن يقوم مقام الاسم البرمجي حيث يلزم أن يبقى الاسم قصيرًا ([الأسماء الواضحة](/ar/docs/terms/standard#section-93))."
+      "en": "`short_code` was added on 26 November 2026. It is the short form of a riwayah's code that [recitation file names](/docs/audio/file-names#name) use: `As-Hf` and `hafs_an_asim` name the same riwayah. It may stand for the code where a name has to stay short ([Clear names](/docs/terms/standard#section-93)).",
+      "ar": "أُضيف العمود `short_code` في 26 نوفمبر 2026، وفيه الرمز المختصر للرواية كما يُكتب في [أسماء ملفات التلاوات](/ar/docs/audio/file-names#name): `As-Hf` و`hafs_an_asim` اسمان للرواية نفسها. ويجوز أن يقوم مقام الاسم البرمجي حيث يلزم أن يبقى الاسم قصيرًا ([الأسماء الواضحة](/ar/docs/terms/standard#section-93))."
     },
     "codes": {
       "qalun_an_nafi": "Na-Qa",
@@ -33,8 +33,8 @@
     "changed": "2026-11-27",
     "reason": "Recitation file names write a wajh by a short code (`qsr`, `mdd`). Registering the five codes beside the rows they stand for makes both forms valid in a file name, the short code and the full code, and keeps the mapping in one place.",
     "note": {
-      "en": "`short_code` is the short form of a row's code that recitation file names use: `qsr` and `qasr_al_munfasil` name the same wajh. It may stand for the code where a name has to stay short ([Clear names](/docs/terms/standard#section-93)).",
-      "ar": "في العمود `short_code` الرمز المختصر للوجه كما يُكتب في أسماء ملفات التلاوات: `qsr` و`qasr_al_munfasil` اسمان للوجه نفسه. ويجوز أن يقوم مقام الاسم البرمجي حيث يلزم أن يبقى الاسم قصيرًا ([الأسماء الواضحة](/ar/docs/terms/standard#section-93))."
+      "en": "`short_code` is the short form of a row's code that [recitation file names](/docs/audio/file-names#name) use: `qsr` and `qasr_al_munfasil` name the same wajh. It may stand for the code where a name has to stay short ([Clear names](/docs/terms/standard#section-93)).",
+      "ar": "في العمود `short_code` الرمز المختصر للوجه كما يُكتب في [أسماء ملفات التلاوات](/ar/docs/audio/file-names#name): `qsr` و`qasr_al_munfasil` اسمان للوجه نفسه. ويجوز أن يقوم مقام الاسم البرمجي حيث يلزم أن يبقى الاسم قصيرًا ([الأسماء الواضحة](/ar/docs/terms/standard#section-93))."
     },
     "codes": {
       "qasr_al_munfasil": "qsr",

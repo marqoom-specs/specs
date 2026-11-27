@@ -154,7 +154,7 @@ Concept: [`ayah_numbering_system`](/docs/terms/dictionary/ayah_numbering#ayah_nu
 
 Concept: [`qiraah`](/docs/terms/dictionary/qiraat#qiraah), [`rawi`](/docs/terms/dictionary/qiraat#rawi), [`riwayah`](/docs/terms/dictionary/qiraat#riwayah) · File: `standards/terminology/registries/qiraat.tsv` · Rows: 49
 
-> `short_code` was added on 26 November 2026. It is the short form of a riwayah's code that recitation file names use: `As-Hf` and `hafs_an_asim` name the same riwayah. It may stand for the code where a name has to stay short ([Clear names](/docs/terms/standard#section-93)).
+> `short_code` was added on 26 November 2026. It is the short form of a riwayah's code that [recitation file names](/docs/audio/file-names#name) use: `As-Hf` and `hafs_an_asim` name the same riwayah. It may stand for the code where a name has to stay short ([Clear names](/docs/terms/standard#section-93)).
 
 | `code` | `kind` | `parent` | `rawi` | `arabic` | `full_name` | `display` | `transliteration` | `numbering` | `alternative_spellings` | `short_code` | `ref` |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -441,7 +441,7 @@ Concept: [`tariq`](/docs/terms/dictionary/qiraat#tariq) · File: `standards/term
 
 Concept: [`wajh`](/docs/terms/dictionary/qiraat#wajh) · File: `scripts/registries/wajh.tsv` · Rows: 5
 
-> `short_code` is the short form of a row's code that recitation file names use: `qsr` and `qasr_al_munfasil` name the same wajh. It may stand for the code where a name has to stay short ([Clear names](/docs/terms/standard#section-93)).
+> `short_code` is the short form of a row's code that [recitation file names](/docs/audio/file-names#name) use: `qsr` and `qasr_al_munfasil` name the same wajh. It may stand for the code where a name has to stay short ([Clear names](/docs/terms/standard#section-93)).
 
 | `code` | `arabic` | `display` | `kind` | `excludes` | `alternative_spellings` | `short_code` | `ref` |
 | --- | --- | --- | --- | --- | --- | --- | --- |

@@ -152,7 +152,7 @@ sourceRevision: "9bf0db1"
 
 المفهوم: [`qiraah`](/ar/docs/terms/dictionary/qiraat#qiraah)، [`rawi`](/ar/docs/terms/dictionary/qiraat#rawi)، [`riwayah`](/ar/docs/terms/dictionary/qiraat#riwayah) · الملف: `standards/terminology/registries/qiraat.tsv` · الصفوف: 49
 
-> أُضيف العمود `short_code` في 26 نوفمبر 2026، وفيه الرمز المختصر للرواية كما يُكتب في أسماء ملفات التلاوات: `As-Hf` و`hafs_an_asim` اسمان للرواية نفسها. ويجوز أن يقوم مقام الاسم البرمجي حيث يلزم أن يبقى الاسم قصيرًا ([الأسماء الواضحة](/ar/docs/terms/standard#section-93)).
+> أُضيف العمود `short_code` في 26 نوفمبر 2026، وفيه الرمز المختصر للرواية كما يُكتب في [أسماء ملفات التلاوات](/ar/docs/audio/file-names#name): `As-Hf` و`hafs_an_asim` اسمان للرواية نفسها. ويجوز أن يقوم مقام الاسم البرمجي حيث يلزم أن يبقى الاسم قصيرًا ([الأسماء الواضحة](/ar/docs/terms/standard#section-93)).
 
 | `code` | `kind` | `parent` | `rawi` | `arabic` | `full_name` | `display` | `transliteration` | `numbering` | `alternative_spellings` | `short_code` | `ref` |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -439,7 +439,7 @@ sourceRevision: "9bf0db1"
 
 المفهوم: [`wajh`](/ar/docs/terms/dictionary/qiraat#wajh) · الملف: `scripts/registries/wajh.tsv` · الصفوف: 5
 
-> في العمود `short_code` الرمز المختصر للوجه كما يُكتب في أسماء ملفات التلاوات: `qsr` و`qasr_al_munfasil` اسمان للوجه نفسه. ويجوز أن يقوم مقام الاسم البرمجي حيث يلزم أن يبقى الاسم قصيرًا ([الأسماء الواضحة](/ar/docs/terms/standard#section-93)).
+> في العمود `short_code` الرمز المختصر للوجه كما يُكتب في [أسماء ملفات التلاوات](/ar/docs/audio/file-names#name): `qsr` و`qasr_al_munfasil` اسمان للوجه نفسه. ويجوز أن يقوم مقام الاسم البرمجي حيث يلزم أن يبقى الاسم قصيرًا ([الأسماء الواضحة](/ar/docs/terms/standard#section-93)).
 
 | `code` | `arabic` | `display` | `kind` | `excludes` | `alternative_spellings` | `short_code` | `ref` |
 | --- | --- | --- | --- | --- | --- | --- | --- |
