@@ -152,57 +152,59 @@ sourceRevision: "9bf0db1"
 
 المفهوم: [`qiraah`](/ar/docs/terms/dictionary/qiraat#qiraah)، [`rawi`](/ar/docs/terms/dictionary/qiraat#rawi)، [`riwayah`](/ar/docs/terms/dictionary/qiraat#riwayah) · الملف: `standards/terminology/registries/qiraat.tsv` · الصفوف: 49
 
-| `code` | `kind` | `parent` | `rawi` | `arabic` | `full_name` | `display` | `transliteration` | `numbering` | `alternative_spellings` | `ref` |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| nafi | qiraah |  |  | نَافِع | نَافِع بْن عَبْد الرَّحْمَن بْن أَبِي نُعَيْم المَدَنِي | Nafi | Nāfiʿ | madani_last | nafie,naafi,nafi_al_madani | nashr 1/99 |
-| qalun | rawi |  |  | قَالُون | عِيسَى بْن مِينَا الزُّرْقِي | Qalun | Qālūn |  | qaloon,qalon,qaloun | nashr 1/99 |
-| warsh | rawi |  |  | وَرْش | عُثْمَان بْن سَعِيد المِصْرِي | Warsh | Warsh |  | warsh_al_misri | nashr 1/99 |
-| qalun_an_nafi | riwayah | nafi | qalun | قَالُون عَن نَافِع | رِوَايَة قَالُون عَن نَافِع | Qalun an Nafi | Qālūn ʿan Nāfiʿ |  | qalun-an-nafi,qaloon_an_nafi,qalun | nashr 1/99 |
-| warsh_an_nafi | riwayah | nafi | warsh | وَرْش عَن نَافِع | رِوَايَة وَرْش عَن نَافِع | Warsh an Nafi | Warsh ʿan Nāfiʿ |  | warsh-an-nafi,warsh | nashr 1/99 |
-| ibn_kathir | qiraah |  |  | ابْن كَثِير | عَبْد اللَّه بْن كَثِير المَكِّي | Ibn Kathir | Ibn Kathīr | makki | ibn_katheer,ibn_kathir_al_makki | nashr 1/115 |
-| bazzi | rawi |  |  | البَزِّي | أَحْمَد بْن مُحَمَّد بْن عَبْد اللَّه البَزِّي | Al-Bazzi | al-Bazzī |  | al_bazzi,albazzi,buzzi | nashr 1/115 |
-| qunbul | rawi |  |  | قُنْبُل | مُحَمَّد بْن عَبْد الرَّحْمَن المَخْزُومِي | Qunbul | Qunbul |  | qumbul,kunbul | nashr 1/115 |
-| bazzi_an_ibn_kathir | riwayah | ibn_kathir | bazzi | البَزِّي عَن ابْن كَثِير | رِوَايَة البَزِّي عَن ابْن كَثِير | Al-Bazzi an Ibn Kathir | al-Bazzī ʿan Ibn Kathīr |  | bazzi-an-ibn-kathir,albazzi | nashr 1/115 |
-| qunbul_an_ibn_kathir | riwayah | ibn_kathir | qunbul | قُنْبُل عَن ابْن كَثِير | رِوَايَة قُنْبُل عَن ابْن كَثِير | Qunbul an Ibn Kathir | Qunbul ʿan Ibn Kathīr |  | qunbul-an-ibn-kathir,qumbul | nashr 1/115 |
-| abu_amr | qiraah |  |  | أَبُو عَمْرو | زَبَّان بْن العَلَاء بْن عَمَّار البَصْرِي | Abu Amr | Abū ʿAmr | basri | abu_amr_al_basri,abu_amro,abu_umar | nashr 1/123 |
-| duri | rawi |  |  | الدُّورِي | حَفْص بْن عُمَر بْن عَبْد العَزِيز الدُّورِي | Al-Duri | al-Dūrī |  | al_duri,ad_duri,doori,dury,douri | nashr 1/123 |
-| susi | rawi |  |  | السُّوسِي | صَالِح بْن زِيَاد السُّوسِي | Al-Susi | al-Sūsī |  | al_susi,soosi,as_susi,sousi | nashr 1/123 |
-| duri_an_abu_amr | riwayah | abu_amr | duri | الدُّورِي عَن أَبِي عَمْرو | رِوَايَة الدُّورِي عَن أَبِي عَمْرو | Al-Duri an Abi Amr | al-Dūrī ʿan Abī ʿAmr |  | duri_abu_amr,duri_an_abi_amr,doori_abu_amr | nashr 1/123 |
-| susi_an_abu_amr | riwayah | abu_amr | susi | السُّوسِي عَن أَبِي عَمْرو | رِوَايَة السُّوسِي عَن أَبِي عَمْرو | Al-Susi an Abi Amr | al-Sūsī ʿan Abī ʿAmr |  | susi_an_abi_amr,soosi,susi | nashr 1/123 |
-| ibn_amir | qiraah |  |  | ابْن عَامِر | عَبْد اللَّه بْن عَامِر اليَحْصُبِي الشَّامِي | Ibn Amir | Ibn ʿĀmir | dimashqi | ibn_aamir,ibn_amir_al_shami | nashr 1/135 |
-| hisham | rawi |  |  | هِشَام | هِشَام بْن عَمَّار الدِّمَشْقِي | Hisham | Hishām |  | hishaam | nashr 1/135 |
-| ibn_dhakwan | rawi |  |  | ابْن ذَكْوَان | عَبْد اللَّه بْن أَحْمَد بْن بَشِير بْن ذَكْوَان | Ibn Dhakwan | Ibn Dhakwān |  | ibn_zakwan,ibn_thakwan | nashr 1/135 |
-| hisham_an_ibn_amir | riwayah | ibn_amir | hisham | هِشَام عَن ابْن عَامِر | رِوَايَة هِشَام عَن ابْن عَامِر | Hisham an Ibn Amir | Hishām ʿan Ibn ʿĀmir |  | hisham-an-ibn-amir,hisham | nashr 1/135 |
-| ibn_dhakwan_an_ibn_amir | riwayah | ibn_amir | ibn_dhakwan | ابْن ذَكْوَان عَن ابْن عَامِر | رِوَايَة ابْن ذَكْوَان عَن ابْن عَامِر | Ibn Dhakwan an Ibn Amir | Ibn Dhakwān ʿan Ibn ʿĀmir |  | ibn_dhakwan,ibn_zakwan_an_ibn_amir | nashr 1/135 |
-| asim | qiraah |  |  | عَاصِم | عَاصِم بْن أَبِي النَّجُود الأَسَدِي الكُوفِي | Asim | ʿĀṣim | kufi | aasim,asim_al_kufi,aasem | nashr 1/146 |
-| shubah | rawi |  |  | شُعْبَة | أَبُو بَكْر شُعْبَة بْن عَيَّاش الأَسَدِي | Shubah | Shuʿba |  | shuba,shu_bah,abu_bakr_shubah | nashr 1/146 |
-| hafs | rawi |  |  | حَفْص | حَفْص بْن سُلَيْمَان الأَسَدِي الكُوفِي | Hafs | Ḥafṣ |  | hafs_ibn_sulayman | nashr 1/146 |
-| shubah_an_asim | riwayah | asim | shubah | شُعْبَة عَن عَاصِم | رِوَايَة شُعْبَة عَن عَاصِم | Shubah an Asim | Shuʿba ʿan ʿĀṣim |  | shubah-an-asim,shuba_an_asim,shubah | nashr 1/146 |
-| hafs_an_asim | riwayah | asim | hafs | حَفْص عَن عَاصِم | رِوَايَة حَفْص عَن عَاصِم | Hafs an Asim | Ḥafṣ ʿan ʿĀṣim |  | hafs-an-asim,hafs,hafs_an_aasim | nashr 1/146 |
-| hamzah | qiraah |  |  | حَمْزَة | حَمْزَة بْن حَبِيب الزَّيَّات الكُوفِي | Hamzah | Ḥamza | kufi | hamza,hamzah_al_kufi,hamzah_al_zayyat | nashr 1/158 |
-| khalaf | rawi |  |  | خَلَف | خَلَف بْن هِشَام البَزَّار البَغْدَادِي | Khalaf | Khalaf |  | khalaf_ibn_hisham,khalaf_al_bazzar | nashr 1/158 |
-| khallad | rawi |  |  | خَلَّاد | خَلَّاد بْن خَالِد الصَّيْرَفِي الكُوفِي | Khallad | Khallād |  | khallaad,khalad | nashr 1/158 |
-| khalaf_an_hamzah | riwayah | hamzah | khalaf | خَلَف عَن حَمْزَة | رِوَايَة خَلَف عَن حَمْزَة | Khalaf an Hamzah | Khalaf ʿan Ḥamza |  | khalaf-an-hamzah,khalaf_an_hamza | nashr 1/158 |
-| khallad_an_hamzah | riwayah | hamzah | khallad | خَلَّاد عَن حَمْزَة | رِوَايَة خَلَّاد عَن حَمْزَة | Khallad an Hamzah | Khallād ʿan Ḥamza |  | khallad-an-hamzah,khallad | nashr 1/158 |
-| kisai | qiraah |  |  | الكِسَائِي | عَلِيّ بْن حَمْزَة الكِسَائِي الكُوفِي | Al-Kisai | al-Kisāʾī | kufi | al_kisai,kisaee,al_kisaai,kisa_i | nashr 1/167 |
-| abu_al_harith | rawi |  |  | أَبُو الحَارِث | اللَّيْث بْن خَالِد البَغْدَادِي | Abu al-Harith | Abū l-Ḥārith |  | abul_harith,abu_harith,abu_al_haarith | nashr 1/167 |
-| abu_al_harith_an_kisai | riwayah | kisai | abu_al_harith | أَبُو الحَارِث عَن الكِسَائِي | رِوَايَة أَبِي الحَارِث عَن الكِسَائِي | Abu al-Harith an al-Kisai | Abū l-Ḥārith ʿan al-Kisāʾī |  | abu_al_harith,abul_harith_an_kisai | nashr 1/167 |
-| duri_an_kisai | riwayah | kisai | duri | الدُّورِي عَن الكِسَائِي | رِوَايَة الدُّورِي عَن الكِسَائِي | Al-Duri an al-Kisai | al-Dūrī ʿan al-Kisāʾī |  | duri_kisai,duri_an_al_kisai,doori_kisai | nashr 1/167 |
-| abu_jafar | qiraah |  |  | أَبُو جَعْفَر | يَزِيد بْن القَعْقَاع المَدَنِي | Abu Jafar | Abū Jaʿfar | madani_first | abu_jaafar,abu_ja_far,abu_jafar_al_madani | nashr 1/173 |
-| ibn_wardan | rawi |  |  | ابْن وَرْدَان | عِيسَى بْن وَرْدَان المَدَنِي | Ibn Wardan | Ibn Wardān |  | ibn_wardaan | nashr 1/173 |
-| ibn_jammaz | rawi |  |  | ابْن جَمَّاز | سُلَيْمَان بْن مُسْلِم بْن جَمَّاز | Ibn Jammaz | Ibn Jammāz |  | ibn_jamaz,ibn_jammaaz | nashr 1/173 |
-| ibn_wardan_an_abu_jafar | riwayah | abu_jafar | ibn_wardan | ابْن وَرْدَان عَن أَبِي جَعْفَر | رِوَايَة ابْن وَرْدَان عَن أَبِي جَعْفَر | Ibn Wardan an Abi Jafar | Ibn Wardān ʿan Abī Jaʿfar |  | ibn_wardan,ibn_wardan_an_abi_jafar | nashr 1/173 |
-| ibn_jammaz_an_abu_jafar | riwayah | abu_jafar | ibn_jammaz | ابْن جَمَّاز عَن أَبِي جَعْفَر | رِوَايَة ابْن جَمَّاز عَن أَبِي جَعْفَر | Ibn Jammaz an Abi Jafar | Ibn Jammāz ʿan Abī Jaʿfar |  | ibn_jammaz,ibn_jammaz_an_abi_jafar | nashr 1/173 |
-| yaqub | qiraah |  |  | يَعْقُوب | يَعْقُوب بْن إِسْحَاق الحَضْرَمِي البَصْرِي | Yaqub | Yaʿqūb | basri | yaqoob,ya_qub,yaqub_al_hadrami | nashr 1/180 |
-| ruways | rawi |  |  | رُوَيْس | مُحَمَّد بْن المُتَوَكِّل اللُّؤْلُؤِي | Ruways | Ruways |  | ruwais,rowais,rways | nashr 1/180 |
-| rawh | rawi |  |  | رَوْح | رَوْح بْن عَبْد المُؤْمِن الهُذَلِي | Rawh | Rawḥ |  | rooh,rauh,rowh | nashr 1/180 |
-| ruways_an_yaqub | riwayah | yaqub | ruways | رُوَيْس عَن يَعْقُوب | رِوَايَة رُوَيْس عَن يَعْقُوب | Ruways an Yaqub | Ruways ʿan Yaʿqūb |  | ruways,ruwais_an_yaqub | nashr 1/180 |
-| rawh_an_yaqub | riwayah | yaqub | rawh | رَوْح عَن يَعْقُوب | رِوَايَة رَوْح عَن يَعْقُوب | Rawh an Yaqub | Rawḥ ʿan Yaʿqūb |  | rawh,rooh_an_yaqub | nashr 1/180 |
-| khalaf_al_ashir | qiraah |  |  | خَلَف العَاشِر | خَلَف بْن هِشَام البَزَّار البَغْدَادِي | Khalaf al-Ashir | Khalaf al-ʿĀshir | kufi | khalaf,khalaf_al_bazzar,khalaf_the_tenth | nashr 1/188 |
-| ishaq | rawi |  |  | إِسْحَاق | إِسْحَاق بْن إِبْرَاهِيم الوَرَّاق | Ishaq | Isḥāq |  | ishaaq,is_haq | nashr 1/188 |
-| idris | rawi |  |  | إِدْرِيس | إِدْرِيس بْن عَبْد الكَرِيم الحَدَّاد | Idris | Idrīs |  | idrees | nashr 1/188 |
-| ishaq_an_khalaf_al_ashir | riwayah | khalaf_al_ashir | ishaq | إِسْحَاق عَن خَلَف | رِوَايَة إِسْحَاق عَن خَلَف العَاشِر | Ishaq an Khalaf | Isḥāq ʿan Khalaf |  | ishaq_an_khalaf,ishaq | nashr 1/188 |
-| idris_an_khalaf_al_ashir | riwayah | khalaf_al_ashir | idris | إِدْرِيس عَن خَلَف | رِوَايَة إِدْرِيس عَن خَلَف العَاشِر | Idris an Khalaf | Idrīs ʿan Khalaf |  | idris_an_khalaf,idris,idrees | nashr 1/188 |
+> أُضيف العمود `short_code` في 26 نوفمبر 2026، وفيه الرمز المختصر للرواية كما يُكتب في [أسماء ملفات التلاوات](/ar/docs/audio/file-names#name): `As-Hf` و`hafs_an_asim` اسمان للرواية نفسها. ويجوز أن يقوم مقام الاسم البرمجي حيث يلزم أن يبقى الاسم قصيرًا ([الأسماء الواضحة](/ar/docs/terms/standard#section-93)).
+
+| `code` | `kind` | `parent` | `rawi` | `arabic` | `full_name` | `display` | `transliteration` | `numbering` | `alternative_spellings` | `short_code` | `ref` |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| nafi | qiraah |  |  | نَافِع | نَافِع بْن عَبْد الرَّحْمَن بْن أَبِي نُعَيْم المَدَنِي | Nafi | Nāfiʿ | madani_last | nafie,naafi,nafi_al_madani |  | nashr 1/99 |
+| qalun | rawi |  |  | قَالُون | عِيسَى بْن مِينَا الزُّرْقِي | Qalun | Qālūn |  | qaloon,qalon,qaloun |  | nashr 1/99 |
+| warsh | rawi |  |  | وَرْش | عُثْمَان بْن سَعِيد المِصْرِي | Warsh | Warsh |  | warsh_al_misri |  | nashr 1/99 |
+| qalun_an_nafi | riwayah | nafi | qalun | قَالُون عَن نَافِع | رِوَايَة قَالُون عَن نَافِع | Qalun an Nafi | Qālūn ʿan Nāfiʿ |  | qalun-an-nafi,qaloon_an_nafi,qalun | Na-Qa | nashr 1/99 |
+| warsh_an_nafi | riwayah | nafi | warsh | وَرْش عَن نَافِع | رِوَايَة وَرْش عَن نَافِع | Warsh an Nafi | Warsh ʿan Nāfiʿ |  | warsh-an-nafi,warsh | Na-Wa | nashr 1/99 |
+| ibn_kathir | qiraah |  |  | ابْن كَثِير | عَبْد اللَّه بْن كَثِير المَكِّي | Ibn Kathir | Ibn Kathīr | makki | ibn_katheer,ibn_kathir_al_makki |  | nashr 1/115 |
+| bazzi | rawi |  |  | البَزِّي | أَحْمَد بْن مُحَمَّد بْن عَبْد اللَّه البَزِّي | Al-Bazzi | al-Bazzī |  | al_bazzi,albazzi,buzzi |  | nashr 1/115 |
+| qunbul | rawi |  |  | قُنْبُل | مُحَمَّد بْن عَبْد الرَّحْمَن المَخْزُومِي | Qunbul | Qunbul |  | qumbul,kunbul |  | nashr 1/115 |
+| bazzi_an_ibn_kathir | riwayah | ibn_kathir | bazzi | البَزِّي عَن ابْن كَثِير | رِوَايَة البَزِّي عَن ابْن كَثِير | Al-Bazzi an Ibn Kathir | al-Bazzī ʿan Ibn Kathīr |  | bazzi-an-ibn-kathir,albazzi | Ik-Ba | nashr 1/115 |
+| qunbul_an_ibn_kathir | riwayah | ibn_kathir | qunbul | قُنْبُل عَن ابْن كَثِير | رِوَايَة قُنْبُل عَن ابْن كَثِير | Qunbul an Ibn Kathir | Qunbul ʿan Ibn Kathīr |  | qunbul-an-ibn-kathir,qumbul | Ik-Qn | nashr 1/115 |
+| abu_amr | qiraah |  |  | أَبُو عَمْرو | زَبَّان بْن العَلَاء بْن عَمَّار البَصْرِي | Abu Amr | Abū ʿAmr | basri | abu_amr_al_basri,abu_amro,abu_umar |  | nashr 1/123 |
+| duri | rawi |  |  | الدُّورِي | حَفْص بْن عُمَر بْن عَبْد العَزِيز الدُّورِي | Al-Duri | al-Dūrī |  | al_duri,ad_duri,doori,dury,douri |  | nashr 1/123 |
+| susi | rawi |  |  | السُّوسِي | صَالِح بْن زِيَاد السُّوسِي | Al-Susi | al-Sūsī |  | al_susi,soosi,as_susi,sousi |  | nashr 1/123 |
+| duri_an_abu_amr | riwayah | abu_amr | duri | الدُّورِي عَن أَبِي عَمْرو | رِوَايَة الدُّورِي عَن أَبِي عَمْرو | Al-Duri an Abi Amr | al-Dūrī ʿan Abī ʿAmr |  | duri_abu_amr,duri_an_abi_amr,doori_abu_amr | Ab-Do | nashr 1/123 |
+| susi_an_abu_amr | riwayah | abu_amr | susi | السُّوسِي عَن أَبِي عَمْرو | رِوَايَة السُّوسِي عَن أَبِي عَمْرو | Al-Susi an Abi Amr | al-Sūsī ʿan Abī ʿAmr |  | susi_an_abi_amr,soosi,susi | Ab-So | nashr 1/123 |
+| ibn_amir | qiraah |  |  | ابْن عَامِر | عَبْد اللَّه بْن عَامِر اليَحْصُبِي الشَّامِي | Ibn Amir | Ibn ʿĀmir | dimashqi | ibn_aamir,ibn_amir_al_shami |  | nashr 1/135 |
+| hisham | rawi |  |  | هِشَام | هِشَام بْن عَمَّار الدِّمَشْقِي | Hisham | Hishām |  | hishaam |  | nashr 1/135 |
+| ibn_dhakwan | rawi |  |  | ابْن ذَكْوَان | عَبْد اللَّه بْن أَحْمَد بْن بَشِير بْن ذَكْوَان | Ibn Dhakwan | Ibn Dhakwān |  | ibn_zakwan,ibn_thakwan |  | nashr 1/135 |
+| hisham_an_ibn_amir | riwayah | ibn_amir | hisham | هِشَام عَن ابْن عَامِر | رِوَايَة هِشَام عَن ابْن عَامِر | Hisham an Ibn Amir | Hishām ʿan Ibn ʿĀmir |  | hisham-an-ibn-amir,hisham | Ia-Hs | nashr 1/135 |
+| ibn_dhakwan_an_ibn_amir | riwayah | ibn_amir | ibn_dhakwan | ابْن ذَكْوَان عَن ابْن عَامِر | رِوَايَة ابْن ذَكْوَان عَن ابْن عَامِر | Ibn Dhakwan an Ibn Amir | Ibn Dhakwān ʿan Ibn ʿĀmir |  | ibn_dhakwan,ibn_zakwan_an_ibn_amir | Ia-Dz | nashr 1/135 |
+| asim | qiraah |  |  | عَاصِم | عَاصِم بْن أَبِي النَّجُود الأَسَدِي الكُوفِي | Asim | ʿĀṣim | kufi | aasim,asim_al_kufi,aasem |  | nashr 1/146 |
+| shubah | rawi |  |  | شُعْبَة | أَبُو بَكْر شُعْبَة بْن عَيَّاش الأَسَدِي | Shubah | Shuʿba |  | shuba,shu_bah,abu_bakr_shubah |  | nashr 1/146 |
+| hafs | rawi |  |  | حَفْص | حَفْص بْن سُلَيْمَان الأَسَدِي الكُوفِي | Hafs | Ḥafṣ |  | hafs_ibn_sulayman |  | nashr 1/146 |
+| shubah_an_asim | riwayah | asim | shubah | شُعْبَة عَن عَاصِم | رِوَايَة شُعْبَة عَن عَاصِم | Shubah an Asim | Shuʿba ʿan ʿĀṣim |  | shubah-an-asim,shuba_an_asim,shubah | As-Sh | nashr 1/146 |
+| hafs_an_asim | riwayah | asim | hafs | حَفْص عَن عَاصِم | رِوَايَة حَفْص عَن عَاصِم | Hafs an Asim | Ḥafṣ ʿan ʿĀṣim |  | hafs-an-asim,hafs,hafs_an_aasim | As-Hf | nashr 1/146 |
+| hamzah | qiraah |  |  | حَمْزَة | حَمْزَة بْن حَبِيب الزَّيَّات الكُوفِي | Hamzah | Ḥamza | kufi | hamza,hamzah_al_kufi,hamzah_al_zayyat |  | nashr 1/158 |
+| khalaf | rawi |  |  | خَلَف | خَلَف بْن هِشَام البَزَّار البَغْدَادِي | Khalaf | Khalaf |  | khalaf_ibn_hisham,khalaf_al_bazzar |  | nashr 1/158 |
+| khallad | rawi |  |  | خَلَّاد | خَلَّاد بْن خَالِد الصَّيْرَفِي الكُوفِي | Khallad | Khallād |  | khallaad,khalad |  | nashr 1/158 |
+| khalaf_an_hamzah | riwayah | hamzah | khalaf | خَلَف عَن حَمْزَة | رِوَايَة خَلَف عَن حَمْزَة | Khalaf an Hamzah | Khalaf ʿan Ḥamza |  | khalaf-an-hamzah,khalaf_an_hamza | Hz-Kh | nashr 1/158 |
+| khallad_an_hamzah | riwayah | hamzah | khallad | خَلَّاد عَن حَمْزَة | رِوَايَة خَلَّاد عَن حَمْزَة | Khallad an Hamzah | Khallād ʿan Ḥamza |  | khallad-an-hamzah,khallad | Hz-Kl | nashr 1/158 |
+| kisai | qiraah |  |  | الكِسَائِي | عَلِيّ بْن حَمْزَة الكِسَائِي الكُوفِي | Al-Kisai | al-Kisāʾī | kufi | al_kisai,kisaee,al_kisaai,kisa_i |  | nashr 1/167 |
+| abu_al_harith | rawi |  |  | أَبُو الحَارِث | اللَّيْث بْن خَالِد البَغْدَادِي | Abu al-Harith | Abū l-Ḥārith |  | abul_harith,abu_harith,abu_al_haarith |  | nashr 1/167 |
+| abu_al_harith_an_kisai | riwayah | kisai | abu_al_harith | أَبُو الحَارِث عَن الكِسَائِي | رِوَايَة أَبِي الحَارِث عَن الكِسَائِي | Abu al-Harith an al-Kisai | Abū l-Ḥārith ʿan al-Kisāʾī |  | abu_al_harith,abul_harith_an_kisai | Ks-Ah | nashr 1/167 |
+| duri_an_kisai | riwayah | kisai | duri | الدُّورِي عَن الكِسَائِي | رِوَايَة الدُّورِي عَن الكِسَائِي | Al-Duri an al-Kisai | al-Dūrī ʿan al-Kisāʾī |  | duri_kisai,duri_an_al_kisai,doori_kisai | Ks-Do | nashr 1/167 |
+| abu_jafar | qiraah |  |  | أَبُو جَعْفَر | يَزِيد بْن القَعْقَاع المَدَنِي | Abu Jafar | Abū Jaʿfar | madani_first | abu_jaafar,abu_ja_far,abu_jafar_al_madani |  | nashr 1/173 |
+| ibn_wardan | rawi |  |  | ابْن وَرْدَان | عِيسَى بْن وَرْدَان المَدَنِي | Ibn Wardan | Ibn Wardān |  | ibn_wardaan |  | nashr 1/173 |
+| ibn_jammaz | rawi |  |  | ابْن جَمَّاز | سُلَيْمَان بْن مُسْلِم بْن جَمَّاز | Ibn Jammaz | Ibn Jammāz |  | ibn_jamaz,ibn_jammaaz |  | nashr 1/173 |
+| ibn_wardan_an_abu_jafar | riwayah | abu_jafar | ibn_wardan | ابْن وَرْدَان عَن أَبِي جَعْفَر | رِوَايَة ابْن وَرْدَان عَن أَبِي جَعْفَر | Ibn Wardan an Abi Jafar | Ibn Wardān ʿan Abī Jaʿfar |  | ibn_wardan,ibn_wardan_an_abi_jafar | Aj-Wd | nashr 1/173 |
+| ibn_jammaz_an_abu_jafar | riwayah | abu_jafar | ibn_jammaz | ابْن جَمَّاز عَن أَبِي جَعْفَر | رِوَايَة ابْن جَمَّاز عَن أَبِي جَعْفَر | Ibn Jammaz an Abi Jafar | Ibn Jammāz ʿan Abī Jaʿfar |  | ibn_jammaz,ibn_jammaz_an_abi_jafar | Aj-Jz | nashr 1/173 |
+| yaqub | qiraah |  |  | يَعْقُوب | يَعْقُوب بْن إِسْحَاق الحَضْرَمِي البَصْرِي | Yaqub | Yaʿqūb | basri | yaqoob,ya_qub,yaqub_al_hadrami |  | nashr 1/180 |
+| ruways | rawi |  |  | رُوَيْس | مُحَمَّد بْن المُتَوَكِّل اللُّؤْلُؤِي | Ruways | Ruways |  | ruwais,rowais,rways |  | nashr 1/180 |
+| rawh | rawi |  |  | رَوْح | رَوْح بْن عَبْد المُؤْمِن الهُذَلِي | Rawh | Rawḥ |  | rooh,rauh,rowh |  | nashr 1/180 |
+| ruways_an_yaqub | riwayah | yaqub | ruways | رُوَيْس عَن يَعْقُوب | رِوَايَة رُوَيْس عَن يَعْقُوب | Ruways an Yaqub | Ruways ʿan Yaʿqūb |  | ruways,ruwais_an_yaqub | Yq-Rs | nashr 1/180 |
+| rawh_an_yaqub | riwayah | yaqub | rawh | رَوْح عَن يَعْقُوب | رِوَايَة رَوْح عَن يَعْقُوب | Rawh an Yaqub | Rawḥ ʿan Yaʿqūb |  | rawh,rooh_an_yaqub | Yq-Rh | nashr 1/180 |
+| khalaf_al_ashir | qiraah |  |  | خَلَف العَاشِر | خَلَف بْن هِشَام البَزَّار البَغْدَادِي | Khalaf al-Ashir | Khalaf al-ʿĀshir | kufi | khalaf,khalaf_al_bazzar,khalaf_the_tenth |  | nashr 1/188 |
+| ishaq | rawi |  |  | إِسْحَاق | إِسْحَاق بْن إِبْرَاهِيم الوَرَّاق | Ishaq | Isḥāq |  | ishaaq,is_haq |  | nashr 1/188 |
+| idris | rawi |  |  | إِدْرِيس | إِدْرِيس بْن عَبْد الكَرِيم الحَدَّاد | Idris | Idrīs |  | idrees |  | nashr 1/188 |
+| ishaq_an_khalaf_al_ashir | riwayah | khalaf_al_ashir | ishaq | إِسْحَاق عَن خَلَف | رِوَايَة إِسْحَاق عَن خَلَف العَاشِر | Ishaq an Khalaf | Isḥāq ʿan Khalaf |  | ishaq_an_khalaf,ishaq | Kh-Is | nashr 1/188 |
+| idris_an_khalaf_al_ashir | riwayah | khalaf_al_ashir | idris | إِدْرِيس عَن خَلَف | رِوَايَة إِدْرِيس عَن خَلَف العَاشِر | Idris an Khalaf | Idrīs ʿan Khalaf |  | idris_an_khalaf,idris,idrees | Kh-Id | nashr 1/188 |
 
 ## مواضع السجدة — `sajdah` [#sajdah]
 
@@ -430,3 +432,19 @@ sourceRevision: "9bf0db1"
 | tayyibat_al_nashr | طَيِّبَة النَّشْر | Tayyibat al-Nashr | qasidah | اِبْن الجَزَرِيّ | ten | nafi,ibn_kathir,abu_amr,ibn_amir,asim,hamzah,kisai,abu_jafar,yaqub,khalaf_al_ashir | tayyibah,tayyiba,taybah,al_tayyibah,al-tayyibah,tayyibat_al_nashr,tariq_al_tayyibah | nashr muqaddimah/7 |
 | durrah | الدُّرَّة | Al-Durrah | qasidah | اِبْن الجَزَرِيّ | three | abu_jafar,yaqub,khalaf_al_ashir | durra,al_durrah,al-durrah,durrat_al_mudiyyah,al_durrah_al_mudiyyah,tariq_al_durrah | nashr muqaddimah/7 |
 | taysir | التَّيْسِير | Al-Taysir | book | أَبُو عَمْرو الدَّانِيّ | seven | nafi,ibn_kathir,abu_amr,ibn_amir,asim,hamzah,kisai | tayseer,al_taysir,al-taysir,tariq_al_taysir | nashr 1/58 |
+
+## الأوجه — `wajh` [#wajh]
+
+<!-- source: scripts/registries/wajh.tsv -->
+
+المفهوم: [`wajh`](/ar/docs/terms/dictionary/qiraat#wajh) · الملف: `scripts/registries/wajh.tsv` · الصفوف: 5
+
+> في العمود `short_code` الرمز المختصر للوجه كما يُكتب في [أسماء ملفات التلاوات](/ar/docs/audio/file-names#name): `qsr` و`qasr_al_munfasil` اسمان للوجه نفسه. ويجوز أن يقوم مقام الاسم البرمجي حيث يلزم أن يبقى الاسم قصيرًا ([الأسماء الواضحة](/ar/docs/terms/standard#section-93)).
+
+| `code` | `arabic` | `display` | `kind` | `excludes` | `alternative_spellings` | `short_code` | `ref` |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| qasr_al_munfasil | قَصْر المُنْفَصِل | Qasr al-Munfasil | wajh | tawassut_al_munfasil | qasr,qasr_munfasil,qasr_al_madd_munfasil,qasr-al-munfasil | qsr | nashr 1/321 |
+| tawassut_al_munfasil | تَوَسُّط المُنْفَصِل | Tawassut al-Munfasil | wajh | qasr_al_munfasil | tawassut,tawassut_munfasil,tawassut_al_madd_munfasil,tawassut-al-munfasil | mdd | nashr 1/323 |
+| silat_meem_al_jama | صِلَة مِيم الجَمْع | Silat Meem al-Jama | wajh | sukun_meem_al_jama | silat_mim_al_jama,silat_meem_al_jam,silat_mim_al_jam,silat_al_meem,silat-meem-al-jama | wmim | nashr 1/273 |
+| sukun_meem_al_jama | سُكُون مِيم الجَمْع | Sukun Meem al-Jama | wajh | silat_meem_al_jama | iskan_meem_al_jama,sukun_mim_al_jama,iskan_mim_al_jama,sukun_meem_al_jam,sukun_al_meem,iskan_al_meem,sukun-meem-al-jama | smim | nashr 1/273 |
+| jama | الجَمْع | Jama | jama |  | jam,jam_al_qiraat,jama_al_qiraat,al_jama,al-jama | jmea | nashr 2/194 |

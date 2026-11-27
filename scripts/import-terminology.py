@@ -18,11 +18,34 @@ CHECK.add_argument('--check', action='store_true')
 checking = CHECK.parse_args().check
 outputs = {}
 
+# The one exception to writing a name in full: a short code a registry records.
+CLEAR_NAMES = {
+    'en': 'Choose a name that identifies the data rather than `data` or `item` when its kind is known.\n',
+    'ar': 'واختر الاسم الذي يوضح المقصود بدل `data` أو `item` عندما تعرف نوع البيانات.\n',
+}
+SHORT_CODE_RULE = {
+    'en': (
+        '\nA short code recorded in a registry is the one exception. Where a name has to stay short, such as a [file name](/docs/audio/file-names#name), '
+        'the `short_code` of an entry may stand for its code: `As-Hf` for `hafs_an_asim`. Both forms are valid there, '
+        'and both name the same entry; the code stays the one code name everywhere else ([rule 001](#rule-001)). '
+        'A short code is not an alternative spelling ([rule 044](#rule-044)), and it is never made up when a name is written: '
+        'an entry with no recorded short code is written in full.\n'
+    ),
+    'ar': (
+        '\nويُستثنى من ذلك الرمز المختصر المسجَّل في أحد السجلات. فحيث يلزم أن يبقى الاسم قصيرًا، [كاسم ملف](/ar/docs/audio/file-names#name)، '
+        'يجوز أن يقوم `short_code` المسجَّل للمدخل مقام اسمه البرمجي: `As-Hf` عن `hafs_an_asim`. والصورتان صحيحتان هناك، '
+        'وتدلان على المدخل نفسه؛ ويبقى الاسم البرمجي هو الاسم الوحيد في كل موضع آخر ([القاعدة 001](#rule-001)). '
+        'وليس الرمز المختصر تهجئة بديلة ([القاعدة 044](#rule-044))، ولا يُرتجل عند كتابة الاسم: '
+        'المدخل الذي لم يُسجَّل له رمز مختصر يُكتب اسمه كاملًا.\n'
+    ),
+}
+
 # Marqoom's own changes to the imported text. It leaves out pointers to the decision record,
 # which it does not publish, instructions for the upstream build, since these pages are edited
 # here, and the dictionary's opening note, which only pointed to its contributing section.
 # In Arabic a dictionary category is a «موضوع» (topic), not a «مجال».
 # Rule 005's example uses the dagger alif's current code (see scripts/term-changes.json).
+# The standard's "Clear names" section allows a registered short code (see scripts/short-codes.json).
 EDITS = {
     'standard': {
         'en': [
@@ -30,12 +53,14 @@ EDITS = {
             (' The [decision record](/docs/terms/decisions) explains the distinction.', ''),
             (', with explanations in the [decision record](/docs/terms/decisions).', '.'),
             ('| الأَلِف المَحْذُوفَة | `omitted_alif` |', '| الأَلِف الخَنْجَرِيَّة | `dagger_alif` |'),
+            (CLEAR_NAMES['en'], CLEAR_NAMES['en'] + SHORT_CODE_RULE['en']),
         ],
         'ar': [
             (' وتفاصيل القرار، ومنها كيفية تمييز الحروف التي تشترك أسماؤها في التهجئة، في [سجل القرارات](/ar/docs/terms/decisions).', ''),
             (' ويوضح [سجل القرارات](/ar/docs/terms/decisions) سبب هذا الفصل.', ''),
             ('، مع شرح قراراتها في [سجل القرارات](/ar/docs/terms/decisions).', '.'),
             ('| الأَلِف المَحْذُوفَة | `omitted_alif` |', '| الأَلِف الخَنْجَرِيَّة | `dagger_alif` |'),
+            (CLEAR_NAMES['ar'], CLEAR_NAMES['ar'] + SHORT_CODE_RULE['ar']),
         ],
     },
     'registries': {
@@ -86,6 +111,8 @@ def versioned(text, locale):
 # move to their alphabetical place, and sorted lists are sorted again. Without a new `code`,
 # `arabic` renames the entry in Arabic only: every use of the old Arabic name follows it,
 # after `wording` fixes the Arabic sentences it changes, and the entry gains a dated note.
+# `registry` names the registry that lists the term's members (see OWN_REGISTRIES): the entry
+# gains its Registry row, where the source puts it, and a dated note.
 # The old code is recorded as a deprecated name with a dated note (rules 046, 047), and
 # lib/rehype-reading.mjs gives the entry its deprecated names as anchors. Source names such
 # as the dabt name and the mushaf introduction's wording are left as they are (rule 040).
@@ -146,12 +173,25 @@ def changed(text, locale, page):
                 block = block.replace(before, after)
             text = text[:bounds[0]] + block + text[bounds[1]:]
             changed_in.setdefault((old, locale), []).append(page)
+        ltr = (lambda s: f'<span dir="ltr">{s}</span>') if locale == 'ar' else (lambda s: s)
+        # The registry that lists the term's members: its row sits above the other spellings.
+        if bounds and 'registry' in c:
+            block = text[bounds[0]:bounds[1]]
+            label = 'السجل' if locale == 'ar' else 'Registry'
+            link = f"[`{c['registry']}`]({'/ar' if locale == 'ar' else ''}/docs/terms/registries#{c['registry']})"
+            spellings = re.search(r'^\| (?:Other spellings|تهجئات أخرى) \|', block, re.M)
+            assert spellings and f'| {label} |' not in block, f'{old} cannot take a registry row in {locale}'
+            block = block[:spellings.start()] + f'| {label} | {ltr(link)} |\n' + block[spellings.start():]
+            related = '**مرتبط به:**' if locale == 'ar' else '**Related:**'
+            assert block.count(related) == 1
+            block = block.replace(related, f"> {c['note'][locale]}\n\n{related}")
+            text = text[:bounds[0]] + block + text[bounds[1]:]
+            changed_in.setdefault((old, locale), []).append(page)
         if 'code' not in c:
             if 'formerArabic' in c:
                 text = renamed_in_arabic(text, locale, page, old, c)
             continue
         new = c['code']
-        ltr = (lambda s: f'<span dir="ltr">{s}</span>') if locale == 'ar' else (lambda s: s)
         bounds = entry_bounds(text, old)
         if bounds:
             block = text[bounds[0]:bounds[1]]
@@ -210,6 +250,104 @@ def changed(text, locale, page):
             changed_in.setdefault((old, locale), []).append(page)
         text = '\n'.join(lines)
         assert f'`{old}`]' not in text and f'#{old})' not in text, f'A link to {old} is left in {locale}/{page}'
+    return text
+
+
+# Registries Marqoom adds, in scripts/registries/*.tsv, written in the source's own shape: lines
+# starting with `#` are commentary, the first one the title (its Arabic part titles the Arabic
+# page) and the last one the tab-separated header; every other line is a row. A registry is
+# rendered the way the source renders its own and takes its alphabetical place on the page. The
+# term it lists names it in scripts/term-changes.json (`registry`). Every row cites a source,
+# a code is used once, and a column in REFERENCES resolves to a code of the registry it names.
+REFERENCES = {('wajh', 'excludes'): 'wajh'}
+OWN_REGISTRIES = {}
+for path in sorted((ROOT / 'scripts/registries').glob('*.tsv')):
+    comments, rows = [], []
+    for line in path.read_text().splitlines():
+        if line.startswith('#'):
+            comments.append(line[1:].strip())
+        elif line.strip():
+            rows.append(line.split('\t'))
+    title = comments[0].rstrip('.').split(' — ')
+    assert len(title) == 2 and re.search(r'[\u0600-\u06FF]', title[1]), f'{path.name} needs an English and an Arabic title'
+    header = [name.strip() for name in next(c for c in reversed(comments) if '\t' in c).split('\t')]
+    assert header[0] == 'code' and header[-1] == 'ref', f'{path.name} must start with code and end with ref'
+    assert all(len(row) == len(header) and row[0] and row[-1] for row in rows), f'{path.name} has an incomplete row'
+    assert not any('|' in cell for row in rows for cell in row), f'{path.name} has a `|` in a cell'
+    assert len({row[0] for row in rows}) == len(rows), f'{path.name} uses a code twice'
+    OWN_REGISTRIES[path.stem] = {'title': dict(zip(['en', 'ar'], title)), 'header': header, 'rows': rows}
+for (name, column), target in REFERENCES.items():
+    codes = {row[0] for row in OWN_REGISTRIES[target]['rows']}
+    at = OWN_REGISTRIES[name]['header'].index(column)
+    for row in OWN_REGISTRIES[name]['rows']:
+        assert set(filter(None, row[at].split(','))) <= codes - {row[0]}, f'{name}: {row[0]} points {column} at an unknown code'
+
+
+def own_registries(text, locale, concept_link):
+    concept, file, count, sep = ('المفهوم', 'الملف', 'الصفوف', '، ') if locale == 'ar' else ('Concept', 'File', 'Rows', ', ')
+    for name, registry in OWN_REGISTRIES.items():
+        assert not re.search(rf'^## .+ \[#{name}\]$', text, re.M), f'The source already has a registry {name}'
+        concepts = sorted(code for code, c in CHANGES.items() if c.get('registry') == name)
+        assert concepts, f'No term names the registry {name}'
+        source = f'scripts/registries/{name}.tsv'
+        section = '\n'.join([
+            f"## {registry['title'][locale]} — `{name}` [#{name}]", '',
+            f'<!-- source: {source} -->', '',
+            f"{concept}: {sep.join(concept_link(code) for code in concepts)} · {file}: `{source}` · {count}: {len(registry['rows'])}", '',
+            '| ' + ' | '.join(f'`{column}`' for column in registry['header']) + ' |',
+            '|' + ' --- |' * len(registry['header']),
+            *('| ' + ' | '.join(row) + ' |' for row in registry['rows']),
+        ]) + '\n'
+        following = next((h for h in re.finditer(r'^## .+ \[#([a-z_]+)\]$', text, re.M) if h[1] > name), None)
+        if following:
+            text = text[:following.start()] + section + '\n' + text[following.start():]
+        else:
+            text = text.rstrip('\n') + '\n\n' + section
+    return text
+
+
+# Short codes Marqoom registers, in scripts/short-codes.json, keyed by registry and then by
+# code. The registry's table gains a `short_code` column beside `alternative_spellings`, filled
+# for the rows that have one, and a dated note above it. A short code must be new to the
+# table: a name belongs to one entry (rule 001).
+SHORT_CODES = json.loads((ROOT / 'scripts/short-codes.json').read_text())
+
+
+def cells(line):
+    parts = [cell.strip() for cell in line[1:-1].split('|')]
+    assert '| ' + ' | '.join(parts) + ' |' == line, f'Unexpected table row: {line}'
+    return parts
+
+
+def short_coded(text, locale):
+    for registry, added in SHORT_CODES.items():
+        codes = added['codes']
+        heading = re.search(rf'^## .+ \[#{registry}\]$', text, re.M)
+        assert heading, f'No registry {registry} in {locale}'
+        following = re.search(r'^## ', text[heading.end():], re.M)
+        end = heading.end() + following.start() if following else len(text)
+        lines = text[heading.end():end].split('\n')
+        first = next(i for i, line in enumerate(lines) if line.startswith('| `code` |'))
+        column = cells(lines[first]).index('`alternative_spellings`') + 1
+        taken, found = set(), set()
+        for i in range(first, len(lines)):
+            if not lines[i].startswith('|'):
+                break
+            row = cells(lines[i])
+            if i == first:
+                value = '`short_code`'
+            elif i == first + 1:
+                value = '---'
+            else:
+                value = codes.get(row[0], '')
+                found.update({row[0]} & set(codes))
+                taken.update(name.lower() for name in [row[0], *row[column - 1].split(',')] if name)
+            lines[i] = '| ' + ' | '.join(row[:column] + [value] + row[column:]) + ' |'
+        assert found == set(codes), f'Short codes for unknown {registry} entries: {set(codes) - found}'
+        short = [code.lower() for code in codes.values()]
+        assert len(set(short)) == len(short) and not set(short) & taken, f'A short code in {registry} is already a name'
+        lines.insert(first, f"> {added['note'][locale]}\n")
+        text = text[:heading.end()] + '\n'.join(lines) + text[end:]
     return text
 
 
@@ -333,7 +471,11 @@ with tarfile.open(ARCHIVE) as archive:
                 assert anchors == [f'rule-{i:03d}' for i in range(1, 74)]
             adapted = rewrite(body, name)
             assert prose(body) == prose(adapted), f'Content lost in {locale}/{name}'
-            publish(destination / f'{name}.md', page(fields, edit(adapted, name, locale), source))
+            edited = edit(adapted, name, locale)
+            if name == 'registries':
+                concept_link = lambda code: f'[`{code}`]({url}/dictionary/{concept_pages[code]}#{code})'
+                edited = short_coded(own_registries(edited, locale, concept_link), locale)
+            publish(destination / f'{name}.md', page(fields, edited, source))
 
         index = rewrite(dictionary_body[:categories[0].start()], 'dictionary')
         publish(destination / 'dictionary/index.md', page(dictionary_fields, edit(changed(index, locale, 'index'), 'dictionary', locale), dictionary_path))
@@ -356,7 +498,7 @@ with tarfile.open(ARCHIVE) as archive:
         })
 
         for code, c in CHANGES.items():
-            expected = ('rows' in c) + 2 * ('formerArabic' in c)  # the entry, plus the index row for a new name
+            expected = ('rows' in c) + ('registry' in c) + 2 * ('formerArabic' in c)  # the entry, plus the index row for a new name
             assert len(changed_in.get((code, locale), [])) == expected, f'{code} must change in its entry and the index ({locale})'
 
     # Keep the source license with the downloadable original revision.

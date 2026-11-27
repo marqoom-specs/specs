@@ -17,7 +17,7 @@ import { SuggestEdit, SuggestEditToggle } from '@/components/suggest-edit';
 import { findNeighbour } from 'fumadocs-core/page-tree';
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
-import { terminologyVersion } from '@/lib/versions';
+import { audioVersion, terminologyVersion } from '@/lib/versions';
 import '../../visual-lab/lab.css';
 import './reading.css';
 
@@ -41,8 +41,8 @@ export default async function Page(props: {
   const category = path.startsWith('terms/dictionary/');
   const neighbours = findNeighbour(source.getPageTree(lang), page.url);
   const prefix = ar ? '/ar' : '';
-  // Every terms page carries the terminology standard's published version; entries keep their own review status.
-  const version = slug?.[0] === 'terms' ? terminologyVersion : undefined;
+  // Every page of a standard carries that standard's published version; dictionary entries keep their own review status.
+  const version = slug?.[0] === 'terms' ? terminologyVersion : slug?.[0] === 'audio' ? audioVersion : undefined;
 
   const intro = (
     <>

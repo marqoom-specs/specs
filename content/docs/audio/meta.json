@@ -1,0 +1,10 @@
+{
+  "title": "Audio",
+  "defaultOpen": true,
+  "pages": [
+    "index",
+    "models",
+    "file-names",
+    "registries"
+  ]
+}

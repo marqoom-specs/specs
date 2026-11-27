@@ -1,0 +1,54 @@
+# The wajhs recitations actually name — الأوجه.
+#
+# `wajh` is the concept and has its dictionary entry: one of several manners of
+# delivery, any of which may be taken within one riwayah or one tariq. The
+# wajhs of the ten readings are far more than these, and that enumeration is
+# not here. This registry is the narrower thing a recitation's label carries: a
+# recording of Qalun is published «بقصر المنفصل مع صلة ميم الجمع» or «بقصر
+# المنفصل مع سكون ميم الجمع», and a listener picks one by that label. Four
+# wajhs and one more label cover what is named in practice.
+#
+# TWO PLACES WHERE THE RECITER CHOOSES
+# The madd munfasil. Al-Nashr counts its lengths as ranks: the first is «قصر
+# المنفصل» (1/321), where it reports a difference from Qalun, from Abu Amr and
+# from others, and the third is «التوسط» (1/323).
+# Mim al-jam before a vowelled letter. «واختلفوا في صلة ميم الجمع بواو
+# وإسكانها», with both transmitted from Qalun (1/273); al-Nashr calls the two
+# «وجهي الإسكان والصلة من ميم الجمع لقالون» (1/269).
+# `excludes` names the other wajh of the same place: a recitation takes one of
+# the two, never both. A wajh of one place is named together with a wajh of the
+# other.
+#
+# The label says «سكون ميم الجمع» where al-Nashr says «إسكان». The row keeps
+# the label's word, and `iskan_meem_al_jama` resolves through
+# `alternative_spellings`.
+#
+# A WAJH CAN FOLLOW THE TARIQ
+# For some riwayahs the choice is not open inside one tariq. Hafs reads the
+# munfasil with tawassut by al-Shatibiyyah, and its qasr comes by other routes
+# (al-Nashr 1/321: «وعن حفص من طريق عمرو بن الصباح»). The label is the same
+# word either way, so the row is the same; the tariq is said by the
+# recitation's tariq, not here.
+#
+# JAMA IS NOT A WAJH
+# «الجمع» is the label of a recitation that does not choose: it recites the
+# wajhs of a riwayah, or the riwayahs of a qiraah, together. Al-Nashr gives it a
+# chapter of its own, «باب بيان إفراد القراءات وجمعها» (2/194). It is filed here
+# because it stands in a label where a wajh would stand, and `kind` tells it
+# apart: `wajh` for the four, `jama` for this one. A recitation labelled jama
+# names no wajh beside it, so its `excludes` is empty.
+#
+# THE CODES ARE DERIVED
+# Each name is derived from its vocalized Arabic by the standard's rules
+# (rules 009 to 036), like every other term. `alternative_spellings` carries the
+# forms in use. The short codes that file names use (`qsr`, `mdd`, `wmim`,
+# `smim`, `jmea`) are in scripts/short-codes.json.
+#
+# `ref` cites al-Nashr, ed. al-Dabba, as volume/page.
+#
+# code	arabic	display	kind	excludes	alternative_spellings	ref
+qasr_al_munfasil	قَصْر المُنْفَصِل	Qasr al-Munfasil	wajh	tawassut_al_munfasil	qasr,qasr_munfasil,qasr_al_madd_munfasil,qasr-al-munfasil	nashr 1/321
+tawassut_al_munfasil	تَوَسُّط المُنْفَصِل	Tawassut al-Munfasil	wajh	qasr_al_munfasil	tawassut,tawassut_munfasil,tawassut_al_madd_munfasil,tawassut-al-munfasil	nashr 1/323
+silat_meem_al_jama	صِلَة مِيم الجَمْع	Silat Meem al-Jama	wajh	sukun_meem_al_jama	silat_mim_al_jama,silat_meem_al_jam,silat_mim_al_jam,silat_al_meem,silat-meem-al-jama	nashr 1/273
+sukun_meem_al_jama	سُكُون مِيم الجَمْع	Sukun Meem al-Jama	wajh	silat_meem_al_jama	iskan_meem_al_jama,sukun_mim_al_jama,iskan_mim_al_jama,sukun_meem_al_jam,sukun_al_meem,iskan_al_meem,sukun-meem-al-jama	nashr 1/273
+jama	الجَمْع	Jama	jama		jam,jam_al_qiraat,jama_al_qiraat,al_jama,al-jama	nashr 2/194

@@ -1,0 +1,172 @@
+---
+title: Content models
+description: What must be known about a reciter, a recitation, an audio file and a timing.
+---
+
+Each of the four models lists what must be known about one thing. Every piece of information has a [level](/docs/audio#levels): required, expected or optional.
+
+## 1. Reciter [#reciter]
+
+A reciter is one person, listed once, however many recitations that person has.
+
+| Information | What it tells | Level |
+| --- | --- | --- |
+| Name in Arabic | The name in Arabic letters. | Required |
+| Name in English | The same name in Latin letters. | Expected |
+| Source | Each source that lists the reciter, with the name and the id it gives the reciter, unchanged. Every source writes the same reciter in its own way. | Expected |
+| Country | The country the reciter is from. | Optional |
+| Year of birth | With the country, it distinguishes two reciters with similar names. | Optional |
+
+The [reciter registry](/docs/audio/registries#reciters) gives each reciter one code and one name, so that everyone means the same person.
+
+```json title="Example: a reciter"
+{
+  "code": "maher-muaiqly",
+  "name": { "ar": "ماهر المعيقلي", "en": "Maher Al Meaqli" },
+  "sources": [
+    { "name": "mp3quran", "id": "102", "labels": ["ماهر المعيقلي", "Maher Al Meaqli"] }
+  ],
+  "country": null,
+  "birth_year": null
+}
+```
+
+## 2. Recitation [#recitation]
+
+A recitation is one recording of the Quran, or of part of it, by one reciter: for example, the murattal recitation of Maher Al Meaqli in Hafs. If the same reciter records Hafs murattal again, that is a second recitation. Two entries in two sources stay two recitations until they are known to be the same.
+
+| Information | What it tells | Level |
+| --- | --- | --- |
+| Reciter | Who recited it, named by the code in the [reciter registry](/docs/audio/registries#reciters). | Required |
+| Qiraah and riwayah | The qiraah and the riwayah it is recited in, like Hafs from Asim. A recitation of a whole qiraah names both of its riwayahs. | Required |
+| Style | How it is recited. One of three: murattal, mujawwad or muallim. A style is not a riwayah. | Required |
+| Source | Each source that publishes it, with the name and the id that source gives it, unchanged. | Required |
+| Date, place and occasion | When and where it was recorded, and on which occasion: studio, prayer, live or radio. This distinguishes two recitations of the same reciter. A year is given with its calendar, Hijri or Gregorian. | Expected |
+| Producer | The organization or project that made the recording. A producer is not a source: a source only publishes the recitation. | Expected |
+| Owner and license | Who owns the recitation, and what others are allowed to do with it. | Expected |
+| Tariq and wajh | The tariq it is recited in, like the Shatibiyyah, and the wajh: the way the reciter took where the riwayah allows more than one, like the qasr or the tawassut of the madd munfasil. A recitation that recites all the wajhs together, a jama, says so. This distinguishes two recitations in the same riwayah. | Optional |
+| Pace | How fast it is recited: tahqiq, tadwir or hadr. | Optional |
+
+What a recitation covers is not stated separately. It is known from its audio files.
+
+```json title="Example: a recitation"
+{
+  "id": "maher-muaiqly/r1",
+  "reciter": "maher-muaiqly",
+  "qiraah": "asim",
+  "riwayahs": ["hafs_an_asim"],
+  "style": "murattal",
+  "sources": [
+    { "name": "mp3quran", "id": "102", "label": "حفص عن عاصم - مرتل" }
+  ],
+  "recorded": { "year": null, "place": null, "occasion": null },
+  "producer": null,
+  "owner": null,
+  "license": null,
+  "tariq": null,
+  "wajh": null,
+  "pace": null
+}
+```
+
+This recitation has everything required of a recitation. Its date, place, occasion, producer, owner and license are unknown, so it can be used but it is incomplete: a second murattal recitation by the same reciter could not be distinguished from this one, and a developer does not know if they are allowed to share it.
+
+## 3. Audio file [#audio-file]
+
+An audio file is one exact file: if anything in it changes, it is another audio file. Two things describe it: its scope, which is what it holds, like one surah or one ayah, and its quality, which is its format and its bitrate. The same recitation can be published in more than one scope and in more than one quality, and each file is its own audio file.
+
+| Scope | What the file holds | Example from a source |
+| --- | --- | --- |
+| Quran | The whole Quran in one file. |  |
+| Juz | One juz. |  |
+| Surah | One surah. | `001.mp3` on MP3Quran |
+| Page | One page of a mushaf. | `Page001.mp3` on EveryAyah |
+| Ayah | One ayah. | `001001.mp3` on EveryAyah |
+| Ayah range | Any other run of ayahs, from one ayah to another. |  |
+
+The scope belongs to the file, not to the recitation.
+
+The fingerprint tells two files apart. It is a value computed from the file, and it changes when anything in the file changes. Surah 1 by Mishary Alafasi on MP3Quran (837,734 bytes) and the same surah on QuranAPI (839,530 bytes) have the same format and bitrate but different fingerprints: they are two files.
+
+| Information | What it tells | Level |
+| --- | --- | --- |
+| Recitation | The recitation the file belongs to. | Required |
+| Scope | What the file holds, from the list above. | Required |
+| Number or ayah key | Which one it holds. A surah, a juz or a page is named by its number, and a page also by its mushaf edition. An ayah is named by its ayah key, like 2:255, and an ayah range by its first and its last ayah key. An ayah key says which ayah numbering it follows, because the same ayah can have another number in another riwayah. | Required |
+| Format | The file type, like mp3 or opus. | Required |
+| Bitrate | The average bitrate of the sound alone, in kilobits per second, like 128 or 64. It is measured from the file, not read from a folder name. | Required |
+| Fingerprint | Always computed with sha256. Two files with the same fingerprint are the same file. | Required |
+| Location | At least one link the file can be downloaded from. The same file can be on many servers, so the file is not the link. | Required |
+| Duration | The playing time of the file, measured by decoding it. | Expected |
+| Size | The size of the file in bytes. | Expected |
+| Sample rate and channels | How many samples the file has in one second, and whether it is mono or stereo. An opus file always plays at 48,000. | Expected |
+| Effects | Whether sound effects, like echo, were added to the recording. The same recitation can be published with them and without them. | Expected |
+| Origin | If the file was cut, converted or only retagged from another file: which file, and how. | Expected |
+
+```json title="Example: an audio file"
+{
+  "recitation": "maher-muaiqly/r1",
+  "scope": "surah",
+  "surah_number": 1,
+  "format": "mp3",
+  "bitrate_kbps": 64,
+  "sha256": "3580f1114e2fe598b484402e7aa68abd15e22b8ec44be3396259e054bf1e839c",
+  "urls": ["https://cdn.mp3quran.net/audio/maher-muaiqly/r1/001.mp3"],
+  "duration_ms": 38060,
+  "size_bytes": 330623,
+  "sample_rate_hz": 22050,
+  "channels": 2,
+  "effects": null,
+  "made_from": null
+}
+```
+
+No format is required. For a new recording, we recommend these:
+
+| Format | What it is for |
+| --- | --- |
+| wav or flac | The original. Nothing is lost from the recording, and its timings are made on this file. |
+| m4a | The copy to publish. Almost every device plays it. |
+| opus | A smaller copy for an app. A voice stays clear at a low bitrate, but Safari plays it only from iOS 18.4. |
+| mp3 | A copy for old devices only. The timing of the original is not always exact on it. |
+
+## 4. Timing [#timing]
+
+A timing says when each ayah or word is heard inside one audio file, with a start and an end. An audio file does not need a timing. When it has one, this must be known:
+
+| Information | What it tells | Level |
+| --- | --- | --- |
+| Audio file | The file the timing is for, named by its fingerprint. | Required |
+| Unit | What is timed: the ayah or the word. | Required |
+| Numbering | The ayah numbering the numbers follow, like Kufi. A word timing also says which text its word positions follow. | Required |
+| Entries | Its ayah timings or word timings: each ayah or word it times, with its start and its end, counted from the start of the file. | Required |
+| Maker and method | Who made the timing, and how: by hand or by a tool. | Expected |
+
+```json title="Example: a timing"
+{
+  "audio_file": "3580f1114e2fe598b484402e7aa68abd15e22b8ec44be3396259e054bf1e839c",
+  "unit": "ayah",
+  "ayah_numbering_system": "kufi",
+  "made_by": "mp3quran",
+  "method": "tool",
+  "entries": [
+    { "ayah_key": "1:1", "start_ms": 1100, "end_ms": 4623 },
+    { "ayah_key": "1:2", "start_ms": 4623, "end_ms": 8581 },
+    { "ayah_key": "1:3", "start_ms": 8581, "end_ms": 11259 },
+    { "ayah_key": "1:4", "start_ms": 11480, "end_ms": 13978 },
+    { "ayah_key": "1:5", "start_ms": 13978, "end_ms": 18016 },
+    { "ayah_key": "1:6", "start_ms": 18370, "end_ms": 20694 },
+    { "ayah_key": "1:7", "start_ms": 20694, "end_ms": 34810 }
+  ]
+}
+```
+
+A file can hold sound that is not an ayah: the istiadhah, the basmalah before a surah, a silence. So an entry does not have to start where the one before it ended, and a timing can name such a sound as its own entry. If the reciter repeats an ayah, it appears again, in the order it is heard.
+
+A timing belongs to one file. It also serves every file converted or only retagged from that file, as long as nothing was cut from the sound and nothing was added to it: every sound is then heard at the same moment in both. The origin of a file says this. So one timing, made on the original, serves every copy of it, at every bitrate. The original does not have to be published: its fingerprint is enough to name it.
+
+Compressing a sound adds a short padding before it. A file can record how long its padding is, and then a player skips it. Times are counted from where the player starts playing, after the padding it skips. An opus file always records its padding, and an m4a file normally does, so the timing of the original is exact on them. An mp3 file does not always record it, and then every sound is heard later than the timing says: in our test, 25 milliseconds later in a file with 44,100 samples in one second, and 50 in a file with 22,050.
+
+A surah file with an ayah timing is not the same as a set of ayah files.
+
+<TimingFigure />

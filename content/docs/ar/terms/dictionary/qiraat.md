@@ -159,6 +159,7 @@ sourceRevision: "9bf0db1"
 | الإصدار | <span dir="ltr">`v0.1`</span> |
 | بالحركات | الوَجْه |
 | الجمع | أَوْجُه |
+| السجل | <span dir="ltr">[`wajh`](/ar/docs/terms/registries#wajh)</span> |
 | تهجئات أخرى | <span dir="ltr">`wajh_al_ada`، `awjuh`، `wujuh`، `wajh_qiraah`</span> |
 | مقابل إنجليزي | <span dir="ltr">`permitted variant`</span> |
 
@@ -167,6 +168,8 @@ sourceRevision: "9bf0db1"
 **الغرض:** نستخدم الوجه حين يحتاج التسجيل أو التعليم إلى تعيين الوجه المأخوذ به من أوجه جائزة، من غير أن ينسب الاختلاف إلى رواية أو طريق.
 
 - الوجه لا يغير نسبة القراءة، والطريق يغيرها.
+
+> الأوجه التي تسميها التلاوات، وهي قصر المنفصل وتوسطه وصلة ميم الجمع وسكونها، ومعها تسمية «الجمع»، مسجلة في [سجل `wajh`](/ar/docs/terms/registries#wajh) منذ 27 نوفمبر 2026. أما حصر أوجه القراءات العشر كلها فلا يزال مفتوحًا.
 
 **مرتبط به:** <span dir="ltr">[`tariq`](/ar/docs/terms/dictionary/qiraat#tariq)، [`riwayah`](/ar/docs/terms/dictionary/qiraat#riwayah)، [`madd_arid_li_al_sukun`](/ar/docs/terms/dictionary/tajwid#madd_arid_li_al_sukun)</span>
 

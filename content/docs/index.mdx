@@ -3,7 +3,7 @@ title: Quranic Data Standards
 description: Shared terms, data formats, and rules that help Quranic projects use each other's data.
 ---
 
-import { terminologyVersion } from '@/lib/versions';
+import { audioVersion, terminologyVersion } from '@/lib/versions';
 import Image from 'next/image';
 import { AudioLines, BookOpenText, ScrollText, Timer } from 'lucide-react';
 
@@ -39,7 +39,7 @@ A standard brings together a type of content and the rules for describing and ex
 
 <Cards className="area-cards">
   <Card className="area-card" data-status={terminologyVersion} icon={<BookOpenText />} title="Terminology" href="/docs/terms" description="The concepts, definitions, and naming rules the other standards build on: 73 rules and 180 concepts." />
+  <Card className="area-card" data-status={audioVersion} icon={<AudioLines />} title="Audio data" href="/docs/audio" description="What must be known about a recitation, its reciter, its audio files, and their timings: four content models and a registry of 244 reciters." />
   <Card className="area-card" data-status="Soon" icon={<ScrollText />} title="Textual data" description="How Quranic text and its structure are represented." />
-  <Card className="area-card" data-status="Soon" icon={<AudioLines />} title="Audio data" description="How recitations are described, including the reciter, Riwayah, and the content of an audio file." />
   <Card className="area-card" data-status="Soon" icon={<Timer />} title="Segmentation and timing" description="How audio segments and Ayah or word timings relate to the text, including time units." />
 </Cards>

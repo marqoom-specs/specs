@@ -1,7 +1,7 @@
 import { docs } from 'collections/server';
 import { loader } from 'fumadocs-core/source';
 import { createElement } from 'react';
-import { BookOpenText, Wrench } from 'lucide-react';
+import { AudioLines, BookOpenText, Wrench } from 'lucide-react';
 
 export const source = loader({
   baseUrl: '/docs',
@@ -13,9 +13,11 @@ export const source = loader({
           const Icon =
             folderPath === 'terms'
               ? BookOpenText
-              : folderPath === 'tools'
-                ? Wrench
-                : undefined;
+              : folderPath === 'audio'
+                ? AudioLines
+                : folderPath === 'tools'
+                  ? Wrench
+                  : undefined;
           return {
             ...node,
             icon:

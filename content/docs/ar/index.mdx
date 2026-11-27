@@ -3,7 +3,7 @@ title: معايير البيانات القرآنية
 description: معيار موحد بني من مشاريع تراكمية، يساعد المطورين على بناء بيانات قرآنية موثوقة والاستفادة من مصادر البيانات المختلفة
 ---
 
-import { terminologyVersion } from '@/lib/versions';
+import { audioVersion, terminologyVersion } from '@/lib/versions';
 import Image from 'next/image';
 import { AudioLines, BookOpenText, ScrollText, Timer } from 'lucide-react';
 
@@ -39,7 +39,7 @@ import { AudioLines, BookOpenText, ScrollText, Timer } from 'lucide-react';
 
 <Cards className="area-cards">
   <Card className="area-card" data-status={terminologyVersion} icon={<BookOpenText />} title="المصطلحات" href="/ar/docs/terms" description="المفاهيم والتعريفات وقواعد التسمية التي تُبنى عليها المعايير الأخرى: ٧٣ قاعدة و١٨٠ مفهومًا." />
+  <Card className="area-card" data-status={audioVersion} icon={<AudioLines />} title="البيانات الصوتية" href="/ar/docs/audio" description="ما يجب أن يُعرف عن تسجيل التلاوة وقارئه وملفاته الصوتية وتوقيتاتها: أربعة نماذج محتوى وسجل فيه ٢٤٤ قارئًا." />
   <Card className="area-card" data-status="قريبًا" icon={<ScrollText />} title="البيانات النصية" description="كيفية تمثيل النص القرآني وبنيته." />
-  <Card className="area-card" data-status="قريبًا" icon={<AudioLines />} title="البيانات الصوتية" description="وصف التلاوة، بما في ذلك القارئ والرواية وما يحتويه الملف الصوتي." />
   <Card className="area-card" data-status="قريبًا" icon={<Timer />} title="التقطيع والتزمين" description="ربط المقاطع الصوتية وتوقيت الآيات أو الكلمات بالنص، وتحديد وحدات الزمن." />
 </Cards>

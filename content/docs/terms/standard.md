@@ -998,6 +998,8 @@ These guidelines supplement the terminology rules when using names in a model, d
 
 Use a complete, familiar name such as `surah`, `ayah` or `word`, avoiding abbreviations such as `srh`, `ay` and `wrd`. Choose a name that identifies the data rather than `data` or `item` when its kind is known.
 
+A short code recorded in a registry is the one exception. Where a name has to stay short, such as a [file name](/docs/audio/file-names#name), the `short_code` of an entry may stand for its code: `As-Hf` for `hafs_an_asim`. Both forms are valid there, and both name the same entry; the code stays the one code name everywhere else ([rule 001](#rule-001)). A short code is not an alternative spelling ([rule 044](#rule-044)), and it is never made up when a name is written: an entry with no recorded short code is written in full.
+
 ### Relationship names [#section-94]
 
 Name a relationship after the linked concept, using singular for a to-one relationship and plural for a to-many relationship: `ayah.surah`, `surah.ayahs` and `ayah.words`. For a data relationship, `ayahs` is sufficient; `getAyahList()` describes an operation that retrieves it.

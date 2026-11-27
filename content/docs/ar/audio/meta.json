@@ -1,0 +1,10 @@
+{
+  "title": "البيانات الصوتية",
+  "defaultOpen": true,
+  "pages": [
+    "index",
+    "models",
+    "file-names",
+    "registries"
+  ]
+}
