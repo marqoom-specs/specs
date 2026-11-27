@@ -52,7 +52,8 @@
 #nd-page .doc-figure .spell-stage[data-narrow] .spell-alias { font-size: 0.72rem; }
 .doc-figure .counts { gap: 1rem; }
 .doc-figure .counts-tiles { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.55rem; }
-.doc-figure .counts-tiles > div { border: 0; border-radius: 0; padding: 0; }
+/* Every shape in a figure is rounded, as the site's cards and pills are: no square blocks, bars or highlights. */
+.doc-figure .counts-tiles > div { padding: 0.65rem 0.75rem 0.8rem; border-radius: 0.75rem; }
 .doc-figure .counts-tiles span { min-height: 2.5em; font-size: 0.72rem; }
 .doc-figure .counts-tiles strong { font-size: 1.45rem; }
 .doc-figure .counts-tiles i { transform-origin: left; }
@@ -186,11 +187,11 @@
 .join-diff-head b[data-sign='+'] { color: var(--viz-gold); }
 .join-diff-head b[data-sign='-'] { color: var(--viz-muted); }
 .join-diff pre { margin: 0; padding: 0; overflow-x: auto; border: 0; border-radius: 0; background: none; color: var(--viz-ink); font-family: var(--font-mono, monospace); font-size: 0.8rem; line-height: 1.8; white-space: pre; }
-.join-diff .join-context { padding: 0.3rem 0.9rem; color: var(--viz-muted); }
+.join-diff .join-context { padding: 0.3rem 1rem; color: var(--viz-muted); }
 .join-hunk { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); border-top: 1px solid var(--viz-line); }
 .join-hunk + .join-context { border-top: 1px solid var(--viz-line); }
-.join-hunk pre { padding-block: 0.35rem; }
-.join-hunk pre span { display: block; padding-inline: 0.9rem; }
+.join-hunk pre { display: grid; align-content: start; gap: 3px; padding: 0.5rem; }
+.join-hunk pre span { display: block; padding-inline: 0.5rem; border-radius: 0.45rem; }
 .join-hunk pre span[data-sign='-'] { background: color-mix(in srgb, var(--viz-silver) 8%, transparent); color: var(--viz-muted); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--viz-muted) 55%, transparent); }
 .join-hunk pre span[data-sign='+'] { background: color-mix(in srgb, var(--viz-gold) 11%, transparent); }
 .join-hunk pre i { display: inline-block; width: 1ch; font-style: normal; }
@@ -286,29 +287,32 @@
 .timing > div { display: grid; gap: 0.6rem; min-width: 0; }
 .timing-title { margin: 0; color: var(--viz-ink); font-size: 0.9rem; font-weight: 500; }
 .timing-track { display: grid; gap: 0.3rem; cursor: crosshair; touch-action: pan-y; outline-offset: 6px; }
-.timing-entries { position: relative; height: 2rem; }
-.timing-entries i { position: absolute; inset-block: 0; left: calc(var(--from) * 100%); width: calc((var(--to) - var(--from)) * 100%); font-style: normal; }
-.timing-entries i[data-ayah] { display: grid; place-items: center; border-radius: 0.3rem; background: color-mix(in srgb, var(--viz-gold) 18%, var(--viz-surface)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--viz-gold) 60%, transparent); }
+/* The entries are the scale. It stands 0.3rem inside the file's bar, so the part being read fits the bar's round ends. */
+.timing-entries { position: relative; height: 2rem; margin-inline: 0.3rem; }
+.timing-entries i { position: absolute; inset-block: 0; left: calc(var(--from) * 100% + 1px); width: calc((var(--to) - var(--from)) * 100% - 2px); min-width: 4px; border-radius: 0.55rem; font-style: normal; }
+.timing-entries i[data-ayah] { display: grid; place-items: center; background: color-mix(in srgb, var(--viz-gold) 18%, var(--viz-surface)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--viz-gold) 60%, transparent); }
 .timing-entries i[data-ayah][data-active] { background: var(--viz-gold); }
-.timing-entries i:not([data-ayah])[data-active] { background: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--viz-ink) 40%, transparent) 0 1px, transparent 1px 4px); }
+/* A pause being read: silver, as what is not pointed at. */
+.timing-entries i:not([data-ayah])[data-active] { background: var(--viz-silver); }
 .timing-entries b { color: var(--viz-ink); font-size: 0.72rem; font-weight: 500; }
 .timing-entries i[data-active] b { color: var(--viz-surface); }
-.timing-file, .timing-files span { display: grid; place-items: center; height: 2rem; border: 1px solid color-mix(in srgb, var(--viz-ink) 40%, transparent); border-radius: 0.6rem; background: var(--color-fd-card); }
+.timing-file, .timing-files span { display: grid; place-items: center; height: 2rem; border: 1px solid color-mix(in srgb, var(--viz-ink) 40%, transparent); border-radius: 0.75rem; background: var(--color-fd-card); }
 .timing-file { position: relative; overflow: hidden; }
 /* The part of the file being read. */
-.timing-file::before { content: ''; position: absolute; inset-block: 0; left: calc(var(--from) * 100%); width: calc((var(--to) - var(--from)) * 100%); min-width: 2px; background: color-mix(in srgb, var(--viz-gold) 30%, transparent); }
+.timing-file::before { content: ''; position: absolute; inset-block: 0.3rem; left: calc(0.3rem + var(--from) * (100% - 0.6rem) + 1px); width: calc((var(--to) - var(--from)) * (100% - 0.6rem) - 2px); min-width: 4px; border-radius: 0.45rem; background: color-mix(in srgb, var(--viz-gold) 34%, transparent); }
 .timing :is(.timing-file, .timing-files) code { position: relative; color: var(--viz-muted); font-size: 0.76rem; }
-.timing-axis { display: flex; justify-content: space-between; margin-top: 0.35rem; color: var(--viz-muted); font-size: 0.72rem; font-variant-numeric: tabular-nums; }
+.timing-axis { display: flex; justify-content: space-between; margin-top: 0.35rem; padding-inline: 0.3rem; color: var(--viz-muted); font-size: 0.72rem; font-variant-numeric: tabular-nums; }
 .timing-read { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.1rem 1rem; margin: 0; color: var(--viz-muted); font-size: 0.85rem; font-variant-numeric: tabular-nums; }
 .timing-read strong { color: var(--viz-ink); font-weight: 500; }
 .timing-files { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.4rem; }
-/* The file name: every field is underlined, and the fields of the model being read are gold. */
+/* The file name: every field is a chip, and the chips of the model being read are gold, as its nodes are in the models' drawing. */
 .fname { display: grid; gap: 1.1rem; }
-.fname-name { margin: 0; font-family: var(--font-mono, monospace); font-size: clamp(0.95rem, 0.62rem + 1.3vw, 1.3rem); line-height: 2.3; }
+.fname-name { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem 0; margin: 0; font-family: var(--font-mono, monospace); font-size: clamp(0.8rem, 0.5rem + 1.05vw, 0.95rem); line-height: 1.5; }
+.fname-name > span { display: inline-flex; align-items: center; gap: 0.2rem; white-space: nowrap; }
 .fname-name i { color: var(--viz-muted); font-style: normal; }
-.fname-name code { padding-block: 0.2rem; border-bottom: 2px solid var(--viz-quiet); color: var(--viz-muted); font-size: inherit; white-space: nowrap; cursor: default; transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease; }
-.fname-name code[data-on] { border-color: var(--viz-gold); background: color-mix(in srgb, var(--viz-gold) 12%, transparent); color: var(--viz-ink); }
-.fname-name code[data-none] { border-bottom-style: dotted; }
+.fname-name code { padding: 0.28rem 0.5rem; border: 1px solid var(--viz-line); border-radius: 0.55rem; background: var(--color-fd-card); color: var(--viz-muted); font-size: inherit; cursor: default; transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease; }
+.fname-name code[data-on] { border-color: color-mix(in srgb, var(--viz-gold) 60%, transparent); background: color-mix(in srgb, var(--viz-gold) 10%, var(--viz-surface)); color: var(--viz-ink); }
+.fname-name code[data-none] { border-style: dashed; background: none; }
 .fname-read { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 1.2rem; margin: 0; padding-top: 0.9rem; border-top: 1px solid var(--viz-line); color: var(--viz-muted); font-size: 0.85rem; line-height: 1.7; }
 .fname-read strong { color: var(--viz-ink); font-weight: 500; }
 .fname-read code { color: var(--viz-ink); }
@@ -321,7 +325,7 @@
 @keyframes count-rise { from { transform: scaleX(0); } }
 @media (max-width: 520px) {
   .doc-figure { padding: 0.75rem; }
-  .doc-figure .counts-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; }
+  .doc-figure .counts-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
   .doc-figure .spell-name .viz-arabic { font-size: 1.35rem; }
   .doc-figure .spell-name code { font-size: 0.9rem; }
   .doc-figure > svg text { font-size: 26px; }

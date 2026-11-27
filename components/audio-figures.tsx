@@ -164,7 +164,8 @@ export function TimingFigure({ ar = false }: { ar?: boolean }) {
   const file = `${String(data.file.surah_number).padStart(3, '0')}.mp3`;
 
   const point = (event: PointerEvent<HTMLDivElement>) => {
-    const box = event.currentTarget.getBoundingClientRect();
+    // The entries are the scale; the file's bar stands a little wider around them.
+    const box = event.currentTarget.firstElementChild!.getBoundingClientRect();
     const at = ((event.clientX - box.left) / box.width) * total;
     const index = spans.findIndex((item) => at < item.end);
     setActive(index === -1 ? spans.length - 1 : Math.max(0, index));
@@ -246,6 +247,12 @@ const fields: (Words & { value: string; model?: NameModel; joined?: boolean })[]
   { value: '.mp3', model: 'audio-file', en: 'format', ar: 'الصيغة', joined: true },
 ];
 const nameModels = models.filter((item) => item.id !== 'timing') as (typeof models[number] & { id: NameModel })[];
+// The name as it is written: the parts that stand between two `_`.
+const groups = fields.reduce<(typeof fields)[]>((all, field) => {
+  if (field.joined) all.at(-1)!.push(field);
+  else all.push([field]);
+  return all;
+}, []);
 
 export function FileNameFigure({ ar = false }: { ar?: boolean }) {
   const [active, setActive] = useState<NameModel>('recitation');
@@ -267,14 +274,16 @@ export function FileNameFigure({ ar = false }: { ar?: boolean }) {
       </div>
       {/* A file name reads left to right in both languages. */}
       <p className="fname-name" dir="ltr">
-        {fields.map((field, index) => <span key={field.value}>
-          {index > 0 && !field.joined && <i>_<wbr /></i>}
-          <code
+        {/* The parts between two `_` stay on one line, and a wrapped line ends with its `_`. */}
+        {groups.map((group, index) => <span key={group[0].value}>
+          {group.map((field) => <code
+            key={field.value}
             data-on={field.model === active || undefined}
             data-none={field.model ? undefined : ''}
             onPointerEnter={(event) => event.pointerType === 'mouse' && field.model && setActive(field.model)}
             onClick={() => field.model && setActive(field.model)}
-          >{field.value}</code>
+          >{field.value}</code>)}
+          {index < groups.length - 1 && <i>_</i>}
         </span>)}
       </p>
       <p className="fname-read" aria-live="polite">
