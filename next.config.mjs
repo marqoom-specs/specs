@@ -6,14 +6,7 @@ const withMDX = createMDX();
 const config = {
   reactStrictMode: true,
   async redirects() {
-    // The site moved to marqoom-specs.com (lib/site.ts); links to the old address land on the same page there.
-    const moved = {
-      source: '/:path*',
-      has: [{ type: 'host', value: 'marqoom-temp.hadeel.studio' }],
-      destination: 'https://marqoom-specs.com/:path*',
-      permanent: true,
-    };
-    return [moved, ...['', '/en', '/ar'].flatMap((locale) =>
+    return ['', '/en', '/ar'].flatMap((locale) =>
       Object.entries({
         'quranic-vocabulary-standard': 'terms/standard',
         vocabulary: 'terms/dictionary',
@@ -26,7 +19,7 @@ const config = {
         destination: `${locale === '/ar' ? '/ar' : ''}/docs/${to}`,
         permanent: true,
       })),
-    )];
+    );
   },
 };
 

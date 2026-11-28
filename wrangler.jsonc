@@ -4,10 +4,9 @@
   "name": "marqoom",
   "compatibility_date": "2026-10-01",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-  // The site, and the old address that next.config.mjs redirects to it.
+  // The site's one address.
   "routes": [
-    { "pattern": "marqoom-specs.com", "custom_domain": true },
-    { "pattern": "marqoom-temp.hadeel.studio", "custom_domain": true }
+    { "pattern": "marqoom-specs.com", "custom_domain": true }
   ],
   "assets": {
     "directory": ".open-next/assets",
