@@ -10,7 +10,7 @@ Marqoom documents shared standards for Quranic data: the names, formats and rule
 
 On any page of a standard, turn on **Suggest edits**, point at the paragraph, and the button opens an issue here with the page, the heading and the current text filled in. You can also [open one directly](https://github.com/marqoom-specs/specs/issues/new?template=edit.yml).
 
-Problems with the lint tool go to [quranic-terminology-lint](https://github.com/marqoom-specs/quranic-terminology-lint).
+Problems with the lint tool go to [quranic-terminology-lint](https://github.com/marqoom-specs/quranic-terminology-lint), and problems with Raqim, the tool that names and tags a recitation's audio files, go to [raqim](https://github.com/marqoom-specs/raqim).
 
 ## What's here
 

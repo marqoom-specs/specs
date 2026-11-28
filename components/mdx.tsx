@@ -3,7 +3,7 @@ import type { MDXComponents } from 'mdx/types';
 import { CountsFigure, DictionaryExample, IntegrationFigure, NetworkFigure, SpellingExample, SpellingsFigure, TransmissionExample } from './doc-examples';
 import { FileNameFigure, ModelsFigure, RegistryFilter, TimingFigure } from './audio-figures';
 import { JoinCta } from './join-cta';
-import { ToolCta } from './tool-cta';
+import { RaqimCta, ToolCta } from './tool-cta';
 
 export function getMDXComponents(components?: MDXComponents) {
   return {
@@ -21,6 +21,7 @@ export function getMDXComponents(components?: MDXComponents) {
     RegistryFilter,
     JoinCta,
     ToolCta,
+    RaqimCta,
     ...components,
   } satisfies MDXComponents;
 }

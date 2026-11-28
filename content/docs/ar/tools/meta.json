@@ -2,6 +2,7 @@
   "title": "أدوات المطور",
   "defaultOpen": true,
   "pages": [
-    "quranic-terminology-lint"
+    "quranic-terminology-lint",
+    "raqim"
   ]
 }
