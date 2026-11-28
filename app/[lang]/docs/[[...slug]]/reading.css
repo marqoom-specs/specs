@@ -307,6 +307,8 @@
 .timing-files { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.4rem; }
 /* The file name: every field is a chip, and the chips of the model being read are gold, as its nodes are in the models' drawing. */
 .fname { display: grid; gap: 1.1rem; }
+/* The buttons follow the name they pick from: in Arabic too they start where it starts and run the way it reads. */
+[dir='rtl'] .fname .viz-pills { flex-direction: row-reverse; }
 .fname-name { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem 0; margin: 0; font-family: var(--font-mono, monospace); font-size: clamp(0.8rem, 0.5rem + 1.05vw, 0.95rem); line-height: 1.5; }
 .fname-name > span { display: inline-flex; align-items: center; gap: 0.2rem; white-space: nowrap; }
 .fname-name i { color: var(--viz-muted); font-style: normal; }
