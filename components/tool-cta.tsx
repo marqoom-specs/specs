@@ -52,7 +52,7 @@ export function RaqimCta({ ar = false }: { ar?: boolean }) {
       <strong>{ar ? 'جرّبه على تسجيل' : 'Try it on a recitation'}</strong>
       <p>{ar
         ? 'افتح رقيم وأعطه مجلدًا فيه بضع سور. يعرض عليك الأسماء قبل أن يغيّر شيئًا. وإذا سمّى ملفًا على غير ما تتوقع، فأخبرنا.'
-        : 'Open Raqim and give it a folder with a few surahs. It shows you the names before it changes anything. If it names a file in a way you did not expect, tell us.'}</p>
+        : 'Open Raqim and give it a folder with a few surahs. It shows you the names before it changes anything. If it names a file in a way you didn&apos;t expect, tell us.'}</p>
     </div>
     <div className="join-cta-actions">
       <a href={`${raqimUrl}${ar ? '?lang=ar' : ''}`} target="_blank" rel="noreferrer">

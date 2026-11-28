@@ -5,7 +5,7 @@ description: Names the audio files of a recitation by the audio standard, writes
 
 Raqim (رقيم) prepares the audio files of a recitation the way the [audio standard](/docs/audio) describes them. It names the files, writes their tags, makes the copies you publish, and checks names you already have. It works in your browser, and the files stay on your device.
 
-Say a recitation comes from the studio as 114 files, named `001.mp3` to `114.mp3`. You give Raqim the folder, and tell it once whose recitation it is: the reciter, the riwayah, the wajh, the style, the producer, and whether effects were added. It reads each file's surah from its name, measures its bitrate, and shows you the name each file will get, before anything is changed:
+Say a recitation comes from the studio as 114 files, named `001.mp3` to `114.mp3`. You give Raqim the folder, and tell it once whose recitation it is: the reciter, the riwayah, the wajh, the style, the producer, and whether effects were added. It reads each file's surah from its name, measures its bitrate, and shows you the name each file will get, before it changes anything:
 
 ```text
 001.mp3    QR_SC1447_ibrahim-dosari_As-Hf_mdd_128kbps_FX_001.mp3
@@ -13,25 +13,25 @@ Say a recitation comes from the studio as 114 files, named `001.mp3` to `114.mp3
 …
 ```
 
-This is [the name of the standard](/docs/audio/file-names#name), field by field. Two things in it are not typed. The reciter is chosen from the [reciter registry](/docs/audio/registries#reciters), so the name carries the registry's code. And the bitrate is measured from each file: a file that measures 64 is named `64kbps`, whatever its folder was called.
+This is [the name of the standard](/docs/audio/file-names#name), field by field. There are two things in it you don't type. You choose the reciter from the [reciter registry](/docs/audio/registries#reciters), so the name carries the registry's code. And Raqim measures the bitrate of each file: it names a file that measures 64 `64kbps`, whatever its folder was called.
 
-When you apply, Raqim renames the files where they are and writes [the tags](/docs/audio/file-names#tags) into them: the surah's title, the reciter's two names, the album named by style, riwayah and wajh, and the producer. The sound of the files is not touched.
+When you apply, Raqim renames the files where they are and writes [the tags](/docs/audio/file-names#tags) into them: the surah's title, the reciter's two names, the album named by style, riwayah and wajh, and the producer. It doesn't touch the sound of the files.
 
 ## What can I give it? [#tasks]
 
 | You have | Raqim does |
 | --- | --- |
 | Files that are ready to publish | Names them and writes their tags. |
-| The original recordings: wav, flac, or mp3 at a high bitrate | Makes m4a or mp3 copies at the bitrate you choose, named and tagged. The originals are left as they are. |
+| The original recordings: wav, flac, or mp3 at a high bitrate | Makes m4a or mp3 copies at the bitrate you choose, named and tagged. It leaves the originals as they are. |
 | Names you want to check | Reads each name against the standard, field by field, and shows it written correctly. If you give it the files, it also tells you when a name disagrees with its file, like `128kbps` on a file that measures 64. |
 
 ## How are the copies made? [#copies]
 
 The standard [recommends](/docs/audio/models#audio-file) keeping the original as wav or flac, publishing an m4a copy, and keeping mp3 for old devices. Give Raqim the originals and choose the format and the bitrate: 64, 128, 256 or 320. The copies go into a folder beside the originals, named after what is in it, like `m4a_128`. If you stop, Raqim continues later from where it stopped.
 
-A copy starts on the same sample as its source and is exactly as long. So a [timing](/docs/audio/models#timing) made on the original serves every copy made from it. An m4a copy says in the file how much silence its encoder added, and an mp3 copy records it too, for the players that read it. Raqim's own tests check this with ffmpeg, at every bitrate.
+A copy starts on the same sample as its source and is exactly as long. So a [timing](/docs/audio/models#timing) made on the original serves every copy made from it. An m4a copy says in the file how much silence its encoder added, and an mp3 copy records it too, for the players that read it. We check this with ffmpeg, at every bitrate.
 
-Raqim makes a copy only from a source that can give it. An m4a copy is made from a lossless source, or from a lossy one at 256 kbps or more. And a lossy source is never made into a copy at a higher bitrate than its own.
+Raqim makes a copy only from a source that can give it. It makes an m4a copy from a lossless source, or from a lossy one at 256 kbps or more. And it never makes a copy at a higher bitrate than its lossy source has.
 
 ## What is the data file? [#data-file]
 
@@ -82,14 +82,14 @@ The name and the tags say part of what the [content models](/docs/audio/models) 
 }
 ```
 
-Here `null` means unknown, as it does in the standard's examples. Raqim does not know the license of the recitation or where it was recorded, so it does not fill them in. `made_from` is the origin of the file: this one has the sound of another file, with new tags.
+Here `null` means unknown, as it does in the standard's examples. Raqim doesn't know the license of the recitation or where it was recorded, so it doesn't fill them in. `made_from` is the origin of the file: this one has the sound of another file, with new tags.
 
 ## Which browser do I need? [#browsers]
 
-In Chrome and Edge, on a computer, Raqim renames the files and saves the copies inside the folder you choose. Firefox and Safari do not let a page write into a folder, so there Raqim gives you the result as a ZIP file, and a script that renames the files in place. It works with no connection once it has opened, and it installs as an app from the browser.
+In Chrome and Edge, on a computer, Raqim renames the files and saves the copies inside the folder you choose. Firefox and Safari don't let a page write into a folder, so there Raqim gives you the result as a ZIP file, and a script that renames the files in place. It works with no connection once it has opened, and it installs as an app from the browser.
 
 ## Where are the details? [#more]
 
-What Raqim writes in each tag, how its encoders are built, and what it does not do yet are in the [tool's documentation](https://github.com/marqoom-specs/raqim#readme). The name and the tags themselves are explained in [File name and tags](/docs/audio/file-names), and the codes in the [registries](/docs/audio/registries). Raqim is open source under the MIT license.
+What Raqim writes in each tag, how its encoders are built, and what it doesn't do yet are in the [tool's documentation](https://github.com/marqoom-specs/raqim#readme). The name and the tags themselves are explained in [File name and tags](/docs/audio/file-names), and the codes in the [registries](/docs/audio/registries). Raqim is open source under the MIT license.
 
 <RaqimCta />
