@@ -42,3 +42,25 @@ export function ToolCta({ ar = false }: { ar?: boolean }) {
     <span className="sr-only" aria-live="polite">{copied ? (ar ? 'نُسخ الإعداد' : 'Setup copied') : ''}</span>
   </aside>;
 }
+
+const raqimUrl = 'https://marqoom-specs.github.io/raqim/';
+
+// The end of Raqim's page: open the tool, or report what it got wrong.
+export function RaqimCta({ ar = false }: { ar?: boolean }) {
+  return <aside className="join-cta tool-cta not-prose">
+    <div className="join-cta-copy">
+      <strong>{ar ? 'جرّبه على تسجيل' : 'Try it on a recitation'}</strong>
+      <p>{ar
+        ? 'افتح رقيم وأعطه مجلدًا فيه بضع سور. يعرض عليك الأسماء قبل أن يغيّر شيئًا. وإذا سمّى ملفًا على غير ما تتوقع، فأخبرنا.'
+        : 'Open Raqim and give it a folder with a few surahs. It shows you the names before it changes anything. If it names a file in a way you did not expect, tell us.'}</p>
+    </div>
+    <div className="join-cta-actions">
+      <a href={`${raqimUrl}${ar ? '?lang=ar' : ''}`} target="_blank" rel="noreferrer">
+        {ar ? 'افتح رقيم' : 'Open Raqim'}
+      </a>
+      <a href="https://github.com/marqoom-specs/raqim/issues/new" target="_blank" rel="noreferrer">
+        {ar ? 'أبلغ عن مشكلة' : 'Report a problem'}
+      </a>
+    </div>
+  </aside>;
+}
